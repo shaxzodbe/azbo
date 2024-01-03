@@ -59,6 +59,7 @@ class SellerController extends Controller
      */
     public function store(Request $request)
     {
+        dd($request);
 	if(User::where('email', $request->email)->first() != null){
             flash(translate('Phone already exists!'))->error();
             return back();
