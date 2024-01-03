@@ -1,0 +1,12 @@
+{
+    "name": "ayub/bdia",
+    "authors": [
+        {
+            "name": "makhmudovazeez",
+            "email": "azeezmakhmudov@gmail.com"
+        }
+    ],
+    "require": {
+        "twilio/sdk": "^6.43"
+    }
+}

@@ -1,0 +1,6 @@
+<?php
+
+return [
+  'BROKER_API_USERNAME' => env("BROKER_API_USERNAME"),
+  'BROKER_API_PASSWORD' => env("BROKER_API_PASSWORD"),
+];
