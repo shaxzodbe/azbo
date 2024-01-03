@@ -24,12 +24,12 @@ class SellerController extends Controller
         $sort_search = null;
         $approved = null;
         $sellers = Seller::orderBy('created_at', 'desc');
-        if ($request->has('search')){
+        if ($request->has('search')) {
             $sort_search = $request->search;
-            $user_ids = User::where('user_type', 'seller')->where(function($user) use ($sort_search){
-                $user->where('name', 'like', '%'.$sort_search.'%')->orWhere('email', 'like', '%'.$sort_search.'%');
+            $user_ids = User::where('user_type', 'seller')->where(function ($user) use ($sort_search) {
+                $user->where('name', 'like', '%' . $sort_search . '%')->orWhere('email', 'like', '%' . $sort_search . '%');
             })->pluck('id')->toArray();
-            $sellers = $sellers->where(function($seller) use ($user_ids){
+            $sellers = $sellers->where(function ($seller) use ($user_ids) {
                 $seller->whereIn('user_id', $user_ids);
             });
         }
@@ -54,35 +54,36 @@ class SellerController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        dd($request);
-	if(User::where('email', $request->email)->first() != null){
+        if (User::where('email', $request->email)->first() != null) {
             flash(translate('Phone already exists!'))->error();
             return back();
-        }        $user = new User;
+        }
+        $user = new User;
         $user->name = $request->name;
-        $user->phone = $request->email;
+        $user->email = $request->email;
         $user->user_type = "seller";
         $user->password = Hash::make($request->password);
-        if($user->save()){
-            if(get_setting('email_verification') != 1){
+        if ($user->save()) {
+            if (get_setting('email_verification') != 1) {
                 $user->email_verified_at = date('Y-m-d H:m:s');
             } else {
+                dd(new EmailVerificationNotification());
                 $user->notify(new EmailVerificationNotification());
             }
-	    $user->save();
+            $user->save();
             $seller = new Seller;
             $seller->user_id = $user->id;
             $seller->monthly_price = $request->has('monthly_price');
 
-            if($seller->save()){
+            if ($seller->save()) {
                 $shop = new Shop;
                 $shop->user_id = $user->id;
-                $shop->slug = 'demo-shop-'.$user->id;
+                $shop->slug = 'demo-shop-' . $user->id;
                 $shop->save();
                 flash(translate('Seller has been inserted successfully'))->success();
                 return redirect()->route('sellers.index');
@@ -95,7 +96,7 @@ class SellerController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -106,7 +107,7 @@ class SellerController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -118,8 +119,8 @@ class SellerController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -129,11 +130,11 @@ class SellerController extends Controller
         $user = $seller->user;
         $user->name = $request->name;
         $user->email = $request->email;
-        if(strlen($request->password) > 0){
+        if (strlen($request->password) > 0) {
             $user->password = Hash::make($request->password);
         }
-        if($user->save()){
-            if($seller->save()){
+        if ($user->save()) {
+            if ($seller->save()) {
                 flash(translate('Seller has been updated successfully'))->success();
                 return redirect()->route('sellers.index');
             }
@@ -146,7 +147,7 @@ class SellerController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
@@ -157,11 +158,10 @@ class SellerController extends Controller
         Order::where('user_id', $seller->user_id)->delete();
         OrderDetail::where('seller_id', $seller->user_id)->delete();
         User::destroy($seller->user->id);
-        if(Seller::destroy($id)){
+        if (Seller::destroy($id)) {
             flash(translate('Seller has been deleted successfully'))->success();
             return redirect()->route('sellers.index');
-        }
-        else {
+        } else {
             flash(translate('Something went wrong'))->error();
             return back();
         }
@@ -177,7 +177,7 @@ class SellerController extends Controller
     {
         $seller = Seller::findOrFail($id);
         $seller->verification_status = 1;
-        if($seller->save()){
+        if ($seller->save()) {
             flash(translate('Seller has been approved successfully'))->success();
             return redirect()->route('sellers.index');
         }
@@ -190,7 +190,7 @@ class SellerController extends Controller
         $seller = Seller::findOrFail($id);
         $seller->verification_status = 0;
         $seller->verification_info = null;
-        if($seller->save()){
+        if ($seller->save()) {
             flash(translate('Seller verification request has been rejected successfully'))->success();
             return redirect()->route('sellers.index');
         }
@@ -216,8 +216,8 @@ class SellerController extends Controller
         $seller = Seller::findOrFail($request->id);
         $seller->verification_status = $request->status;
 
-        
-        if($seller->save()){
+
+        if ($seller->save()) {
             // clear cache: was added by ouarka.dev@gmail.com  
             \Illuminate\Support\Facades\Artisan::call('cache:clear');
             return 1;
@@ -229,17 +229,18 @@ class SellerController extends Controller
     {
         $seller = Seller::findOrFail(decrypt($id));
 
-        $user  = $seller->user;
+        $user = $seller->user;
 
         auth()->login($user, true);
 
         return redirect()->route('dashboard');
     }
 
-    public function ban($id) {
+    public function ban($id)
+    {
         $seller = Seller::findOrFail($id);
 
-        if($seller->user->banned == 1) {
+        if ($seller->user->banned == 1) {
             $seller->user->banned = 0;
             flash(translate('Seller has been unbanned successfully'))->success();
         } else {
