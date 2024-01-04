@@ -53,7 +53,7 @@
             <tbody>
             @dd($sellers)
             @foreach($sellers as $key => $seller)
-                @dd($seller->user)
+                @dd($seller->user, $key)
                 @if($seller->user != null && $seller->user->shop != null)
                     <tr>
                         <td>{{ ($key+1) + ($sellers->currentPage() - 1)*$sellers->perPage() }}</td>
