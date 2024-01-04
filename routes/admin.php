@@ -30,6 +30,10 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function(
     Route::get('/brands/edit/{id}', 'BrandController@edit')->name('brands.edit');
     Route::get('/brands/destroy/{id}', 'BrandController@destroy')->name('brands.destroy');
 
+    Route::resource('colors', 'ColorController');
+    Route::get('/colors/edit/{id}', 'ColorController@edit')->name('colors.edit');
+    Route::get('/colors/destroy/{id}', 'ColorController@destroy')->name('colors.destroy');
+
     
     /** bonus product  */
     Route::get('/bonus_products', 'BonusProductController@index')->name('bonus_products.index');
