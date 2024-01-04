@@ -59,20 +59,19 @@ class SellerController extends Controller
      */
     public function store(Request $request)
     {
-        if (User::where('email', $request->email)->first() != null) {
+        if (User::where('phone', $request->phone)->first() != null) {
             flash(translate('Phone already exists!'))->error();
             return back();
         }
         $user = new User;
         $user->name = $request->name;
-        $user->email = $request->email;
+        $user->phone = $request->phone;
         $user->user_type = "seller";
         $user->password = Hash::make($request->password);
         if ($user->save()) {
             if (get_setting('email_verification') != 1) {
                 $user->email_verified_at = date('Y-m-d H:m:s');
             } else {
-                dd(new EmailVerificationNotification());
                 $user->notify(new EmailVerificationNotification());
             }
             $user->save();
@@ -129,7 +128,7 @@ class SellerController extends Controller
         $seller->monthly_price = $request->has('monthly_price');
         $user = $seller->user;
         $user->name = $request->name;
-        $user->email = $request->email;
+        $user->phone = $request->phone;
         if (strlen($request->password) > 0) {
             $user->password = Hash::make($request->password);
         }
