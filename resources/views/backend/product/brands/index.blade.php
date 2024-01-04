@@ -37,7 +37,7 @@
 		                @foreach($brands as $key => $brand)
 		                    <tr>
 		                        <td>{{ ($key+1) + ($brands->currentPage() - 1)*$brands->perPage() }}</td>
-		                        <td>{{ $brand->getTranslation('name') }}</td>
+		                        <td>@dd($brand->getTranslation('name'))</td>
 														<td>
 		                            <img src="{{ uploaded_asset($brand->logo) }}" alt="{{translate('Brand')}}" class="h-50px">
 		                        </td>
