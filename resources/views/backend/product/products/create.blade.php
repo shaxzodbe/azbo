@@ -195,11 +195,6 @@
                                 <input type="text" class="form-control" value="{{ translate('Colors') }}" disabled>
                             </div>
                             <div class="col-md-8">
-                                @foreach(\App\Color::all() as $color)
-                                    {{ $color->code }} <br>
-                                    {{ $color->name }} <br>
-                                @endforeach
-                                @dd(\App\Color::all())
                                 <select class="form-control aiz-selectpicker" data-live-search="true"
                                         data-selected-text-format="count" name="colors[]" id="colors" multiple disabled>
                                     @foreach (\App\Color::orderBy('name', 'asc')->get() as $key => $color)
