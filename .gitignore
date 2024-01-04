@@ -1,12 +1,7 @@
-/bootstrap/cache
-/storage/framework/cache
-/storage/framework/sessions
-/storage/framework/views
-/storage/logs
-/storage/framework/sessions/
+/booststrap/cache/*
+/storage/*
 /backups
 /public/uploads
-/storage/logs/
 /node_modules
 /vendor
 idea/
