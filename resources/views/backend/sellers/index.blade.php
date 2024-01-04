@@ -51,6 +51,7 @@
             </tr>
             </thead>
             <tbody>
+            @dd($sellers)
             @foreach($sellers as $key => $seller)
                 @if($seller->user != null && $seller->user->shop != null)
                     <tr>
