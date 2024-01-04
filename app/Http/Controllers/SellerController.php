@@ -21,6 +21,7 @@ class SellerController extends Controller
      */
     public function index(Request $request)
     {
+        dd($request);
         $sort_search = null;
         $approved = null;
         $sellers = Seller::orderBy('created_at', 'desc');
