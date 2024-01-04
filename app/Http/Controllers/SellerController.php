@@ -24,7 +24,6 @@ class SellerController extends Controller
         $sort_search = null;
         $approved = null;
         $sellers = Seller::orderBy('created_at', 'desc');
-        dd($sellers);
         if ($request->has('search')) {
             $sort_search = $request->search;
             $user_ids = User::where('user_type', 'seller')->where(function ($user) use ($sort_search) {
