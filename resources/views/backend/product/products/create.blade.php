@@ -7,7 +7,7 @@
     <div class="">
         <div class="">
             <form class="form form-horizontal mar-top" action="{{ route('products.store') }}" method="POST"
-                enctype="multipart/form-data" id="choice_form">
+                  enctype="multipart/form-data" id="choice_form">
                 @csrf
                 <input type="hidden" name="added_by" value="admin">
                 <div class="card">
@@ -20,7 +20,7 @@
                                     class="text-danger">*</span></label>
                             <div class="col-md-8">
                                 <input type="text" class="form-control" name="name"
-                                    placeholder="{{ translate('Product Name') }}" onchange="update_sku()" required>
+                                       placeholder="{{ translate('Product Name') }}" onchange="update_sku()" required>
                             </div>
                         </div>
                         <div class="form-group row" id="category">
@@ -28,7 +28,7 @@
                                     class="text-danger">*</span></label>
                             <div class="col-md-8">
                                 <select class="form-control aiz-selectpicker" name="category_id" id="category_id"
-                                    data-live-search="true" required>
+                                        data-live-search="true" required>
                                     @foreach ($categories as $category)
                                         <option value="{{ $category->id }}">{{ $category->getTranslation('name') }}
                                         </option>
@@ -43,7 +43,7 @@
                             <label class="col-md-3 col-from-label">{{ translate('Brand') }}</label>
                             <div class="col-md-8">
                                 <select class="form-control aiz-selectpicker" name="brand_id" id="brand_id"
-                                    data-live-search="true">
+                                        data-live-search="true">
                                     <option value="">{{ 'Select Brand' }}</option>
                                     @foreach (\App\Brand::all() as $brand)
                                         <option value="{{ $brand->id }}">{{ $brand->getTranslation('name') }}
@@ -55,10 +55,10 @@
                         <div class="form-group row">
                             <label class="col-md-3 col-from-label">{{ translate('Unit') }}</label>
                             <div class="col-md-8">
-                                
+
 
                                 <select class="form-control aiz-selectpicker" name="unit" data-live-search="true">
-                                   
+
                                     @foreach (['KG','QTY','SM','L','M','PC'] as $unit)
                                         <option value="{{ $unit }}">{{ $unit }}</option>
                                     @endforeach
@@ -71,7 +71,7 @@
                                     class="text-danger">*</span></label>
                             <div class="col-md-8">
                                 <input type="number" lang="en" class="form-control" name="min_qty" value="1" min="1"
-                                    required>
+                                       required>
                             </div>
                         </div>
                         <div class="form-group row">
@@ -79,7 +79,7 @@
                                     class="text-danger">*</span></label>
                             <div class="col-md-8">
                                 <input type="text" class="form-control aiz-tag-input" name="tags[]"
-                                    placeholder="{{ translate('Type and hit enter to add a tag') }}" required>
+                                       placeholder="{{ translate('Type and hit enter to add a tag') }}" required>
                                 <small
                                     class="text-muted">{{ translate('This is used for search. Input those words by which cutomer can find this product.') }}</small>
                             </div>
@@ -93,7 +93,7 @@
                                 <label class="col-md-3 col-from-label">{{ translate('Barcode') }}</label>
                                 <div class="col-md-8">
                                     <input type="text" class="form-control" name="barcode"
-                                        placeholder="{{ translate('Barcode') }}">
+                                           placeholder="{{ translate('Barcode') }}">
                                 </div>
                             </div>
                         @endif
@@ -123,7 +123,8 @@
                             <label class="col-md-3 col-form-label" for="signinSrEmail">{{ translate('Gallery Images') }}
                                 <small>(600x600)</small></label>
                             <div class="col-md-8">
-                                <div class="input-group" data-toggle="aizuploader" data-type="image" data-multiple="true">
+                                <div class="input-group" data-toggle="aizuploader" data-type="image"
+                                     data-multiple="true">
                                     <div class="input-group-prepend">
                                         <div class="input-group-text bg-soft-secondary font-weight-medium">
                                             {{ translate('Browse') }}</div>
@@ -138,7 +139,8 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-md-3 col-form-label" for="signinSrEmail">{{ translate('Thumbnail Image') }}
+                            <label class="col-md-3 col-form-label"
+                                   for="signinSrEmail">{{ translate('Thumbnail Image') }}
                                 <small>(300x300)</small></label>
                             <div class="col-md-8">
                                 <div class="input-group" data-toggle="aizuploader" data-type="image">
@@ -176,7 +178,7 @@
                             <label class="col-md-3 col-from-label">{{ translate('Video Link') }}</label>
                             <div class="col-md-8">
                                 <input type="text" class="form-control" name="video_link"
-                                    placeholder="{{ translate('Video Link') }}">
+                                       placeholder="{{ translate('Video Link') }}">
                                 <small
                                     class="text-muted">{{ translate("Use proper link without extra parameter. Don't use short share link/embeded iframe code.") }}</small>
                             </div>
@@ -194,10 +196,10 @@
                             </div>
                             <div class="col-md-8">
                                 <select class="form-control aiz-selectpicker" data-live-search="true"
-                                    data-selected-text-format="count" name="colors[]" id="colors" multiple disabled>
+                                        data-selected-text-format="count" name="colors[]" id="colors" multiple disabled>
                                     @foreach (\App\Color::orderBy('name', 'asc')->get() as $key => $color)
                                         <option value="{{ $color->code }}"
-                                            data-content="<span><span class='size-15px d-inline-block mr-2 rounded border' style='background:{{ $color->code }}'></span><span>{{ $color->name }}</span></span>">
+                                                data-content="<span><span class='size-15px d-inline-block mr-2 rounded border' style='background:{{ $color->code }}'></span><span>{{ $color->name }}</span></span>">
                                         </option>
                                     @endforeach
                                 </select>
@@ -217,13 +219,13 @@
 
                             <div class="col-md-8">
                                 <select name="choice_attributes[]" id="choice_attributes"
-                                    class="form-control aiz-selectpicker" data-selected-text-format="count"
-                                    data-live-search="true" multiple
-                                    data-placeholder="{{ translate('Choose Attributes') }}">
+                                        class="form-control aiz-selectpicker" data-selected-text-format="count"
+                                        data-live-search="true" multiple
+                                        data-placeholder="{{ translate('Choose Attributes') }}">
                                     @foreach (\App\Attribute::whereNull('parent_id')->get() as $key => $attribute)
                                         @php
                                             $children = $attribute->children()->get();
-                                            
+
                                             $children_trans = [];
                                             foreach ($children as $child) {
                                                 array_push($children_trans, [
@@ -234,7 +236,7 @@
                                         @endphp
 
                                         <option value="{{ $attribute->id }}"
-                                            data-children="{{ json_encode($children_trans) }}">
+                                                data-children="{{ json_encode($children_trans) }}">
                                             {{ $attribute->getTranslation('name') }} </option>
                                     @endforeach
                                 </select>
@@ -261,8 +263,9 @@
                                     class="text-danger">*</span></label>
                             <div class="col-md-6">
                                 <input type="number" lang="en" min="0" value="0" step="0.01"
-                                    placeholder="{{ translate('Unit price') }}" name="unit_price" class="form-control"
-                                    required>
+                                       placeholder="{{ translate('Unit price') }}" name="unit_price"
+                                       class="form-control"
+                                       required>
                             </div>
                         </div>
                         <div class="form-group row">
@@ -270,8 +273,8 @@
                                     class="text-danger">*</span></label>
                             <div class="col-md-6">
                                 <input type="number" lang="en" min="0" value="0" step="0.01"
-                                    placeholder="{{ translate('Purchase price') }}" name="purchase_price"
-                                    class="form-control" required>
+                                       placeholder="{{ translate('Purchase price') }}" name="purchase_price"
+                                       class="form-control" required>
                             </div>
                         </div>
                         <!--
@@ -295,8 +298,8 @@
                                     class="text-danger">*</span></label>
                             <div class="col-md-6">
                                 <input type="number" lang="en" min="0" value="0" step="0.01"
-                                    placeholder="{{ translate('Discount') }}" name="discount" class="form-control"
-                                    required>
+                                       placeholder="{{ translate('Discount') }}" name="discount" class="form-control"
+                                       required>
                             </div>
                             <div class="col-md-3">
                                 <select class="form-control aiz-selectpicker" name="discount_type">
@@ -310,8 +313,9 @@
                                     class="text-danger">*</span></label>
                             <div class="col-md-6">
                                 <input type="number" lang="en" min="0" value="0" step="1"
-                                    placeholder="{{ translate('Quantity') }}" name="current_stock" class="form-control"
-                                    required>
+                                       placeholder="{{ translate('Quantity') }}" name="current_stock"
+                                       class="form-control"
+                                       required>
                             </div>
                         </div>
                         <div class="form-group row">
@@ -326,7 +330,6 @@
                         </div>
                     </div>
                 </div>
-
 
 
                 <div class="card">
@@ -351,7 +354,7 @@
                         <div class="form-group row">
                             <label class="col-lg-3 col-from-label">{{ translate('Characteristics') }}</label>
                             <div class="col-lg-9">
-                                <textarea class="aiz-text-editor" name="characteristics" ></textarea>
+                                <textarea class="aiz-text-editor" name="characteristics"></textarea>
                             </div>
                         </div>
                     </div>
@@ -398,8 +401,9 @@
                                         <label class="col-md-3 col-from-label">{{ translate('Shipping cost') }}</label>
                                         <div class="col-md-8">
                                             <input type="number" lang="en" min="0" value="0" step="0.01"
-                                                placeholder="{{ translate('Shipping cost') }}" name="flat_shipping_cost"
-                                                class="form-control" required>
+                                                   placeholder="{{ translate('Shipping cost') }}"
+                                                   name="flat_shipping_cost"
+                                                   class="form-control" required>
                                         </div>
                                     </div>
                                 </div>
@@ -414,7 +418,7 @@
                     <div class="card-body">
                         <div class="form-group row">
                             <label class="col-md-3 col-form-label"
-                                for="signinSrEmail">{{ translate('PDF Specification') }}</label>
+                                   for="signinSrEmail">{{ translate('PDF Specification') }}</label>
                             <div class="col-md-8">
                                 <div class="input-group" data-toggle="aizuploader" data-type="document">
                                     <div class="input-group-prepend">
@@ -440,8 +444,9 @@
                         <div class="form-group row">
                             <label class="col-md-3 col-form-label" for="signinSrEmail">Category: </label>
                             <div class="col-md-8">
-                                <select class="form-control selectpicker" data-live-search="true" title="Nothing selected"
-                                    id="alifshop_category_id" name="alifshop_category_id" disabled>
+                                <select class="form-control selectpicker" data-live-search="true"
+                                        title="Nothing selected"
+                                        id="alifshop_category_id" name="alifshop_category_id" disabled>
                                     @forelse (\App\AlifshopCategory::where('is_active',true)->get() as $cat)
                                         <option value="{{ $cat->id }}">{{ $cat->name }} </option>
                                     @empty
@@ -459,8 +464,9 @@
                         <div class="form-group row">
                             <label class="col-md-3 col-form-label" for="signinSrEmail">Brand : </label>
                             <div class="col-md-8">
-                                <select class="form-control selectpicker " data-live-search="true" title="Nothing selected"
-                                    id="alifshop_brand_id" name="alifshop_brand_id" disabled>
+                                <select class="form-control selectpicker " data-live-search="true"
+                                        title="Nothing selected"
+                                        id="alifshop_brand_id" name="alifshop_brand_id" disabled>
                                     @forelse (\App\AlifshopBrand::all() as $brand)
                                         <option value="{{ $brand->id }}">{{ $brand->name }} </option>
                                     @empty
@@ -491,7 +497,7 @@
                             <label class="col-md-3 col-from-label">{{ translate('Meta Title') }}</label>
                             <div class="col-md-8">
                                 <input type="text" class="form-control" name="meta_title"
-                                    placeholder="{{ translate('Meta Title') }}">
+                                       placeholder="{{ translate('Meta Title') }}">
                             </div>
                         </div>
                         <div class="form-group row">
@@ -502,7 +508,7 @@
                         </div>
                         <div class="form-group row">
                             <label class="col-md-3 col-form-label"
-                                for="signinSrEmail">{{ translate('Meta Image') }}</label>
+                                   for="signinSrEmail">{{ translate('Meta Image') }}</label>
                             <div class="col-md-8">
                                 <div class="input-group" data-toggle="aizuploader" data-type="image">
                                     <div class="input-group-prepend">
@@ -519,51 +525,53 @@
                     </div>
                 </div>
                 @if(\App\BusinessSetting::where('type', 'bonus_product_activation')->first()->value)
-                <!-- Bonus product  section -->
-                <div class="card">
-                    <div class="card-header">
-                        <h5 class="mb-0 h6">{{ translate('Bonus Product') }}</h5>
+                    <!-- Bonus product  section -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="mb-0 h6">{{ translate('Bonus Product') }}</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group row">
+                                <label class="col-md-3 col-form-label">{{ translate('Product name') }}: </label>
+                                <div class="col-md-8">
+                                    <select name="bonus_product_id" id="" class="form-control  aiz-selectpicker"
+                                            data-live-search="true">
+                                        <option selected disabled>Select from list</option>
+                                        @forelse (\App\Product::where('bonus', true)->get() as $p)
+                                            <option value="{{ $p->id }}">
+                                                {{ $p->getTranslation('name') }}</option>
+                                        @empty
+                                        @endforelse
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="bonus_any_quantity"
+                                       class="col-md-3 col-form-label">{{ translate('One bonus')}} ? :</label>
+                                <div class="col-lg-8">
+                                    <label class="aiz-switch aiz-switch-success mb-0" style="margin-top:5px;">
+                                        <input type="checkbox" name="bonus_any_quantity">
+                                        <span class="slider round"></span>
+                                    </label>
+                                </div>
+
+                            </div>
+
+                            <div class="form-group row">
+                                <label class="col-md-3 col-form-label">{{ translate('Condition') }}:</label>
+                                <div class="col-md-8">
+                                    <select name="bonus_condition" class="form-control">
+                                        @foreach (range(1, 9) as $n)
+                                            <option value="{{ $n }}">{{ $n }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="card-body">
-                        <div class="form-group row">
-                            <label class="col-md-3 col-form-label">{{ translate('Product name') }}: </label>
-                            <div class="col-md-8">
-                                <select name="bonus_product_id" id="" class="form-control  aiz-selectpicker" data-live-search="true">
-                                    <option selected disabled>Select from list </option>
-                                    @forelse (\App\Product::where('bonus', true)->get() as $p)
-                                        <option value="{{ $p->id }}">
-                                            {{ $p->getTranslation('name') }}</option>
-                                    @empty
-                                    @endforelse
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="bonus_any_quantity" class="col-md-3 col-form-label">{{ translate('One bonus')}} ? :</label>
-                            <div class="col-lg-8">
-                                <label class="aiz-switch aiz-switch-success mb-0" style="margin-top:5px;">
-                                    <input type="checkbox" name="bonus_any_quantity">
-                                    <span class="slider round"></span></label>
-                                </label>
-                            </div>
 
-                        </div>
-
-                        <div class="form-group row">
-                            <label class="col-md-3 col-form-label">{{ translate('Condition') }}:</label>
-                            <div class="col-md-8">
-                                <select name="bonus_condition" class="form-control">
-                                    @foreach (range(1, 9) as $n)
-                                        <option value="{{ $n }}" >{{ $n }}
-                                        </option>
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- end Bonus product section -->
+                    <!-- end Bonus product section -->
 
                 @endif
                 <div class="mb-3 text-right">
@@ -572,8 +580,6 @@
             </form>
         </div>
     </div>
-
-
 
 @endsection
 
@@ -585,11 +591,10 @@
             var children = JSON.parse(d);
 
 
-
             if (true) {
                 var div_select =
                     `
-									<div class="form-group row"> 
+									<div class="form-group row">
 										<div class="col-md-3">
 											<input type="hidden" name="choice_no[]" value="${i}">
 											<input type="text" class="form-control" name="choice[]" value="${name}" placeholder="{{ translate('Choice Title') }}" readonly>
@@ -597,7 +602,7 @@
 										<div class="col-md-8">
 											<select name="choice_options_${i}[]" class="form-control aiz-selectpicker" multiple onchange="update_sku()">`;
 
-                children.forEach(function(e) {
+                children.forEach(function (e) {
                     div_select += `<option value='{"value": "${e.id}"}'>${e.name}</option>`
                 });
 
@@ -622,8 +627,7 @@
         }
 
 
-
-        $('input[name="alifshop_active"]').on('change', function(e) {
+        $('input[name="alifshop_active"]').on('change', function (e) {
             e.preventDefault();
             if (!$('input[name="alifshop_active"]').is(':checked')) {
                 $('#alifshop_category_id').prop('disabled', true);
@@ -647,7 +651,7 @@
         });
 
 
-        $('input[name="colors_active"]').on('change', function() {
+        $('input[name="colors_active"]').on('change', function () {
             if (!$('input[name="colors_active"]').is(':checked')) {
                 $('#colors').prop('disabled', true);
             } else {
@@ -656,15 +660,15 @@
             update_sku();
         });
 
-        $('#colors').on('change', function() {
+        $('#colors').on('change', function () {
             update_sku();
         });
 
-        $('input[name="unit_price"]').on('keyup', function() {
+        $('input[name="unit_price"]').on('keyup', function () {
             update_sku();
         });
 
-        $('input[name="name"]').on('keyup', function() {
+        $('input[name="name"]').on('keyup', function () {
             update_sku();
         });
 
@@ -684,7 +688,7 @@
                 type: "POST",
                 url: '{{ route('products.sku_combination') }}',
                 data: $('#choice_form').serialize(),
-                success: function(data) {
+                success: function (data) {
                     $('#sku_combination').html(data);
                     AIZ.plugins.fooTable();
                     if (data.length > 1) {
@@ -696,9 +700,9 @@
             });
         }
 
-        $('#choice_attributes').on('change', function() {
+        $('#choice_attributes').on('change', function () {
             $('#customer_choice_options').html(null);
-            $.each($("#choice_attributes option:selected"), function() {
+            $.each($("#choice_attributes option:selected"), function () {
 
                 var el = $(this);
                 add_more_customer_choice_option(el, $(this).val(), $(this).text());
