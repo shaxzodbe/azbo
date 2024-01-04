@@ -24,6 +24,7 @@ class SellerController extends Controller
         $sort_search = null;
         $approved = null;
         $sellers = Seller::orderBy('created_at', 'desc');
+        dd($sellers);
         if ($request->has('search')) {
             $sort_search = $request->search;
             $user_ids = User::where('user_type', 'seller')->where(function ($user) use ($sort_search) {
@@ -38,7 +39,6 @@ class SellerController extends Controller
             $sellers = $sellers->where('verification_status', $approved);
         }
         $sellers = $sellers->paginate(15);
-        dd($sellers);
         return view('backend.sellers.index', compact('sellers', 'sort_search', 'approved'));
     }
 
