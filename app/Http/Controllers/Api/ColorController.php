@@ -9,7 +9,6 @@ class ColorController extends Controller
 {
     public function index()
     {
-        dd(Color::all());
         return new ColorCollection(Color::all());
     }
 }
