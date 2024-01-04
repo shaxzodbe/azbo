@@ -25,6 +25,8 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Color extends Model
 {
+    protected $fillable = ['name', 'code'];
+
     protected static function boot()
     {
         parent::boot();

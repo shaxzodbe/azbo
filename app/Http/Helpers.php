@@ -5,13 +5,19 @@ use App\City;
 use App\Currency;
 use App\FlashDeal;
 use App\FlashDealProduct;
+use App\Models\SubCategory;
+use App\Models\SubSubCategory;
 use App\OtpConfiguration;
 use App\Product;
-use App\SubSubCategory;
 use App\Translation;
 use App\Upload;
 use App\Utility\CategoryUtility;
 use App\Utility\MimoUtility;
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Session;
 use Twilio\Rest\Client;
 
 //highlights the selected navigation on admin panel

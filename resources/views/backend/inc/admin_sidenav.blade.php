@@ -129,6 +129,11 @@
                                     <span class="aiz-side-nav-text">{{translate('Product Reviews')}}</span>
                                 </a>
                             </li>
+                            <li class="aiz-side-nav-item">
+                                <a href="{{route('colors.index')}}" class="aiz-side-nav-link {{ areActiveRoutes(['colors.index', 'colors.create', 'colors.edit'])}}" >
+                                    <span class="aiz-side-nav-text">{{translate('Color')}}</span>
+                                </a>
+                            </li>
                         </ul>
                     </li>
                 @endif
