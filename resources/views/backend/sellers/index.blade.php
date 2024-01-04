@@ -51,13 +51,11 @@
             </tr>
             </thead>
             <tbody>
-            @dd($sellers)
             @foreach($sellers as $key => $seller)
-                @dd($seller->user->phone, $key)
                 @if($seller->user != null && $seller->user->shop != null)
                     <tr>
                         <td>{{ ($key+1) + ($sellers->currentPage() - 1)*$sellers->perPage() }}</td>
-                        <td>@if($seller->user->banned == 1) <i class="fa fa-ban text-danger" aria-hidden="true"></i> @endif {{$seller->user->shop->name}}</td>
+                        <td>@if($seller->user->banned == 1) <i class="fa fa-ban text-danger" aria-hidden="true"></i> @endif {{$seller->user->name}}</td>
                         <td>{{$seller->user->phone}}</td>
                         <td>{{$seller->user->email}}</td>
                         <td>
