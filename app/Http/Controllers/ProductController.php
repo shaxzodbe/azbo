@@ -137,6 +137,7 @@ class ProductController extends Controller
             ->where('digital', 0)
             ->with('childrenCategories')
             ->get();
+        dd($categories);
 
         return view('backend.product.products.create', compact('categories'));
     }
