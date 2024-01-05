@@ -42,12 +42,13 @@
                                 <td>{{ $color->getTranslation('name') }}</td>
                                 <td>
                                     <div class="aiz-radio-inline">
-                                            <label class="aiz-megabox pl-0 mr-2" data-toggle="tooltip">
-                                                <span class="aiz-megabox-elem rounded d-flex align-items-center justify-content-center p-1 mb-2">
-                                                        <span class="size-30px d-inline-block rounded" style="background: {{ $color->code }};"></span>
+                                        <label class="aiz-megabox pl-0 mr-2" data-toggle="tooltip">
+                                                <span
+                                                    class="aiz-megabox-elem rounded d-flex align-items-center justify-content-center p-1 mb-2">
+                                                        <span class="size-30px d-inline-block rounded"
+                                                              style="background: {{ $color->code }};"></span>
                                                     </span>
-                                            </label>
-                                        @endforeach
+                                        </label>
                                     </div>
                                 </td>
                                 <td class="text-right">
