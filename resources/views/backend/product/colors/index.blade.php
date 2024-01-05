@@ -41,7 +41,9 @@
                                 <td>{{ ($key+1) + ($colors->currentPage() - 1)*$colors->perPage() }}</td>
                                 <td>{{ $color->getTranslation('name') }}</td>
                                 <td>
-                                    <input type="radio" value="{{ $color->code }}">
+                                    <div class="aiz-radio-inline">
+                                        <input type="radio" value="{{ $color->code }}">
+                                    </div>
                                 </td>
                                 <td class="text-right">
                                     <a class="btn btn-soft-primary btn-icon btn-circle btn-sm"
