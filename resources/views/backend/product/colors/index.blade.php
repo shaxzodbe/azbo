@@ -30,6 +30,7 @@
 		                    <th>#</th>
 		                    <th>{{translate('Name')}}</th>
 		                    <th>{{translate('Code')}}</th>
+                            <th class="text-right">{{translate('Options')}}</th>
 		                </tr>
 		            </thead>
 		            <tbody>
@@ -37,6 +38,7 @@
 		                    <tr>
 		                        <td>{{ ($key+1) + ($colors->currentPage() - 1)*$colors->perPage() }}</td>
 		                        <td>{{ $color->getTranslation('name') }}</td>
+                                <td field-key='color'>{{ $color->code }}</td>
 		                        <td class="text-right">
 		                            <a class="btn btn-soft-primary btn-icon btn-circle btn-sm" href="{{route('colors.edit', ['id'=>$color->id, 'lang'=>env('DEFAULT_LANGUAGE')] )}}" title="{{ translate('Edit') }}">
 		                                <i class="las la-edit"></i>
