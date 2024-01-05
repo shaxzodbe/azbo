@@ -88,7 +88,7 @@
                         </div>
                         <div class="form-group mb-3">
                             <label for="code">{{translate('Code')}}</label>
-                            <input type="text" placeholder="{{translate('Code')}}" name="code" class="form-control"
+                            <input type="color" value="#ff0000" placeholder="{{translate('Code')}}" name="code" class="form-control"
                                    required>
                         </div>
                         <div class="form-group mb-3 text-right">
