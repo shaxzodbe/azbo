@@ -326,7 +326,7 @@ if (!function_exists('get_cached_products')) {
 if (!function_exists('verified_sellers_id')) {
     function verified_sellers_id()
     {
-        return App\Seller::where('verification_status', 1)->get()->pluck('user_id')->toArray();
+        return \App\Seller::where('verification_status', 1)->get()->pluck('user_id')->toArray();
     }
 }
 
