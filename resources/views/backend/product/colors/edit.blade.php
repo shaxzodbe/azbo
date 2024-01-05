@@ -32,7 +32,7 @@
                 <div class="form-group row">
                     <label class="col-sm-3 col-from-label" for="code">{{translate('Code')}} <i class="las la-language text-danger" title="{{translate('Translatable')}}"></i></label>
                     <div class="col-sm-9">
-                        <input type="text" placeholder="{{translate('Code')}}" id="code" name="code" value="{{ $color->getTranslation('code', $lang) }}" class="form-control" required>
+                        <input type="color" placeholder="{{translate('Code')}}" id="code" name="code" value="{{ $color->code }}" class="form-control" required>
                     </div>
                 </div>
                 <div class="form-group mb-0 text-right">
