@@ -30,7 +30,7 @@
                         <thead>
                         <tr>
                             <th>#</th>
-                            <th>{{translate('Name')}}</th>
+                            <th>{{translate('Color')}}</th>
                             <th>{{translate('Code')}}</th>
                             <th class="text-right">{{translate('Options')}}</th>
                         </tr>
@@ -82,8 +82,8 @@
                     <form action="{{ route('colors.store') }}" method="POST">
                         @csrf
                         <div class="form-group mb-3">
-                            <label for="name">{{translate('Name')}}</label>
-                            <input type="text" placeholder="{{translate('Name')}}" name="name" class="form-control"
+                            <label for="name">{{translate('Color')}}</label>
+                            <input type="text" placeholder="{{translate('Color')}}" name="name" class="form-control"
                                    required>
                         </div>
                         <div class="form-group mb-3">
