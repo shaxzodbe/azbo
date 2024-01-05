@@ -30,7 +30,7 @@
                         <thead>
                         <tr>
                             <th>#</th>
-                            <th>{{translate('Color')}}</th>
+                            <th>{{translate('Name')}}</th>
                             <th>{{translate('Code')}}</th>
                             <th class="text-right">{{translate('Options')}}</th>
                         </tr>
