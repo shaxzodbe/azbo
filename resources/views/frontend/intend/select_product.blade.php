@@ -306,12 +306,9 @@
                                                             type="radio"
                                                             name="color"
                                                             value="{{ \App\Color::where('code', $color)->first()->name }}"
-                                                            @if($key == 0) checked @endif
-                                                        >
-                                                        <span
-                                                            class="aiz-megabox-elem rounded d-flex align-items-center justify-content-center p-1 mb-2">
-                                                        <span class="size-30px d-inline-block rounded"
-                                                              style="background: {{ $color }};"></span>
+                                                            @if($key == 0) checked @endif>
+                                                        <span class="aiz-megabox-elem rounded d-flex align-items-center justify-content-center p-1 mb-2">
+                                                        <span class="size-30px d-inline-block rounded" style="background: {{ $color }};"></span>
                                                     </span>
                                                     </label>
                                                 @endforeach
