@@ -24,7 +24,6 @@
       <tbody>
         @foreach ($applications as $key => $app)
             @if($app->user)
-                @dd($app->product->user->name, $app->product->name, $app->details)
             <tr>
               <td>{{ $key + 1 }} </td>
               <td>{{ $app->code }} </td>
