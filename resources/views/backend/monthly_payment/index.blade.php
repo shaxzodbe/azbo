@@ -29,11 +29,11 @@
               <td>{{ $app->code }} </td>
               <td>{{ $app->product ? $app->product->user->name : '-' }}</td>
               <td>{{ $app->user->name ?? '' }}</td>
-              <td>{{ isset($app->product) ? $app->product->name : '' }} @if($app->variant) - {{ get_variant_string($app->variant) }} @endif</td>
+              <td>{{ isset($app->product) ? $app->product->name ?? '' : '' }} @if($app->variant) - {{ get_variant_string($app->variant) }} @endif</td>
               <td>{{ $app->quantity }} </td>
               <td>{{ single_price($app->price) }}</td>
 
-              <td>{{ json_decode($app->details)->name }}</td>
+              <td>{{ json_decode($app->details)->name ?? '' }}</td>
 
               <td style="text-transform: capitalize">
 
