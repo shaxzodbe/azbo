@@ -6,10 +6,9 @@ use Illuminate\Http\Request;
 use App\Conversation;
 use App\BusinessSetting;
 use App\Message;
-use Auth;
 use App\Product;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
-use Mail;
 use App\Mail\ConversationMailManager;
 
 class ConversationController extends Controller
