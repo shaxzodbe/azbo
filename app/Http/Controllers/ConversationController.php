@@ -8,6 +8,7 @@ use App\BusinessSetting;
 use App\Message;
 use Auth;
 use App\Product;
+use Illuminate\Support\Facades\Mail;
 use Mail;
 use App\Mail\ConversationMailManager;
 

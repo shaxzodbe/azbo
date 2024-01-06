@@ -18,11 +18,11 @@ use App\CouponUsage;
 use App\OtpConfiguration;
 use App\User;
 use App\BusinessSetting;
-use Auth;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
-use Session;
-use DB;
-use Mail;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Session;
 use App\Mail\InvoiceEmailManager;
 
 

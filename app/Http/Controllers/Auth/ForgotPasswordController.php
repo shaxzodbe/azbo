@@ -5,11 +5,11 @@ namespace App\Http\Controllers\Auth;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Auth\Events\PasswordReset;
 use App\User;
 use App\Mail\SecondEmailVerifyMailManager;
-use Mail;
 
 class ForgotPasswordController extends Controller
 {

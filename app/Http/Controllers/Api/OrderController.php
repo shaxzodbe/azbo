@@ -11,8 +11,9 @@ use App\Models\Coupon;
 use App\Models\CouponUsage;
 use App\Models\BusinessSetting;
 use App\User;
-use DB;
 use App\Mail\InvoiceEmailManager;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 
 class OrderController extends Controller
 {
