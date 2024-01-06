@@ -5,10 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Order;
 use App\OrderDetail;
-use App\Application; 
+use App\Application;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
-use Auth;
-use DB;
 
 class PurchaseHistoryController extends Controller
 {
@@ -25,10 +25,10 @@ class PurchaseHistoryController extends Controller
     {
         $orders = Order::where('user_id', Auth::user()->id)->orderBy('code', 'desc')->paginate(9);
         
-        $user_id = \Auth::user()->id; 
+        $user_id = Auth::user()->id;
 
 
-        $applications = Application::where('user_id', \Auth::user()->id)->get();
+        $applications = Application::where('user_id', Auth::user()->id)->get();
         
         
         return view('frontend.user.purchase_history', compact('orders', 'applications'));
