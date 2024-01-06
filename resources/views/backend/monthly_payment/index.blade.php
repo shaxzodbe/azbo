@@ -28,7 +28,7 @@
               <td>{{ $key + 1 }} </td>
               <td>{{ $app->code }} </td>
               <td>{{ $app->product ? $app->product->user->name : '-' }}</td>
-              <td>{{ $app->user->name }}</td>
+              <td>{{ $app->user->name ?? '' }}</td>
               <td>{{ isset($app->product) ? $app->product->name : '' }} @if($app->variant) - {{ get_variant_string($app->variant) }} @endif</td>
               <td>{{ $app->quantity }} </td>
               <td>{{ single_price($app->price) }}</td>

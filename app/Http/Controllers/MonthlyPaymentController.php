@@ -14,7 +14,7 @@ class MonthlyPaymentController extends Controller
     
 
     public function index() {
-        $applications = Application::orderBy('created_at', 'desc')->get(); 
+        $applications = Application::orderBy('created_at', 'desc')->get();
         
         return view('backend.monthly_payment.index', compact('applications'));
     }
