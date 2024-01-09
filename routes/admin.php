@@ -199,6 +199,11 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function(
     Route::get('indend/{id}', 'OrderController@intend_show')->name('indend.show');
     Route::get('/one_click_orders/destroy/{id}', 'OrderController@one_click_orders_destroy')->name('one_click_orders.destroy');
 
+    //Indend
+    Route::get('uzum', 'UzumController@uzum_index')->name('uzum.index');
+    Route::get('uzum/{id}', 'UzumController@uzum_show')->name('uzum.show');
+    Route::get('/one_click_orders/destroy/{id}', 'OrderController@one_click_orders_destroy')->name('one_click_orders.destroy');
+
     //Reports
     Route::get('/stock_report', 'ReportController@stock_report')->name('stock_report.index');
     Route::get('/in_house_sale_report', 'ReportController@in_house_sale_report')->name('in_house_sale_report.index');
