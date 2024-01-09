@@ -17,7 +17,9 @@ class UzumNasiyaController extends Controller
     public function checkStatus(Request $request)
     {
         $phone = $request->input('phone');
-        $response = $this->uzumNasiyaService->checkUserStatus($phone);
+        $callbackUrl = $request->input('callback');
+        $response = $this->uzumNasiyaService->checkUserStatus($phone, $callbackUrl);
+
         return response()->json($response);
     }
 }

@@ -166,6 +166,11 @@ Route::get('/intent-order-check', 'HomeController@intent_order_check')->name('in
 Route::get('intent-selected-products', 'HomeController@intent_selected_products')->name('intent_selected_products');
 
 
+/*Uzum Nasiya*/
+
+Route::post('/uzum-nasiya/check-status', 'UzumNasiyaController@checkStatus');
+
+
 /*New*/
 
 Route::get('/category/{category_slug}', 'HomeController@listingByCategory')->name('products.category');

@@ -14,14 +14,14 @@ class UzumNasiyaService
         $this->bearerToken = config('services.uzum_nasiya.bearer_token');
     }
 
-    public function checkUserStatus($phone)
+    public function checkUserStatus($phone, $callbackUrl)
     {
         $client = new Client();
-        $response = $client->post($this->baseUrl . 'uzum/buyer/check-status', [
+        $response = $client->post($this->baseUrl . 'uzum/buyer/check-status?callback=' . $callbackUrl, [
             'headers' => [
                 'Authorization' => 'Bearer ' . $this->bearerToken
             ],
-            'form_params' => [
+            'json' => [
                 'phone' => $phone
             ]
         ]);
