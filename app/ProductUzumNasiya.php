@@ -13,14 +13,17 @@ class ProductUzumNasiya extends Model
         'id',
         'product_id',
         'user_id',
-        'bearer_token',
-        'ref_id',
-        'product_price',
-        'product_monthly_price',
-        'uzum_nasiya_phone',
         'created_at',
         'updated_at'
     ];
+
+    public const STATUS_NOT_FOUND = 0;
+    public const STATUS_VERIFICATION_MYID = 5;
+    public const STATUS_NEED_ADD_CARD = 1;
+    public const STATUS_ADD_TRUSTEE = 12;
+    public const STATUS_AWAITING_MODERATION = 2;
+    public const STATUS_VERIFIED = 4;
+    public const STATUS_VERIFICATION_DENIED = 8;
 
     public function products()
     {

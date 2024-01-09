@@ -19,7 +19,9 @@ class UzumNasiyaService
         $client = new Client();
         $response = $client->post($this->baseUrl . 'uzum/buyer/check-status?callback=' . $callbackUrl, [
             'headers' => [
-                'Authorization' => 'Bearer ' . $this->bearerToken
+                'Authorization' => 'Bearer ' . $this->bearerToken,
+                'Content-Type' => 'application/json',
+                'Accept' => 'application/json',
             ],
             'json' => [
                 'phone' => $phone
@@ -29,9 +31,14 @@ class UzumNasiyaService
         return json_decode($response->getBody(), true);
     }
 
-    public function createContract($contractData)
+    public function calculate($data)
     {
-        // Implement the logic to create a contract
+        $client = new Client();
+        $response = $client->post('https://tera.paymart.uz/api/v3/mfo/calculate', [
+            'json' => $data
+        ]);
+
+        return json_decode($response->getBody()->getContents(), true);
     }
 
     public function confirmContract($contractId)

@@ -8,9 +8,29 @@ use Illuminate\Support\Facades\App;
 class Product extends Model
 {
     protected $fillable = [
-        'name','added_by', 'user_id', 'category_id', 'brand_id', 'color_id', 'video_provider', 'video_link', 'unit_price',
-        'purchase_price', 'unit', 'slug', 'colors', 'choice_options', 'variations', 'current_stock', 'thumbnail_img',
-        'alifshop', 'alifshop_category_id', 'alifshop_brand_id', 'alifshop_visible', 'profit', 'characteristics'
+        'name',
+        'added_by',
+        'user_id',
+        'category_id',
+        'brand_id',
+        'color_id',
+        'video_provider',
+        'video_link',
+        'unit_price',
+        'purchase_price',
+        'unit',
+        'slug',
+        'colors',
+        'choice_options',
+        'variations',
+        'current_stock',
+        'thumbnail_img',
+        'alifshop',
+        'alifshop_category_id',
+        'alifshop_brand_id',
+        'alifshop_visible',
+        'profit',
+        'characteristics'
       ];
 
     public function getTranslation($field = '', $lang = false){
