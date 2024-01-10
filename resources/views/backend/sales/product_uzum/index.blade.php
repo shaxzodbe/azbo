@@ -46,7 +46,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                @foreach ($productIntend as $key => $one_click_order)
+                @foreach ($productUzum as $key => $one_click_order)
                     @if($one_click_order != null)
                         <tr>
                             <td>
@@ -119,7 +119,7 @@
                 </tbody>
             </table>
             <div class="aiz-pagination">
-                {{ $productIntend->links() }}
+                {{ $productUzum->links() }}
             </div>
         </div>
     </div>

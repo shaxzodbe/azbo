@@ -13,6 +13,11 @@ class ProductUzumNasiya extends Model
         'id',
         'product_id',
         'user_id',
+        'bearer_token',
+        'product_price',
+        'product_monthly_price',
+        'uzum_phone',
+        'status',
         'created_at',
         'updated_at'
     ];
