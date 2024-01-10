@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Helpers\Telegram;
 use App\Models\Custom\OneClickBuy;
 use App\ProductIntend;
+use App\ProductUzumNasiya;
 use Illuminate\Http\Request;
 use App\Http\Controllers\OTPVerificationController;
 use App\Http\Controllers\ClubPointController;
@@ -352,6 +353,29 @@ class OrderController extends Controller
     {
         $productIntend = ProductIntend::findOrFail(decrypt($id));
         return view('backend.sales.product_intend.show', compact('productIntend'));
+    }
+
+    // Uzum
+    public function uzum_index(Request $request)
+    {
+        $date = $request->date;
+        $productUzum = ProductUzumNasiya::orderBy('created_at','desc');
+        $sort_search = null;
+        if ($request->has('search')){
+            $sort_search = $request->search;
+            $productUzum = $productUzum->where('created_at', 'like', '%'.$sort_search.'%');
+        }
+        if ($date != null) {
+            $productUzum = $productUzum->where('created_at', '>=', date('Y-m-d', strtotime(explode(" to ", $date)[0])))->where('created_at', '<=', date('Y-m-d', strtotime(explode(" to ", $date)[1])));
+        }
+        $productUzum = $productUzum->paginate(10);
+        return view('backend.sales.product_uzum.index', compact('productUzum','sort_search','date'));
+    }
+
+    public function uzum_show($id)
+    {
+        $productUzum = ProductUzumNasiya::findOrFail(decrypt($id));
+        return view('backend.sales.product_uzum.show', compact('productUzum'));
     }
 
 
