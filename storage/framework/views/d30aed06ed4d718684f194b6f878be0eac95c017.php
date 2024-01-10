@@ -3,15 +3,18 @@
         <div class="aiz-side-nav-logo-wrap">
             <a href="<?php echo e(route('admin.dashboard')); ?>" class="d-block text-left">
                 <?php if(get_setting('system_logo_white') != null): ?>
-                    <img class="mw-100" src="<?php echo e(uploaded_asset(get_setting('system_logo_white'))); ?>" class="brand-icon" alt="<?php echo e(get_setting('site_name')); ?>">
+                    <img class="mw-100" src="<?php echo e(uploaded_asset(get_setting('system_logo_white'))); ?>" class="brand-icon"
+                         alt="<?php echo e(get_setting('site_name')); ?>">
                 <?php else: ?>
-                    <img class="mw-100" src="<?php echo e(static_asset('assets/img/logo.png')); ?>" class="brand-icon" alt="<?php echo e(get_setting('site_name')); ?>">
+                    <img class="mw-100" src="<?php echo e(static_asset('assets/img/logo.png')); ?>" class="brand-icon"
+                         alt="<?php echo e(get_setting('site_name')); ?>">
                 <?php endif; ?>
             </a>
         </div>
         <div class="aiz-side-nav-wrap">
             <div class="px-20px mb-3">
-                <input class="form-control bg-soft-secondary border-0 form-control-sm text-white" type="text" name="" placeholder="<?php echo e(translate('Search in menu')); ?>" id="menu-search" onkeyup="menuSearch()">
+                <input class="form-control bg-soft-secondary border-0 form-control-sm text-white" type="text" name=""
+                       placeholder="<?php echo e(translate('Search in menu')); ?>" id="menu-search" onkeyup="menuSearch()">
             </div>
             <ul class="aiz-side-nav-list" id="search-menu">
             </ul>
@@ -26,25 +29,26 @@
                 <!-- POS Addon-->
                 <?php if(\App\Addon::where('unique_identifier', 'pos_system')->first() != null && \App\Addon::where('unique_identifier', 'pos_system')->first()->activated): ?>
                     <?php if(Auth::user()->user_type == 'admin' || in_array('1', json_decode(Auth::user()->staff->role->permissions))): ?>
-                      <li class="aiz-side-nav-item">
-                        <a href="#" class="aiz-side-nav-link">
-                            <i class="las la-tasks aiz-side-nav-icon"></i>
-                            <span class="aiz-side-nav-text"><?php echo e(translate('POS System')); ?></span>
-                            <span class="aiz-side-nav-arrow"></span>
-                        </a>
-                        <ul class="aiz-side-nav-list level-2">
-                            <li class="aiz-side-nav-item">
-                                <a href="<?php echo e(route('poin-of-sales.index')); ?>" class="aiz-side-nav-link <?php echo e(areActiveRoutes(['poin-of-sales.index', 'poin-of-sales.create'])); ?>">
-                                    <span class="aiz-side-nav-text"><?php echo e(translate('POS Manager')); ?></span>
-                                </a>
-                            </li>
-                            <li class="aiz-side-nav-item">
-                                <a href="<?php echo e(route('poin-of-sales.activation')); ?>" class="aiz-side-nav-link">
-                                    <span class="aiz-side-nav-text"><?php echo e(translate('POS Configuration')); ?></span>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
+                        <li class="aiz-side-nav-item">
+                            <a href="#" class="aiz-side-nav-link">
+                                <i class="las la-tasks aiz-side-nav-icon"></i>
+                                <span class="aiz-side-nav-text"><?php echo e(translate('POS System')); ?></span>
+                                <span class="aiz-side-nav-arrow"></span>
+                            </a>
+                            <ul class="aiz-side-nav-list level-2">
+                                <li class="aiz-side-nav-item">
+                                    <a href="<?php echo e(route('poin-of-sales.index')); ?>"
+                                       class="aiz-side-nav-link <?php echo e(areActiveRoutes(['poin-of-sales.index', 'poin-of-sales.create'])); ?>">
+                                        <span class="aiz-side-nav-text"><?php echo e(translate('POS Manager')); ?></span>
+                                    </a>
+                                </li>
+                                <li class="aiz-side-nav-item">
+                                    <a href="<?php echo e(route('poin-of-sales.activation')); ?>" class="aiz-side-nav-link">
+                                        <span class="aiz-side-nav-text"><?php echo e(translate('POS Configuration')); ?></span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
                     <?php endif; ?>
                 <?php endif; ?>
 
@@ -69,13 +73,15 @@
                                 </a>
                             </li>
                             <li class="aiz-side-nav-item">
-                                <a href="<?php echo e(route('products.admin')); ?>" class="aiz-side-nav-link <?php echo e(areActiveRoutes(['products.admin', 'products.create', 'products.admin.edit'])); ?>" >
+                                <a href="<?php echo e(route('products.admin')); ?>"
+                                   class="aiz-side-nav-link <?php echo e(areActiveRoutes(['products.admin', 'products.create', 'products.admin.edit'])); ?>">
                                     <span class="aiz-side-nav-text"><?php echo e(translate('In House Products')); ?></span>
                                 </a>
                             </li>
-                             <!-- check later if bonus products is activted -->
-                             <li class="aiz-side-nav-item">
-                                <a href="<?php echo e(route('bonus_products.index')); ?>" class="aiz-side-nav-link <?php echo e(areActiveRoutes(['bonus_products.index', 'bonus_products.create', 'bonus_products.edit'])); ?>" >
+                            <!-- check later if bonus products is activted -->
+                            <li class="aiz-side-nav-item">
+                                <a href="<?php echo e(route('bonus_products.index')); ?>"
+                                   class="aiz-side-nav-link <?php echo e(areActiveRoutes(['bonus_products.index', 'bonus_products.create', 'bonus_products.edit'])); ?>">
                                     <span class="aiz-side-nav-text"><?php echo e(translate('Bonus Product')); ?></span>
                                 </a>
                             </li>
@@ -84,18 +90,20 @@
 
                             <?php if(\App\BusinessSetting::where('type', 'vendor_system_activation')->first()->value == 1): ?>
                                 <li class="aiz-side-nav-item">
-                                    <a href="<?php echo e(route('products.seller')); ?>" class="aiz-side-nav-link <?php echo e(areActiveRoutes(['products.seller', 'products.seller.edit'])); ?>">
+                                    <a href="<?php echo e(route('products.seller')); ?>"
+                                       class="aiz-side-nav-link <?php echo e(areActiveRoutes(['products.seller', 'products.seller.edit'])); ?>">
                                         <span class="aiz-side-nav-text"><?php echo e(translate('Seller Products')); ?></span>
                                     </a>
                                 </li>
                             <?php endif; ?>
                             <li class="aiz-side-nav-item">
-                                <a href="<?php echo e(route('digitalproducts.index')); ?>" class="aiz-side-nav-link <?php echo e(areActiveRoutes(['digitalproducts.index', 'digitalproducts.create', 'digitalproducts.edit'])); ?>">
+                                <a href="<?php echo e(route('digitalproducts.index')); ?>"
+                                   class="aiz-side-nav-link <?php echo e(areActiveRoutes(['digitalproducts.index', 'digitalproducts.create', 'digitalproducts.edit'])); ?>">
                                     <span class="aiz-side-nav-text"><?php echo e(translate('Digital Products')); ?></span>
                                 </a>
                             </li>
                             <li class="aiz-side-nav-item">
-                                <a href="<?php echo e(route('product_bulk_upload.index')); ?>" class="aiz-side-nav-link" >
+                                <a href="<?php echo e(route('product_bulk_upload.index')); ?>" class="aiz-side-nav-link">
                                     <span class="aiz-side-nav-text"><?php echo e(translate('Bulk Import')); ?></span>
                                 </a>
                             </li>
@@ -105,22 +113,25 @@
                                 </a>
                             </li>
                             <li class="aiz-side-nav-item">
-                                <a href="<?php echo e(route('Bulk_Product_Price.index')); ?>" class="aiz-side-nav-link" >
+                                <a href="<?php echo e(route('Bulk_Product_Price.index')); ?>" class="aiz-side-nav-link">
                                     <span class="aiz-side-nav-text"><?php echo e(translate('Bulk Product Price')); ?></span>
                                 </a>
                             </li>
                             <li class="aiz-side-nav-item">
-                                <a href="<?php echo e(route('categories.index')); ?>" class="aiz-side-nav-link <?php echo e(areActiveRoutes(['categories.index', 'categories.create', 'categories.edit'])); ?>">
+                                <a href="<?php echo e(route('categories.index')); ?>"
+                                   class="aiz-side-nav-link <?php echo e(areActiveRoutes(['categories.index', 'categories.create', 'categories.edit'])); ?>">
                                     <span class="aiz-side-nav-text"><?php echo e(translate('Category')); ?></span>
                                 </a>
                             </li>
                             <li class="aiz-side-nav-item">
-                                <a href="<?php echo e(route('brands.index')); ?>" class="aiz-side-nav-link <?php echo e(areActiveRoutes(['brands.index', 'brands.create', 'brands.edit'])); ?>" >
+                                <a href="<?php echo e(route('brands.index')); ?>"
+                                   class="aiz-side-nav-link <?php echo e(areActiveRoutes(['brands.index', 'brands.create', 'brands.edit'])); ?>">
                                     <span class="aiz-side-nav-text"><?php echo e(translate('Brand')); ?></span>
                                 </a>
                             </li>
                             <li class="aiz-side-nav-item">
-                                <a href="<?php echo e(route('attributes.index')); ?>" class="aiz-side-nav-link <?php echo e(areActiveRoutes(['attributes.index','attributes.create','attributes.edit'])); ?>">
+                                <a href="<?php echo e(route('attributes.index')); ?>"
+                                   class="aiz-side-nav-link <?php echo e(areActiveRoutes(['attributes.index','attributes.create','attributes.edit'])); ?>">
                                     <span class="aiz-side-nav-text"><?php echo e(translate('Attribute')); ?></span>
                                 </a>
                             </li>
@@ -130,7 +141,8 @@
                                 </a>
                             </li>
                             <li class="aiz-side-nav-item">
-                                <a href="<?php echo e(route('colors.index')); ?>" class="aiz-side-nav-link <?php echo e(areActiveRoutes(['colors.index', 'colors.create', 'colors.edit'])); ?>" >
+                                <a href="<?php echo e(route('colors.index')); ?>"
+                                   class="aiz-side-nav-link <?php echo e(areActiveRoutes(['colors.index', 'colors.create', 'colors.edit'])); ?>">
                                     <span class="aiz-side-nav-text"><?php echo e(translate('Color')); ?></span>
                                 </a>
                             </li>
@@ -149,83 +161,96 @@
                     <ul class="aiz-side-nav-list level-2">
                         <?php if(Auth::user()->user_type == 'admin' || in_array('3', json_decode(Auth::user()->staff->role->permissions))): ?>
                             <li class="aiz-side-nav-item">
-                                <a href="<?php echo e(route('all_orders.index')); ?>" class="aiz-side-nav-link <?php echo e(areActiveRoutes(['all_orders.index', 'all_orders.show'])); ?>">
+                                <a href="<?php echo e(route('all_orders.index')); ?>"
+                                   class="aiz-side-nav-link <?php echo e(areActiveRoutes(['all_orders.index', 'all_orders.show'])); ?>">
                                     <span class="aiz-side-nav-text"><?php echo e(translate('All Orders')); ?></span>
                                 </a>
                             </li>
                         <?php endif; ?>
-
                         <?php if(Auth::user()->user_type == 'admin' || in_array('4', json_decode(Auth::user()->staff->role->permissions))): ?>
                             <li class="aiz-side-nav-item">
-                                <a href="<?php echo e(route('inhouse_orders.index')); ?>" class="aiz-side-nav-link <?php echo e(areActiveRoutes(['inhouse_orders.index', 'inhouse_orders.show'])); ?>" >
+                                <a href="<?php echo e(route('inhouse_orders.index')); ?>"
+                                   class="aiz-side-nav-link <?php echo e(areActiveRoutes(['inhouse_orders.index', 'inhouse_orders.show'])); ?>">
                                     <span class="aiz-side-nav-text"><?php echo e(translate('Inhouse orders')); ?></span>
                                 </a>
                             </li>
                         <?php endif; ?>
                         <?php if(Auth::user()->user_type == 'admin' || in_array('5', json_decode(Auth::user()->staff->role->permissions))): ?>
-                          <li class="aiz-side-nav-item">
-                            <a href="<?php echo e(route('seller_orders.index')); ?>" class="aiz-side-nav-link <?php echo e(areActiveRoutes(['seller_orders.index', 'seller_orders.show'])); ?>">
-                                <span class="aiz-side-nav-text"><?php echo e(translate('Seller Orders')); ?></span>
-                            </a>
-                        </li>
+                            <li class="aiz-side-nav-item">
+                                <a href="<?php echo e(route('seller_orders.index')); ?>"
+                                   class="aiz-side-nav-link <?php echo e(areActiveRoutes(['seller_orders.index', 'seller_orders.show'])); ?>">
+                                    <span class="aiz-side-nav-text"><?php echo e(translate('Seller Orders')); ?></span>
+                                </a>
+                            </li>
                         <?php endif; ?>
                         <?php if(Auth::user()->user_type == 'admin' || in_array('6', json_decode(Auth::user()->staff->role->permissions))): ?>
                             <li class="aiz-side-nav-item">
-                                <a href="<?php echo e(route('pick_up_point.order_index')); ?>" class="aiz-side-nav-link <?php echo e(areActiveRoutes(['pick_up_point.order_index','pick_up_point.order_show'])); ?>">
+                                <a href="<?php echo e(route('pick_up_point.order_index')); ?>"
+                                   class="aiz-side-nav-link <?php echo e(areActiveRoutes(['pick_up_point.order_index','pick_up_point.order_show'])); ?>">
                                     <span class="aiz-side-nav-text"><?php echo e(translate('Pick-up Point Order')); ?></span>
                                 </a>
                             </li>
                         <?php endif; ?>
-                            <?php if(Auth::user()->user_type == 'admin'): ?>
-                                <li class="aiz-side-nav-item">
-                                    <a href="<?php echo e(route('one_click_orders.index')); ?>" class="aiz-side-nav-link <?php echo e(areActiveRoutes(['one_click_orders.index'])); ?>">
-                                        <span class="aiz-side-nav-text">One click murojaatlar</span>
-                                    </a>
-                                </li>
-                            <?php endif; ?>
-
-                            <?php if(Auth::user()->user_type == 'admin'): ?>
-                                <li class="aiz-side-nav-item">
-                                    <a href="<?php echo e(route('indend.index')); ?>" class="aiz-side-nav-link <?php echo e(areActiveRoutes(['indend.index'])); ?>">
-                                        <span class="aiz-side-nav-text">Intend orqali sotuvlar</span>
-                                    </a>
-                                </li>
-                            <?php endif; ?>
+                        <?php if(Auth::user()->user_type == 'admin'): ?>
+                            <li class="aiz-side-nav-item">
+                                <a href="<?php echo e(route('one_click_orders.index')); ?>"
+                                   class="aiz-side-nav-link <?php echo e(areActiveRoutes(['one_click_orders.index'])); ?>">
+                                    <span class="aiz-side-nav-text">One click murojaatlar</span>
+                                </a>
+                            </li>
+                        <?php endif; ?>
+                        <?php if(Auth::user()->user_type == 'admin'): ?>
+                            <li class="aiz-side-nav-item">
+                                <a href="<?php echo e(route('indend.index')); ?>"
+                                   class="aiz-side-nav-link <?php echo e(areActiveRoutes(['indend.index'])); ?>">
+                                    <span class="aiz-side-nav-text">Intend orqali sotuvlar</span>
+                                </a>
+                            </li>
+                        <?php endif; ?>
+                        <?php if(Auth::user()->user_type == 'admin'): ?>
+                            <li class="aiz-side-nav-item">
+                                <a href="<?php echo e(route('uzum.index')); ?>"
+                                   class="aiz-side-nav-link <?php echo e(areActiveRoutes(['uzum.index'])); ?>">
+                                    <span class="aiz-side-nav-text">Uzum nasiya orqali sotuvlar</span>
+                                </a>
+                            </li>
+                        <?php endif; ?>
                     </ul>
                 </li>
 
                 <!-- Refund addon -->
                 <?php if(\App\Addon::where('unique_identifier', 'refund_request')->first() != null && \App\Addon::where('unique_identifier', 'refund_request')->first()->activated): ?>
                     <?php if(Auth::user()->user_type == 'admin' || in_array('7', json_decode(Auth::user()->staff->role->permissions))): ?>
-                      <li class="aiz-side-nav-item">
-                          <a href="#" class="aiz-side-nav-link">
-                              <i class="las la-backward aiz-side-nav-icon"></i>
-                              <span class="aiz-side-nav-text"><?php echo e(translate('Refunds')); ?></span>
-                              <span class="aiz-side-nav-arrow"></span>
-                          </a>
-                          <ul class="aiz-side-nav-list level-2">
-                              <li class="aiz-side-nav-item">
-                                  <a href="<?php echo e(route('refund_requests_all')); ?>" class="aiz-side-nav-link <?php echo e(areActiveRoutes(['refund_requests_all', 'reason_show'])); ?>">
-                                      <span class="aiz-side-nav-text"><?php echo e(translate('Refund Requests')); ?></span>
-                                  </a>
-                              </li>
-                              <li class="aiz-side-nav-item">
-                                  <a href="<?php echo e(route('paid_refund')); ?>" class="aiz-side-nav-link">
-                                      <span class="aiz-side-nav-text"><?php echo e(translate('Approved Refunds')); ?></span>
-                                  </a>
-                              </li>
-                              <li class="aiz-side-nav-item">
-                                  <a href="<?php echo e(route('rejected_refund')); ?>" class="aiz-side-nav-link">
-                                      <span class="aiz-side-nav-text"><?php echo e(translate('rejected Refunds')); ?></span>
-                                  </a>
-                              </li>
-                              <li class="aiz-side-nav-item">
-                                  <a href="<?php echo e(route('refund_time_config')); ?>" class="aiz-side-nav-link">
-                                      <span class="aiz-side-nav-text"><?php echo e(translate('Refund Configuration')); ?></span>
-                                  </a>
-                              </li>
-                          </ul>
-                      </li>
+                        <li class="aiz-side-nav-item">
+                            <a href="#" class="aiz-side-nav-link">
+                                <i class="las la-backward aiz-side-nav-icon"></i>
+                                <span class="aiz-side-nav-text"><?php echo e(translate('Refunds')); ?></span>
+                                <span class="aiz-side-nav-arrow"></span>
+                            </a>
+                            <ul class="aiz-side-nav-list level-2">
+                                <li class="aiz-side-nav-item">
+                                    <a href="<?php echo e(route('refund_requests_all')); ?>"
+                                       class="aiz-side-nav-link <?php echo e(areActiveRoutes(['refund_requests_all', 'reason_show'])); ?>">
+                                        <span class="aiz-side-nav-text"><?php echo e(translate('Refund Requests')); ?></span>
+                                    </a>
+                                </li>
+                                <li class="aiz-side-nav-item">
+                                    <a href="<?php echo e(route('paid_refund')); ?>" class="aiz-side-nav-link">
+                                        <span class="aiz-side-nav-text"><?php echo e(translate('Approved Refunds')); ?></span>
+                                    </a>
+                                </li>
+                                <li class="aiz-side-nav-item">
+                                    <a href="<?php echo e(route('rejected_refund')); ?>" class="aiz-side-nav-link">
+                                        <span class="aiz-side-nav-text"><?php echo e(translate('rejected Refunds')); ?></span>
+                                    </a>
+                                </li>
+                                <li class="aiz-side-nav-item">
+                                    <a href="<?php echo e(route('refund_time_config')); ?>" class="aiz-side-nav-link">
+                                        <span class="aiz-side-nav-text"><?php echo e(translate('Refund Configuration')); ?></span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
                     <?php endif; ?>
                 <?php endif; ?>
 
@@ -245,23 +270,24 @@
                                 </a>
                             </li>
                             <?php if(\App\BusinessSetting::where('type', 'classified_product')->first()->value == 1): ?>
-                            <li class="aiz-side-nav-item">
-                                <a href="<?php echo e(route('classified_products')); ?>" class="aiz-side-nav-link">
-                                    <span class="aiz-side-nav-text"><?php echo e(translate('Classified Products')); ?></span>
-                                </a>
-                            </li>
-                            <li class="aiz-side-nav-item">
-                                <a href="<?php echo e(route('customer_packages.index')); ?>" class="aiz-side-nav-link <?php echo e(areActiveRoutes(['customer_packages.index', 'customer_packages.create', 'customer_packages.edit'])); ?>">
-                                    <span class="aiz-side-nav-text"><?php echo e(translate('Classified Packages')); ?></span>
-                                </a>
-                            </li>
+                                <li class="aiz-side-nav-item">
+                                    <a href="<?php echo e(route('classified_products')); ?>" class="aiz-side-nav-link">
+                                        <span class="aiz-side-nav-text"><?php echo e(translate('Classified Products')); ?></span>
+                                    </a>
+                                </li>
+                                <li class="aiz-side-nav-item">
+                                    <a href="<?php echo e(route('customer_packages.index')); ?>"
+                                       class="aiz-side-nav-link <?php echo e(areActiveRoutes(['customer_packages.index', 'customer_packages.create', 'customer_packages.edit'])); ?>">
+                                        <span class="aiz-side-nav-text"><?php echo e(translate('Classified Packages')); ?></span>
+                                    </a>
+                                </li>
                             <?php endif; ?>
                         </ul>
                     </li>
                 <?php endif; ?>
 
-                 <!-- Monthly Payment -->
-                 <?php if(Auth::user()->user_type == 'admin'): ?>
+                <!-- Monthly Payment -->
+                <?php if(Auth::user()->user_type == 'admin'): ?>
                     <li class="aiz-side-nav-item">
                         <a href="#" class="aiz-side-nav-link">
                             <i class="las la-user-friends aiz-side-nav-icon"></i>
@@ -271,7 +297,8 @@
 
                         <ul class="aiz-side-nav-list level-2">
                             <li class="aiz-side-nav-item">
-                                <a href="<?php echo e(route('monthly_payment.index')); ?>" class="aiz-side-nav-link <?php echo e(areActiveRoutes(['monthly_payment.index', 'monthly_payment.show', 'monthly_payment.customer.edit'])); ?>">
+                                <a href="<?php echo e(route('monthly_payment.index')); ?>"
+                                   class="aiz-side-nav-link <?php echo e(areActiveRoutes(['monthly_payment.index', 'monthly_payment.show', 'monthly_payment.customer.edit'])); ?>">
                                     <span class="aiz-side-nav-text"><?php echo e(translate('Payment List')); ?></span>
                                 </a>
                             </li>
@@ -279,7 +306,6 @@
                     </li>
                 <?php endif; ?>
                 <!-- end Monthly Payment -->
-
 
 
                 <!-- Sellers -->
@@ -295,9 +321,12 @@
                                 <?php
                                     $sellers = \App\Seller::where('verification_status', 0)->where('verification_info', '!=', null)->count();
                                 ?>
-                                <a href="<?php echo e(route('sellers.index')); ?>" class="aiz-side-nav-link <?php echo e(areActiveRoutes(['sellers.index', 'sellers.create', 'sellers.edit', 'sellers.payment_history','sellers.approved','sellers.profile_modal','sellers.show_verification_request'])); ?>">
+                                <a href="<?php echo e(route('sellers.index')); ?>"
+                                   class="aiz-side-nav-link <?php echo e(areActiveRoutes(['sellers.index', 'sellers.create', 'sellers.edit', 'sellers.payment_history','sellers.approved','sellers.profile_modal','sellers.show_verification_request'])); ?>">
                                     <span class="aiz-side-nav-text"><?php echo e(translate('All Seller')); ?></span>
-                                    <?php if($sellers > 0): ?><span class="badge badge-info"><?php echo e($sellers); ?></span> <?php endif; ?>
+                                    <?php if($sellers > 0): ?>
+                                        <span class="badge badge-info"><?php echo e($sellers); ?></span>
+                                    <?php endif; ?>
                                 </a>
                             </li>
                             <li class="aiz-side-nav-item">
@@ -317,7 +346,8 @@
                             </li>
                             <?php if(\App\Addon::where('unique_identifier', 'seller_subscription')->first() != null && \App\Addon::where('unique_identifier', 'seller_subscription')->first()->activated): ?>
                                 <li class="aiz-side-nav-item">
-                                    <a href="<?php echo e(route('seller_packages.index')); ?>" class="aiz-side-nav-link <?php echo e(areActiveRoutes(['seller_packages.index', 'seller_packages.create', 'seller_packages.edit'])); ?>">
+                                    <a href="<?php echo e(route('seller_packages.index')); ?>"
+                                       class="aiz-side-nav-link <?php echo e(areActiveRoutes(['seller_packages.index', 'seller_packages.create', 'seller_packages.edit'])); ?>">
                                         <span class="aiz-side-nav-text"><?php echo e(translate('Seller Packages')); ?></span>
                                     </a>
                                 </li>
@@ -332,7 +362,8 @@
                 <?php endif; ?>
 
                 <li class="aiz-side-nav-item">
-                    <a href="<?php echo e(route('uploaded-files.index')); ?>" class="aiz-side-nav-link <?php echo e(areActiveRoutes(['uploaded-files.create'])); ?>">
+                    <a href="<?php echo e(route('uploaded-files.index')); ?>"
+                       class="aiz-side-nav-link <?php echo e(areActiveRoutes(['uploaded-files.create'])); ?>">
                         <i class="las la-folder-open aiz-side-nav-icon"></i>
                         <span class="aiz-side-nav-text"><?php echo e(translate('Uploaded Files')); ?></span>
                     </a>
@@ -348,27 +379,32 @@
                         </a>
                         <ul class="aiz-side-nav-list level-2">
                             <li class="aiz-side-nav-item">
-                                <a href="<?php echo e(route('in_house_sale_report.index')); ?>" class="aiz-side-nav-link <?php echo e(areActiveRoutes(['in_house_sale_report.index'])); ?>">
+                                <a href="<?php echo e(route('in_house_sale_report.index')); ?>"
+                                   class="aiz-side-nav-link <?php echo e(areActiveRoutes(['in_house_sale_report.index'])); ?>">
                                     <span class="aiz-side-nav-text"><?php echo e(translate('In House Product Sale')); ?></span>
                                 </a>
                             </li>
                             <li class="aiz-side-nav-item">
-                                <a href="<?php echo e(route('seller_sale_report.index')); ?>" class="aiz-side-nav-link <?php echo e(areActiveRoutes(['seller_sale_report.index'])); ?>">
+                                <a href="<?php echo e(route('seller_sale_report.index')); ?>"
+                                   class="aiz-side-nav-link <?php echo e(areActiveRoutes(['seller_sale_report.index'])); ?>">
                                     <span class="aiz-side-nav-text"><?php echo e(translate('Seller Products Sale')); ?></span>
                                 </a>
                             </li>
                             <li class="aiz-side-nav-item">
-                                <a href="<?php echo e(route('stock_report.index')); ?>" class="aiz-side-nav-link <?php echo e(areActiveRoutes(['stock_report.index'])); ?>">
+                                <a href="<?php echo e(route('stock_report.index')); ?>"
+                                   class="aiz-side-nav-link <?php echo e(areActiveRoutes(['stock_report.index'])); ?>">
                                     <span class="aiz-side-nav-text"><?php echo e(translate('Products Stock')); ?></span>
                                 </a>
                             </li>
                             <li class="aiz-side-nav-item">
-                                <a href="<?php echo e(route('wish_report.index')); ?>" class="aiz-side-nav-link <?php echo e(areActiveRoutes(['wish_report.index'])); ?>">
+                                <a href="<?php echo e(route('wish_report.index')); ?>"
+                                   class="aiz-side-nav-link <?php echo e(areActiveRoutes(['wish_report.index'])); ?>">
                                     <span class="aiz-side-nav-text"><?php echo e(translate('Products wishlist')); ?></span>
                                 </a>
                             </li>
                             <li class="aiz-side-nav-item">
-                                <a href="<?php echo e(route('user_search_report.index')); ?>" class="aiz-side-nav-link <?php echo e(areActiveRoutes(['user_search_report.index'])); ?>">
+                                <a href="<?php echo e(route('user_search_report.index')); ?>"
+                                   class="aiz-side-nav-link <?php echo e(areActiveRoutes(['user_search_report.index'])); ?>">
                                     <span class="aiz-side-nav-text"><?php echo e(translate('User Searches')); ?></span>
                                 </a>
                             </li>
@@ -385,12 +421,14 @@
                     </a>
                     <ul class="aiz-side-nav-list level-2">
                         <li class="aiz-side-nav-item">
-                            <a href="<?php echo e(route('blog.index')); ?>" class="aiz-side-nav-link <?php echo e(areActiveRoutes(['blog.create', 'blog.edit'])); ?>">
+                            <a href="<?php echo e(route('blog.index')); ?>"
+                               class="aiz-side-nav-link <?php echo e(areActiveRoutes(['blog.create', 'blog.edit'])); ?>">
                                 <span class="aiz-side-nav-text"><?php echo e(translate('All Posts')); ?></span>
                             </a>
                         </li>
                         <li class="aiz-side-nav-item">
-                            <a href="<?php echo e(route('blog-category.index')); ?>" class="aiz-side-nav-link <?php echo e(areActiveRoutes(['blog-category.create', 'blog-category.edit'])); ?>">
+                            <a href="<?php echo e(route('blog-category.index')); ?>"
+                               class="aiz-side-nav-link <?php echo e(areActiveRoutes(['blog-category.create', 'blog-category.edit'])); ?>">
                                 <span class="aiz-side-nav-text"><?php echo e(translate('Categories')); ?></span>
                             </a>
                         </li>
@@ -408,7 +446,8 @@
                         <ul class="aiz-side-nav-list level-2">
                             <?php if(Auth::user()->user_type == 'admin' || in_array('2', json_decode(Auth::user()->staff->role->permissions))): ?>
                                 <li class="aiz-side-nav-item">
-                                    <a href="<?php echo e(route('flash_deals.index')); ?>" class="aiz-side-nav-link <?php echo e(areActiveRoutes(['flash_deals.index', 'flash_deals.create', 'flash_deals.edit'])); ?>">
+                                    <a href="<?php echo e(route('flash_deals.index')); ?>"
+                                       class="aiz-side-nav-link <?php echo e(areActiveRoutes(['flash_deals.index', 'flash_deals.create', 'flash_deals.edit'])); ?>">
                                         <span class="aiz-side-nav-text"><?php echo e(translate('Flash deals')); ?></span>
                                     </a>
                                 </li>
@@ -433,7 +472,8 @@
                                 </a>
                             </li>
                             <li class="aiz-side-nav-item">
-                                <a href="<?php echo e(route('coupon.index')); ?>" class="aiz-side-nav-link <?php echo e(areActiveRoutes(['coupon.index','coupon.create','coupon.edit'])); ?>">
+                                <a href="<?php echo e(route('coupon.index')); ?>"
+                                   class="aiz-side-nav-link <?php echo e(areActiveRoutes(['coupon.index','coupon.create','coupon.edit'])); ?>">
                                     <span class="aiz-side-nav-text"><?php echo e(translate('Coupon')); ?></span>
                                 </a>
                             </li>
@@ -443,363 +483,387 @@
 
                 <!-- Support -->
                 <?php if(Auth::user()->user_type == 'admin' || in_array('12', json_decode(Auth::user()->staff->role->permissions))): ?>
-                  <li class="aiz-side-nav-item">
-                      <a href="#" class="aiz-side-nav-link">
-                          <i class="las la-link aiz-side-nav-icon"></i>
-                          <span class="aiz-side-nav-text"><?php echo e(translate('Support')); ?></span>
-                          <span class="aiz-side-nav-arrow"></span>
-                      </a>
-                      <ul class="aiz-side-nav-list level-2">
-                          <?php if(Auth::user()->user_type == 'admin' || in_array('13', json_decode(Auth::user()->staff->role->permissions))): ?>
-                              <?php
-                                  $support_ticket = DB::table('tickets')
-                                              ->where('viewed', 0)
-                                              ->select('id')
-                                              ->count();
-                              ?>
-                              <li class="aiz-side-nav-item">
-                                  <a href="<?php echo e(route('support_ticket.admin_index')); ?>" class="aiz-side-nav-link <?php echo e(areActiveRoutes(['support_ticket.admin_index', 'support_ticket.admin_show'])); ?>">
-                                      <span class="aiz-side-nav-text"><?php echo e(translate('Ticket')); ?></span>
-                                      <?php if($support_ticket > 0): ?><span class="badge badge-info"><?php echo e($support_ticket); ?></span><?php endif; ?>
-                                  </a>
-                              </li>
-                          <?php endif; ?>
+                    <li class="aiz-side-nav-item">
+                        <a href="#" class="aiz-side-nav-link">
+                            <i class="las la-link aiz-side-nav-icon"></i>
+                            <span class="aiz-side-nav-text"><?php echo e(translate('Support')); ?></span>
+                            <span class="aiz-side-nav-arrow"></span>
+                        </a>
+                        <ul class="aiz-side-nav-list level-2">
+                            <?php if(Auth::user()->user_type == 'admin' || in_array('13', json_decode(Auth::user()->staff->role->permissions))): ?>
+                                <?php
+                                    $support_ticket = DB::table('tickets')
+                                                ->where('viewed', 0)
+                                                ->select('id')
+                                                ->count();
+                                ?>
+                                <li class="aiz-side-nav-item">
+                                    <a href="<?php echo e(route('support_ticket.admin_index')); ?>"
+                                       class="aiz-side-nav-link <?php echo e(areActiveRoutes(['support_ticket.admin_index', 'support_ticket.admin_show'])); ?>">
+                                        <span class="aiz-side-nav-text"><?php echo e(translate('Ticket')); ?></span>
+                                        <?php if($support_ticket > 0): ?>
+                                            <span class="badge badge-info"><?php echo e($support_ticket); ?></span>
+                                        <?php endif; ?>
+                                    </a>
+                                </li>
+                            <?php endif; ?>
 
-                          <?php
-                              $conversation = \App\Conversation::where('receiver_id', Auth::user()->id)->where('receiver_viewed', '1')->get();
-                          ?>
-                          <?php if(Auth::user()->user_type == 'admin' || in_array('16', json_decode(Auth::user()->staff->role->permissions))): ?>
-                              <li class="aiz-side-nav-item">
-                                  <a href="<?php echo e(route('conversations.admin_index')); ?>" class="aiz-side-nav-link <?php echo e(areActiveRoutes(['conversations.admin_index', 'conversations.admin_show'])); ?>">
-                                      <span class="aiz-side-nav-text"><?php echo e(translate('Product Queries')); ?></span>
-                                      <?php if(count($conversation) > 0): ?>
-                                          <span class="badge badge-info"><?php echo e(count($conversation)); ?></span>
-                                      <?php endif; ?>
-                                  </a>
-                              </li>
-                          <?php endif; ?>
-                      </ul>
-                  </li>
+                            <?php
+                                $conversation = \App\Conversation::where('receiver_id', Auth::user()->id)->where('receiver_viewed', '1')->get();
+                            ?>
+                            <?php if(Auth::user()->user_type == 'admin' || in_array('16', json_decode(Auth::user()->staff->role->permissions))): ?>
+                                <li class="aiz-side-nav-item">
+                                    <a href="<?php echo e(route('conversations.admin_index')); ?>"
+                                       class="aiz-side-nav-link <?php echo e(areActiveRoutes(['conversations.admin_index', 'conversations.admin_show'])); ?>">
+                                        <span class="aiz-side-nav-text"><?php echo e(translate('Product Queries')); ?></span>
+                                        <?php if(count($conversation) > 0): ?>
+                                            <span class="badge badge-info"><?php echo e(count($conversation)); ?></span>
+                                        <?php endif; ?>
+                                    </a>
+                                </li>
+                            <?php endif; ?>
+                        </ul>
+                    </li>
                 <?php endif; ?>
 
                 <!-- Affiliate Addon -->
                 <?php if(\App\Addon::where('unique_identifier', 'affiliate_system')->first() != null && \App\Addon::where('unique_identifier', 'affiliate_system')->first()->activated): ?>
                     <?php if(Auth::user()->user_type == 'admin' || in_array('15', json_decode(Auth::user()->staff->role->permissions))): ?>
-                      <li class="aiz-side-nav-item">
-                          <a href="#" class="aiz-side-nav-link">
-                              <i class="las la-link aiz-side-nav-icon"></i>
-                              <span class="aiz-side-nav-text"><?php echo e(translate('Affiliate System')); ?></span>
-                              <span class="aiz-side-nav-arrow"></span>
-                          </a>
-                          <ul class="aiz-side-nav-list level-2">
-                              <li class="aiz-side-nav-item">
-                                  <a href="<?php echo e(route('affiliate.configs')); ?>" class="aiz-side-nav-link">
-                                      <span class="aiz-side-nav-text"><?php echo e(translate('Affiliate Registration Form')); ?></span>
-                                  </a>
-                              </li>
-                              <li class="aiz-side-nav-item">
-                                  <a href="<?php echo e(route('affiliate.index')); ?>" class="aiz-side-nav-link">
-                                      <span class="aiz-side-nav-text"><?php echo e(translate('Affiliate Configurations')); ?></span>
-                                  </a>
-                              </li>
-                              <li class="aiz-side-nav-item">
-                                  <a href="<?php echo e(route('affiliate.users')); ?>" class="aiz-side-nav-link <?php echo e(areActiveRoutes(['affiliate.users', 'affiliate_users.show_verification_request', 'affiliate_user.payment_history'])); ?>">
-                                      <span class="aiz-side-nav-text"><?php echo e(translate('Affiliate Users')); ?></span>
-                                  </a>
-                              </li>
-                              <li class="aiz-side-nav-item">
-                                  <a href="<?php echo e(route('refferals.users')); ?>" class="aiz-side-nav-link">
-                                      <span class="aiz-side-nav-text"><?php echo e(translate('Referral Users')); ?></span>
-                                  </a>
-                              </li>
-                              <li class="aiz-side-nav-item">
-                                  <a href="<?php echo e(route('affiliate.withdraw_requests')); ?>" class="aiz-side-nav-link">
-                                      <span class="aiz-side-nav-text"><?php echo e(translate('Affiliate Withdraw Requests')); ?></span>
-                                  </a>
-                              </li>
-                              <li class="aiz-side-nav-item">
-                                  <a href="<?php echo e(route('affiliate.logs.admin')); ?>" class="aiz-side-nav-link">
-                                      <span class="aiz-side-nav-text"><?php echo e(translate('Affiliate Logs')); ?></span>
-                                  </a>
-                              </li>
-                          </ul>
-                      </li>
+                        <li class="aiz-side-nav-item">
+                            <a href="#" class="aiz-side-nav-link">
+                                <i class="las la-link aiz-side-nav-icon"></i>
+                                <span class="aiz-side-nav-text"><?php echo e(translate('Affiliate System')); ?></span>
+                                <span class="aiz-side-nav-arrow"></span>
+                            </a>
+                            <ul class="aiz-side-nav-list level-2">
+                                <li class="aiz-side-nav-item">
+                                    <a href="<?php echo e(route('affiliate.configs')); ?>" class="aiz-side-nav-link">
+                                        <span
+                                            class="aiz-side-nav-text"><?php echo e(translate('Affiliate Registration Form')); ?></span>
+                                    </a>
+                                </li>
+                                <li class="aiz-side-nav-item">
+                                    <a href="<?php echo e(route('affiliate.index')); ?>" class="aiz-side-nav-link">
+                                        <span class="aiz-side-nav-text"><?php echo e(translate('Affiliate Configurations')); ?></span>
+                                    </a>
+                                </li>
+                                <li class="aiz-side-nav-item">
+                                    <a href="<?php echo e(route('affiliate.users')); ?>"
+                                       class="aiz-side-nav-link <?php echo e(areActiveRoutes(['affiliate.users', 'affiliate_users.show_verification_request', 'affiliate_user.payment_history'])); ?>">
+                                        <span class="aiz-side-nav-text"><?php echo e(translate('Affiliate Users')); ?></span>
+                                    </a>
+                                </li>
+                                <li class="aiz-side-nav-item">
+                                    <a href="<?php echo e(route('refferals.users')); ?>" class="aiz-side-nav-link">
+                                        <span class="aiz-side-nav-text"><?php echo e(translate('Referral Users')); ?></span>
+                                    </a>
+                                </li>
+                                <li class="aiz-side-nav-item">
+                                    <a href="<?php echo e(route('affiliate.withdraw_requests')); ?>" class="aiz-side-nav-link">
+                                        <span
+                                            class="aiz-side-nav-text"><?php echo e(translate('Affiliate Withdraw Requests')); ?></span>
+                                    </a>
+                                </li>
+                                <li class="aiz-side-nav-item">
+                                    <a href="<?php echo e(route('affiliate.logs.admin')); ?>" class="aiz-side-nav-link">
+                                        <span class="aiz-side-nav-text"><?php echo e(translate('Affiliate Logs')); ?></span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
                     <?php endif; ?>
                 <?php endif; ?>
 
                 <!-- Offline Payment Addon-->
                 <?php if(\App\Addon::where('unique_identifier', 'offline_payment')->first() != null && \App\Addon::where('unique_identifier', 'offline_payment')->first()->activated): ?>
                     <?php if(Auth::user()->user_type == 'admin' || in_array('16', json_decode(Auth::user()->staff->role->permissions))): ?>
-                      <li class="aiz-side-nav-item">
-                          <a href="#" class="aiz-side-nav-link">
-                              <i class="las la-money-check-alt aiz-side-nav-icon"></i>
-                              <span class="aiz-side-nav-text"><?php echo e(translate('Offline Payment System')); ?></span>
-                              <span class="aiz-side-nav-arrow"></span>
-                          </a>
-                          <ul class="aiz-side-nav-list level-2">
-                              <li class="aiz-side-nav-item">
-                                  <a href="<?php echo e(route('manual_payment_methods.index')); ?>" class="aiz-side-nav-link <?php echo e(areActiveRoutes(['manual_payment_methods.index', 'manual_payment_methods.create', 'manual_payment_methods.edit'])); ?>">
-                                      <span class="aiz-side-nav-text"><?php echo e(translate('Manual Payment Methods')); ?></span>
-                                  </a>
-                              </li>
-                              <li class="aiz-side-nav-item">
-                                  <a href="<?php echo e(route('offline_wallet_recharge_request.index')); ?>" class="aiz-side-nav-link">
-                                      <span class="aiz-side-nav-text"><?php echo e(translate('Offline Wallet Recharge')); ?></span>
-                                  </a>
-                              </li>
-                              <?php if(\App\BusinessSetting::where('type', 'classified_product')->first()->value == 1): ?>
-                                  <li class="aiz-side-nav-item">
-                                      <a href="<?php echo e(route('offline_customer_package_payment_request.index')); ?>" class="aiz-side-nav-link">
-                                          <span class="aiz-side-nav-text"><?php echo e(translate('Offline Customer Package Payments')); ?></span>
-                                      </a>
-                                  </li>
-                              <?php endif; ?>
-                              <?php if(\App\Addon::where('unique_identifier', 'seller_subscription')->first() != null && \App\Addon::where('unique_identifier', 'seller_subscription')->first()->activated): ?>
-                                  <li class="aiz-side-nav-item">
-                                      <a href="<?php echo e(route('offline_seller_package_payment_request.index')); ?>" class="aiz-side-nav-link">
-                                          <span class="aiz-side-nav-text"><?php echo e(translate('Offline Seller Package Payments')); ?></span>
-                                      </a>
-                                  </li>
-                              <?php endif; ?>
-                          </ul>
-                      </li>
+                        <li class="aiz-side-nav-item">
+                            <a href="#" class="aiz-side-nav-link">
+                                <i class="las la-money-check-alt aiz-side-nav-icon"></i>
+                                <span class="aiz-side-nav-text"><?php echo e(translate('Offline Payment System')); ?></span>
+                                <span class="aiz-side-nav-arrow"></span>
+                            </a>
+                            <ul class="aiz-side-nav-list level-2">
+                                <li class="aiz-side-nav-item">
+                                    <a href="<?php echo e(route('manual_payment_methods.index')); ?>"
+                                       class="aiz-side-nav-link <?php echo e(areActiveRoutes(['manual_payment_methods.index', 'manual_payment_methods.create', 'manual_payment_methods.edit'])); ?>">
+                                        <span class="aiz-side-nav-text"><?php echo e(translate('Manual Payment Methods')); ?></span>
+                                    </a>
+                                </li>
+                                <li class="aiz-side-nav-item">
+                                    <a href="<?php echo e(route('offline_wallet_recharge_request.index')); ?>"
+                                       class="aiz-side-nav-link">
+                                        <span class="aiz-side-nav-text"><?php echo e(translate('Offline Wallet Recharge')); ?></span>
+                                    </a>
+                                </li>
+                                <?php if(\App\BusinessSetting::where('type', 'classified_product')->first()->value == 1): ?>
+                                    <li class="aiz-side-nav-item">
+                                        <a href="<?php echo e(route('offline_customer_package_payment_request.index')); ?>"
+                                           class="aiz-side-nav-link">
+                                            <span
+                                                class="aiz-side-nav-text"><?php echo e(translate('Offline Customer Package Payments')); ?></span>
+                                        </a>
+                                    </li>
+                                <?php endif; ?>
+                                <?php if(\App\Addon::where('unique_identifier', 'seller_subscription')->first() != null && \App\Addon::where('unique_identifier', 'seller_subscription')->first()->activated): ?>
+                                    <li class="aiz-side-nav-item">
+                                        <a href="<?php echo e(route('offline_seller_package_payment_request.index')); ?>"
+                                           class="aiz-side-nav-link">
+                                            <span
+                                                class="aiz-side-nav-text"><?php echo e(translate('Offline Seller Package Payments')); ?></span>
+                                        </a>
+                                    </li>
+                                <?php endif; ?>
+                            </ul>
+                        </li>
                     <?php endif; ?>
                 <?php endif; ?>
 
                 <!-- Paytm Addon -->
                 <?php if(\App\Addon::where('unique_identifier', 'paytm')->first() != null && \App\Addon::where('unique_identifier', 'paytm')->first()->activated): ?>
                     <?php if(Auth::user()->user_type == 'admin' || in_array('17', json_decode(Auth::user()->staff->role->permissions))): ?>
-                      <li class="aiz-side-nav-item">
-                          <a href="#" class="aiz-side-nav-link">
-                              <i class="las la-mobile-alt aiz-side-nav-icon"></i>
-                              <span class="aiz-side-nav-text"><?php echo e(translate('Paytm Payment Gateway')); ?></span>
-                              <span class="aiz-side-nav-arrow"></span>
-                          </a>
-                          <ul class="aiz-side-nav-list level-2">
-                              <li class="aiz-side-nav-item">
-                                  <a href="<?php echo e(route('paytm.index')); ?>" class="aiz-side-nav-link">
-                                      <span class="aiz-side-nav-text"><?php echo e(translate('Set Paytm Credentials')); ?></span>
-                                  </a>
-                              </li>
-                          </ul>
-                      </li>
+                        <li class="aiz-side-nav-item">
+                            <a href="#" class="aiz-side-nav-link">
+                                <i class="las la-mobile-alt aiz-side-nav-icon"></i>
+                                <span class="aiz-side-nav-text"><?php echo e(translate('Paytm Payment Gateway')); ?></span>
+                                <span class="aiz-side-nav-arrow"></span>
+                            </a>
+                            <ul class="aiz-side-nav-list level-2">
+                                <li class="aiz-side-nav-item">
+                                    <a href="<?php echo e(route('paytm.index')); ?>" class="aiz-side-nav-link">
+                                        <span class="aiz-side-nav-text"><?php echo e(translate('Set Paytm Credentials')); ?></span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
                     <?php endif; ?>
                 <?php endif; ?>
 
                 <!-- Club Point Addon-->
                 <?php if(\App\Addon::where('unique_identifier', 'club_point')->first() != null && \App\Addon::where('unique_identifier', 'club_point')->first()->activated): ?>
-                  <?php if(Auth::user()->user_type == 'admin' || in_array('18', json_decode(Auth::user()->staff->role->permissions))): ?>
-                    <li class="aiz-side-nav-item">
-                        <a href="#" class="aiz-side-nav-link">
-                            <i class="lab la-btc aiz-side-nav-icon"></i>
-                            <span class="aiz-side-nav-text"><?php echo e(translate('Club Point System')); ?></span>
-                            <span class="aiz-side-nav-arrow"></span>
-                        </a>
-                        <ul class="aiz-side-nav-list level-2">
-                            <li class="aiz-side-nav-item">
-                                <a href="<?php echo e(route('club_points.configs')); ?>" class="aiz-side-nav-link">
-                                    <span class="aiz-side-nav-text"><?php echo e(translate('Club Point Configurations')); ?></span>
-                                </a>
-                            </li>
-                            <li class="aiz-side-nav-item">
-                                <a href="<?php echo e(route('set_product_points')); ?>" class="aiz-side-nav-link <?php echo e(areActiveRoutes(['set_product_points', 'product_club_point.edit'])); ?>">
-                                    <span class="aiz-side-nav-text"><?php echo e(translate('Set Product Point')); ?></span>
-                                </a>
-                            </li>
-                            <li class="aiz-side-nav-item">
-                                <a href="<?php echo e(route('club_points.index')); ?>" class="aiz-side-nav-link <?php echo e(areActiveRoutes(['club_points.index', 'club_point.details'])); ?>">
-                                    <span class="aiz-side-nav-text"><?php echo e(translate('User Points')); ?></span>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                  <?php endif; ?>
-                <?php endif; ?>
-
-                <!--OTP addon -->
-                <?php if(\App\Addon::where('unique_identifier', 'otp_system')->first() != null && \App\Addon::where('unique_identifier', 'otp_system')->first()->activated): ?>
-                  <?php if(Auth::user()->user_type == 'admin' || in_array('19', json_decode(Auth::user()->staff->role->permissions))): ?>
-                      <li class="aiz-side-nav-item">
-                        <a href="#" class="aiz-side-nav-link">
-                            <i class="las la-phone aiz-side-nav-icon"></i>
-                            <span class="aiz-side-nav-text"><?php echo e(translate('OTP System')); ?></span>
-                            <span class="aiz-side-nav-arrow"></span>
-                        </a>
-                        <ul class="aiz-side-nav-list level-2">
-                            <li class="aiz-side-nav-item">
-                                <a href="<?php echo e(route('otp.configconfiguration')); ?>" class="aiz-side-nav-link">
-                                    <span class="aiz-side-nav-text"><?php echo e(translate('OTP Configurations')); ?></span>
-                                </a>
-                            </li>
-                            <li class="aiz-side-nav-item">
-                                <a href="<?php echo e(route('otp_credentials.index')); ?>" class="aiz-side-nav-link">
-                                    <span class="aiz-side-nav-text"><?php echo e(translate('Set OTP Credentials')); ?></span>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                  <?php endif; ?>
-                <?php endif; ?>
-
-                <?php if(\App\Addon::where('unique_identifier', 'african_pg')->first() != null && \App\Addon::where('unique_identifier', 'african_pg')->first()->activated): ?>
-                  <?php if(Auth::user()->user_type == 'admin' || in_array('19', json_decode(Auth::user()->staff->role->permissions))): ?>
-                      <li class="aiz-side-nav-item">
-                        <a href="#" class="aiz-side-nav-link">
-                            <i class="las la-phone aiz-side-nav-icon"></i>
-                            <span class="aiz-side-nav-text"><?php echo e(translate('African Payment Gateway Addon')); ?></span>
-                            <span class="aiz-side-nav-arrow"></span>
-                        </a>
-                        <ul class="aiz-side-nav-list level-2">
-                            <li class="aiz-side-nav-item">
-                                <a href="<?php echo e(route('african.configuration')); ?>" class="aiz-side-nav-link">
-                                    <span class="aiz-side-nav-text"><?php echo e(translate('African PG Configurations')); ?></span>
-                                </a>
-                            </li>
-                            <li class="aiz-side-nav-item">
-                                <a href="<?php echo e(route('african_credentials.index')); ?>" class="aiz-side-nav-link">
-                                    <span class="aiz-side-nav-text"><?php echo e(translate('Set African PG Credentials')); ?></span>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                  <?php endif; ?>
-                <?php endif; ?>
-
-                <!-- Website Setup -->
-                <?php if(Auth::user()->user_type == 'admin' || in_array('13', json_decode(Auth::user()->staff->role->permissions))): ?>
-                  <li class="aiz-side-nav-item">
-                    <a href="#" class="aiz-side-nav-link">
-                        <i class="las la-desktop aiz-side-nav-icon"></i>
-                        <span class="aiz-side-nav-text"><?php echo e(translate('Website Setup')); ?></span>
-                        <span class="aiz-side-nav-arrow"></span>
-                    </a>
-                    <ul class="aiz-side-nav-list level-2">
+                    <?php if(Auth::user()->user_type == 'admin' || in_array('18', json_decode(Auth::user()->staff->role->permissions))): ?>
                         <li class="aiz-side-nav-item">
-                            <a href="<?php echo e(route('website.header')); ?>" class="aiz-side-nav-link">
-                                <span class="aiz-side-nav-text"><?php echo e(translate('Header')); ?></span>
-                            </a>
-                        </li>
-                        <li class="aiz-side-nav-item">
-                            <a href="<?php echo e(route('website.footer')); ?>" class="aiz-side-nav-link">
-                                <span class="aiz-side-nav-text"><?php echo e(translate('Footer')); ?></span>
-                            </a>
-                        </li>
-                        <li class="aiz-side-nav-item">
-                            <a href="<?php echo e(route('website.pages')); ?>" class="aiz-side-nav-link <?php echo e(areActiveRoutes(['website.pages', 'custom-pages.create' ,'custom-pages.edit'])); ?>">
-                                <span class="aiz-side-nav-text"><?php echo e(translate('Pages')); ?></span>
-                            </a>
-                        </li>
-                        <li class="aiz-side-nav-item">
-                            <a href="<?php echo e(route('website.appearance')); ?>" class="aiz-side-nav-link">
-                                <span class="aiz-side-nav-text"><?php echo e(translate('Appearance')); ?></span>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-                <?php endif; ?>
-
-                <!-- Setup & Configurations -->
-                <?php if(Auth::user()->user_type == 'admin' || in_array('14', json_decode(Auth::user()->staff->role->permissions))): ?>
-                  <li class="aiz-side-nav-item">
-                    <a href="#" class="aiz-side-nav-link">
-                        <i class="las la-dharmachakra aiz-side-nav-icon"></i>
-                        <span class="aiz-side-nav-text"><?php echo e(translate('Setup & Configurations')); ?></span>
-                        <span class="aiz-side-nav-arrow"></span>
-                    </a>
-                    <ul class="aiz-side-nav-list level-2">
-                        <li class="aiz-side-nav-item">
-                            <a href="<?php echo e(route('general_setting.index')); ?>" class="aiz-side-nav-link">
-                                <span class="aiz-side-nav-text"><?php echo e(translate('General Settings')); ?></span>
-                            </a>
-                        </li>
-
-                        <li class="aiz-side-nav-item">
-                            <a href="<?php echo e(route('activation.index')); ?>" class="aiz-side-nav-link">
-                                <span class="aiz-side-nav-text"><?php echo e(translate('Features activation')); ?></span>
-                            </a>
-                        </li>
-                        <li class="aiz-side-nav-item">
-                            <a href="<?php echo e(route('languages.index')); ?>" class="aiz-side-nav-link <?php echo e(areActiveRoutes(['languages.index', 'languages.create', 'languages.store', 'languages.show', 'languages.edit'])); ?>">
-                                <span class="aiz-side-nav-text"><?php echo e(translate('Languages')); ?></span>
-                            </a>
-                        </li>
-                        <li class="aiz-side-nav-item">
-                            <a href="<?php echo e(route('currency.index')); ?>" class="aiz-side-nav-link">
-                                <span class="aiz-side-nav-text"><?php echo e(translate('Currency')); ?></span>
-                            </a>
-                        </li>
-                        <li class="aiz-side-nav-item">
-                            <a href="<?php echo e(route('pick_up_points.index')); ?>" class="aiz-side-nav-link <?php echo e(areActiveRoutes(['pick_up_points.index','pick_up_points.create','pick_up_points.edit'])); ?>">
-                                <span class="aiz-side-nav-text"><?php echo e(translate('Pickup point')); ?></span>
-                            </a>
-                        </li>
-                        <li class="aiz-side-nav-item">
-                            <a href="<?php echo e(route('smtp_settings.index')); ?>" class="aiz-side-nav-link">
-                                <span class="aiz-side-nav-text"><?php echo e(translate('SMTP Settings')); ?></span>
-                            </a>
-                        </li>
-                        <li class="aiz-side-nav-item">
-                            <a href="<?php echo e(route('payment_method.index')); ?>" class="aiz-side-nav-link">
-                                <span class="aiz-side-nav-text"><?php echo e(translate('Payment Methods')); ?></span>
-                            </a>
-                        </li>
-                        <li class="aiz-side-nav-item">
-                            <a href="<?php echo e(route('file_system.index')); ?>" class="aiz-side-nav-link">
-                                <span class="aiz-side-nav-text"><?php echo e(translate('File System Configuration')); ?></span>
-                            </a>
-                        </li>
-                        <li class="aiz-side-nav-item">
-                            <a href="<?php echo e(route('social_login.index')); ?>" class="aiz-side-nav-link">
-                                <span class="aiz-side-nav-text"><?php echo e(translate('Social media Logins')); ?></span>
-                            </a>
-                        </li>
-                        <li class="aiz-side-nav-item">
-                            <a href="<?php echo e(route('google_analytics.index')); ?>" class="aiz-side-nav-link">
-                                <span class="aiz-side-nav-text"><?php echo e(translate('Analytics Tools')); ?></span>
-                            </a>
-                        </li>
-
-                        <li class="aiz-side-nav-item">
-                            <a href="javascript:void(0);" class="aiz-side-nav-link">
-                                <span class="aiz-side-nav-text">Facebook</span>
+                            <a href="#" class="aiz-side-nav-link">
+                                <i class="lab la-btc aiz-side-nav-icon"></i>
+                                <span class="aiz-side-nav-text"><?php echo e(translate('Club Point System')); ?></span>
                                 <span class="aiz-side-nav-arrow"></span>
                             </a>
-                            <ul class="aiz-side-nav-list level-3">
+                            <ul class="aiz-side-nav-list level-2">
                                 <li class="aiz-side-nav-item">
-                                    <a href="<?php echo e(route('facebook_chat.index')); ?>" class="aiz-side-nav-link">
-                                        <span class="aiz-side-nav-text"><?php echo e(translate('Facebook Chat')); ?></span>
+                                    <a href="<?php echo e(route('club_points.configs')); ?>" class="aiz-side-nav-link">
+                                        <span
+                                            class="aiz-side-nav-text"><?php echo e(translate('Club Point Configurations')); ?></span>
                                     </a>
                                 </li>
                                 <li class="aiz-side-nav-item">
-                                    <a href="<?php echo e(route('facebook-comment')); ?>" class="aiz-side-nav-link">
-                                        <span class="aiz-side-nav-text"><?php echo e(translate('Facebook Comment')); ?></span>
+                                    <a href="<?php echo e(route('set_product_points')); ?>"
+                                       class="aiz-side-nav-link <?php echo e(areActiveRoutes(['set_product_points', 'product_club_point.edit'])); ?>">
+                                        <span class="aiz-side-nav-text"><?php echo e(translate('Set Product Point')); ?></span>
+                                    </a>
+                                </li>
+                                <li class="aiz-side-nav-item">
+                                    <a href="<?php echo e(route('club_points.index')); ?>"
+                                       class="aiz-side-nav-link <?php echo e(areActiveRoutes(['club_points.index', 'club_point.details'])); ?>">
+                                        <span class="aiz-side-nav-text"><?php echo e(translate('User Points')); ?></span>
                                     </a>
                                 </li>
                             </ul>
                         </li>
+                    <?php endif; ?>
+                <?php endif; ?>
 
+                <!--OTP addon -->
+                <?php if(\App\Addon::where('unique_identifier', 'otp_system')->first() != null && \App\Addon::where('unique_identifier', 'otp_system')->first()->activated): ?>
+                    <?php if(Auth::user()->user_type == 'admin' || in_array('19', json_decode(Auth::user()->staff->role->permissions))): ?>
                         <li class="aiz-side-nav-item">
-                            <a href="<?php echo e(route('google_recaptcha.index')); ?>" class="aiz-side-nav-link">
-                                <span class="aiz-side-nav-text"><?php echo e(translate('Google reCAPTCHA')); ?></span>
+                            <a href="#" class="aiz-side-nav-link">
+                                <i class="las la-phone aiz-side-nav-icon"></i>
+                                <span class="aiz-side-nav-text"><?php echo e(translate('OTP System')); ?></span>
+                                <span class="aiz-side-nav-arrow"></span>
                             </a>
+                            <ul class="aiz-side-nav-list level-2">
+                                <li class="aiz-side-nav-item">
+                                    <a href="<?php echo e(route('otp.configconfiguration')); ?>" class="aiz-side-nav-link">
+                                        <span class="aiz-side-nav-text"><?php echo e(translate('OTP Configurations')); ?></span>
+                                    </a>
+                                </li>
+                                <li class="aiz-side-nav-item">
+                                    <a href="<?php echo e(route('otp_credentials.index')); ?>" class="aiz-side-nav-link">
+                                        <span class="aiz-side-nav-text"><?php echo e(translate('Set OTP Credentials')); ?></span>
+                                    </a>
+                                </li>
+                            </ul>
                         </li>
+                    <?php endif; ?>
+                <?php endif; ?>
+
+                <?php if(\App\Addon::where('unique_identifier', 'african_pg')->first() != null && \App\Addon::where('unique_identifier', 'african_pg')->first()->activated): ?>
+                    <?php if(Auth::user()->user_type == 'admin' || in_array('19', json_decode(Auth::user()->staff->role->permissions))): ?>
                         <li class="aiz-side-nav-item">
-                            <a href="<?php echo e(route('shipping_configuration.index')); ?>" class="aiz-side-nav-link <?php echo e(areActiveRoutes(['shipping_configuration.index','shipping_configuration.edit','shipping_configuration.update'])); ?>">
-                                <span class="aiz-side-nav-text"><?php echo e(translate('Shipping Configuration')); ?></span>
+                            <a href="#" class="aiz-side-nav-link">
+                                <i class="las la-phone aiz-side-nav-icon"></i>
+                                <span class="aiz-side-nav-text"><?php echo e(translate('African Payment Gateway Addon')); ?></span>
+                                <span class="aiz-side-nav-arrow"></span>
                             </a>
+                            <ul class="aiz-side-nav-list level-2">
+                                <li class="aiz-side-nav-item">
+                                    <a href="<?php echo e(route('african.configuration')); ?>" class="aiz-side-nav-link">
+                                        <span
+                                            class="aiz-side-nav-text"><?php echo e(translate('African PG Configurations')); ?></span>
+                                    </a>
+                                </li>
+                                <li class="aiz-side-nav-item">
+                                    <a href="<?php echo e(route('african_credentials.index')); ?>" class="aiz-side-nav-link">
+                                        <span
+                                            class="aiz-side-nav-text"><?php echo e(translate('Set African PG Credentials')); ?></span>
+                                    </a>
+                                </li>
+                            </ul>
                         </li>
-                        <li class="aiz-side-nav-item">
-                            <a href="<?php echo e(route('countries.index')); ?>" class="aiz-side-nav-link <?php echo e(areActiveRoutes(['countries.index','countries.edit','countries.update'])); ?>">
-                                <span class="aiz-side-nav-text"><?php echo e(translate('Shipping Countries')); ?></span>
-                            </a>
-                        </li>
-                        <li class="aiz-side-nav-item">
-                            <a href="<?php echo e(route('cities.index')); ?>" class="aiz-side-nav-link <?php echo e(areActiveRoutes(['cities.index','cities.edit','cities.update'])); ?>">
-                                <span class="aiz-side-nav-text"><?php echo e(translate('Shipping Cities')); ?></span>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
+                    <?php endif; ?>
+                <?php endif; ?>
+
+                <!-- Website Setup -->
+                <?php if(Auth::user()->user_type == 'admin' || in_array('13', json_decode(Auth::user()->staff->role->permissions))): ?>
+                    <li class="aiz-side-nav-item">
+                        <a href="#" class="aiz-side-nav-link">
+                            <i class="las la-desktop aiz-side-nav-icon"></i>
+                            <span class="aiz-side-nav-text"><?php echo e(translate('Website Setup')); ?></span>
+                            <span class="aiz-side-nav-arrow"></span>
+                        </a>
+                        <ul class="aiz-side-nav-list level-2">
+                            <li class="aiz-side-nav-item">
+                                <a href="<?php echo e(route('website.header')); ?>" class="aiz-side-nav-link">
+                                    <span class="aiz-side-nav-text"><?php echo e(translate('Header')); ?></span>
+                                </a>
+                            </li>
+                            <li class="aiz-side-nav-item">
+                                <a href="<?php echo e(route('website.footer')); ?>" class="aiz-side-nav-link">
+                                    <span class="aiz-side-nav-text"><?php echo e(translate('Footer')); ?></span>
+                                </a>
+                            </li>
+                            <li class="aiz-side-nav-item">
+                                <a href="<?php echo e(route('website.pages')); ?>"
+                                   class="aiz-side-nav-link <?php echo e(areActiveRoutes(['website.pages', 'custom-pages.create' ,'custom-pages.edit'])); ?>">
+                                    <span class="aiz-side-nav-text"><?php echo e(translate('Pages')); ?></span>
+                                </a>
+                            </li>
+                            <li class="aiz-side-nav-item">
+                                <a href="<?php echo e(route('website.appearance')); ?>" class="aiz-side-nav-link">
+                                    <span class="aiz-side-nav-text"><?php echo e(translate('Appearance')); ?></span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                <?php endif; ?>
+
+                <!-- Setup & Configurations -->
+                <?php if(Auth::user()->user_type == 'admin' || in_array('14', json_decode(Auth::user()->staff->role->permissions))): ?>
+                    <li class="aiz-side-nav-item">
+                        <a href="#" class="aiz-side-nav-link">
+                            <i class="las la-dharmachakra aiz-side-nav-icon"></i>
+                            <span class="aiz-side-nav-text"><?php echo e(translate('Setup & Configurations')); ?></span>
+                            <span class="aiz-side-nav-arrow"></span>
+                        </a>
+                        <ul class="aiz-side-nav-list level-2">
+                            <li class="aiz-side-nav-item">
+                                <a href="<?php echo e(route('general_setting.index')); ?>" class="aiz-side-nav-link">
+                                    <span class="aiz-side-nav-text"><?php echo e(translate('General Settings')); ?></span>
+                                </a>
+                            </li>
+
+                            <li class="aiz-side-nav-item">
+                                <a href="<?php echo e(route('activation.index')); ?>" class="aiz-side-nav-link">
+                                    <span class="aiz-side-nav-text"><?php echo e(translate('Features activation')); ?></span>
+                                </a>
+                            </li>
+                            <li class="aiz-side-nav-item">
+                                <a href="<?php echo e(route('languages.index')); ?>"
+                                   class="aiz-side-nav-link <?php echo e(areActiveRoutes(['languages.index', 'languages.create', 'languages.store', 'languages.show', 'languages.edit'])); ?>">
+                                    <span class="aiz-side-nav-text"><?php echo e(translate('Languages')); ?></span>
+                                </a>
+                            </li>
+                            <li class="aiz-side-nav-item">
+                                <a href="<?php echo e(route('currency.index')); ?>" class="aiz-side-nav-link">
+                                    <span class="aiz-side-nav-text"><?php echo e(translate('Currency')); ?></span>
+                                </a>
+                            </li>
+                            <li class="aiz-side-nav-item">
+                                <a href="<?php echo e(route('pick_up_points.index')); ?>"
+                                   class="aiz-side-nav-link <?php echo e(areActiveRoutes(['pick_up_points.index','pick_up_points.create','pick_up_points.edit'])); ?>">
+                                    <span class="aiz-side-nav-text"><?php echo e(translate('Pickup point')); ?></span>
+                                </a>
+                            </li>
+                            <li class="aiz-side-nav-item">
+                                <a href="<?php echo e(route('smtp_settings.index')); ?>" class="aiz-side-nav-link">
+                                    <span class="aiz-side-nav-text"><?php echo e(translate('SMTP Settings')); ?></span>
+                                </a>
+                            </li>
+                            <li class="aiz-side-nav-item">
+                                <a href="<?php echo e(route('payment_method.index')); ?>" class="aiz-side-nav-link">
+                                    <span class="aiz-side-nav-text"><?php echo e(translate('Payment Methods')); ?></span>
+                                </a>
+                            </li>
+                            <li class="aiz-side-nav-item">
+                                <a href="<?php echo e(route('file_system.index')); ?>" class="aiz-side-nav-link">
+                                    <span class="aiz-side-nav-text"><?php echo e(translate('File System Configuration')); ?></span>
+                                </a>
+                            </li>
+                            <li class="aiz-side-nav-item">
+                                <a href="<?php echo e(route('social_login.index')); ?>" class="aiz-side-nav-link">
+                                    <span class="aiz-side-nav-text"><?php echo e(translate('Social media Logins')); ?></span>
+                                </a>
+                            </li>
+                            <li class="aiz-side-nav-item">
+                                <a href="<?php echo e(route('google_analytics.index')); ?>" class="aiz-side-nav-link">
+                                    <span class="aiz-side-nav-text"><?php echo e(translate('Analytics Tools')); ?></span>
+                                </a>
+                            </li>
+
+                            <li class="aiz-side-nav-item">
+                                <a href="javascript:void(0);" class="aiz-side-nav-link">
+                                    <span class="aiz-side-nav-text">Facebook</span>
+                                    <span class="aiz-side-nav-arrow"></span>
+                                </a>
+                                <ul class="aiz-side-nav-list level-3">
+                                    <li class="aiz-side-nav-item">
+                                        <a href="<?php echo e(route('facebook_chat.index')); ?>" class="aiz-side-nav-link">
+                                            <span class="aiz-side-nav-text"><?php echo e(translate('Facebook Chat')); ?></span>
+                                        </a>
+                                    </li>
+                                    <li class="aiz-side-nav-item">
+                                        <a href="<?php echo e(route('facebook-comment')); ?>" class="aiz-side-nav-link">
+                                            <span class="aiz-side-nav-text"><?php echo e(translate('Facebook Comment')); ?></span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+
+                            <li class="aiz-side-nav-item">
+                                <a href="<?php echo e(route('google_recaptcha.index')); ?>" class="aiz-side-nav-link">
+                                    <span class="aiz-side-nav-text"><?php echo e(translate('Google reCAPTCHA')); ?></span>
+                                </a>
+                            </li>
+                            <li class="aiz-side-nav-item">
+                                <a href="<?php echo e(route('shipping_configuration.index')); ?>"
+                                   class="aiz-side-nav-link <?php echo e(areActiveRoutes(['shipping_configuration.index','shipping_configuration.edit','shipping_configuration.update'])); ?>">
+                                    <span class="aiz-side-nav-text"><?php echo e(translate('Shipping Configuration')); ?></span>
+                                </a>
+                            </li>
+                            <li class="aiz-side-nav-item">
+                                <a href="<?php echo e(route('countries.index')); ?>"
+                                   class="aiz-side-nav-link <?php echo e(areActiveRoutes(['countries.index','countries.edit','countries.update'])); ?>">
+                                    <span class="aiz-side-nav-text"><?php echo e(translate('Shipping Countries')); ?></span>
+                                </a>
+                            </li>
+                            <li class="aiz-side-nav-item">
+                                <a href="<?php echo e(route('cities.index')); ?>"
+                                   class="aiz-side-nav-link <?php echo e(areActiveRoutes(['cities.index','cities.edit','cities.update'])); ?>">
+                                    <span class="aiz-side-nav-text"><?php echo e(translate('Shipping Cities')); ?></span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
                 <?php endif; ?>
 
 
@@ -813,12 +877,14 @@
                         </a>
                         <ul class="aiz-side-nav-list level-2">
                             <li class="aiz-side-nav-item">
-                                <a href="<?php echo e(route('staffs.index')); ?>" class="aiz-side-nav-link <?php echo e(areActiveRoutes(['staffs.index', 'staffs.create', 'staffs.edit'])); ?>">
+                                <a href="<?php echo e(route('staffs.index')); ?>"
+                                   class="aiz-side-nav-link <?php echo e(areActiveRoutes(['staffs.index', 'staffs.create', 'staffs.edit'])); ?>">
                                     <span class="aiz-side-nav-text"><?php echo e(translate('All staffs')); ?></span>
                                 </a>
                             </li>
                             <li class="aiz-side-nav-item">
-                                <a href="<?php echo e(route('roles.index')); ?>" class="aiz-side-nav-link <?php echo e(areActiveRoutes(['roles.index', 'roles.create', 'roles.edit'])); ?>">
+                                <a href="<?php echo e(route('roles.index')); ?>"
+                                   class="aiz-side-nav-link <?php echo e(areActiveRoutes(['roles.index', 'roles.create', 'roles.edit'])); ?>">
                                     <span class="aiz-side-nav-text"><?php echo e(translate('Staff permissions')); ?></span>
                                 </a>
                             </li>
@@ -827,20 +893,20 @@
                 <?php endif; ?>
 
                 <li class="aiz-side-nav-item">
-                        <a href="#" class="aiz-side-nav-link">
-                            <i class="las la-user-tie aiz-side-nav-icon"></i>
-                            <span class="aiz-side-nav-text"><?php echo e(translate('System')); ?></span>
-                            <span class="aiz-side-nav-arrow"></span>
-                        </a>
-                        <ul class="aiz-side-nav-list level-2">
+                    <a href="#" class="aiz-side-nav-link">
+                        <i class="las la-user-tie aiz-side-nav-icon"></i>
+                        <span class="aiz-side-nav-text"><?php echo e(translate('System')); ?></span>
+                        <span class="aiz-side-nav-arrow"></span>
+                    </a>
+                    <ul class="aiz-side-nav-list level-2">
 
-                            <li class="aiz-side-nav-item">
-                                <a href="<?php echo e(route('system_server')); ?>" class="aiz-side-nav-link">
-                                    <span class="aiz-side-nav-text"><?php echo e(translate('Server status')); ?></span>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
+                        <li class="aiz-side-nav-item">
+                            <a href="<?php echo e(route('system_server')); ?>" class="aiz-side-nav-link">
+                                <span class="aiz-side-nav-text"><?php echo e(translate('Server status')); ?></span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
 
 
             </ul><!-- .aiz-side-nav -->

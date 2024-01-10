@@ -200,8 +200,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function(
     Route::get('/one_click_orders/destroy/{id}', 'OrderController@one_click_orders_destroy')->name('one_click_orders.destroy');
 
     //Uzum
-    Route::get('uzum', 'UzumController@uzum_index')->name('uzum.index');
-    Route::get('uzum/{id}', 'UzumController@uzum_show')->name('uzum.show');
+    Route::get('uzum', 'OrderController@uzum_index')->name('uzum.index');
+    Route::get('uzum/{id}', 'OrderController@uzum_show')->name('uzum.show');
     Route::get('/one_click_orders/destroy/{id}', 'OrderController@one_click_orders_destroy')->name('one_click_orders.destroy');
 
     //Reports
