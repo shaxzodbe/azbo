@@ -1227,7 +1227,7 @@ if (!function_exists('get_images')) {
     {
         $ids = is_array($given_ids)
         ? $given_ids
-        : is_null($given_ids) ? [] : explode(",", $given_ids);
+        : (is_null($given_ids) ? [] : explode(",", $given_ids));
 
         return $with_trashed
         ? Upload::withTrashed()->whereIn('id', $ids)->get()
