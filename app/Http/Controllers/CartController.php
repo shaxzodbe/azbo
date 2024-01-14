@@ -5,18 +5,17 @@ namespace App\Http\Controllers;
 use App\BusinessSetting;
 use App\Category;
 use App\Color;
-use App\Events\OrderStore;
 use App\Models\Custom\OneClickBuy;
 use App\Product;
 use App\Tg\TgContent;
-use Cookie;
 use Illuminate\Http\Request;
-use Session;
+use Illuminate\Support\Facades\Cookie;
 
 class CartController extends Controller
 {
     public function index(Request $request)
     {
+        dd(121212);
         $categories = Category::all();
         return view('frontend.view_cart', compact('categories'));
     }
