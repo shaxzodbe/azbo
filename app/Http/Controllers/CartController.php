@@ -15,7 +15,6 @@ class CartController extends Controller
 {
     public function index(Request $request)
     {
-        dd(121212);
         $categories = Category::all();
         return view('frontend.view_cart', compact('categories'));
     }
@@ -594,7 +593,6 @@ class CartController extends Controller
 
     public function one_click($id)
     {
-        dd($id);
         $product = Product::find($id);
         return view('frontend.oneClick', compact('product'));
     }

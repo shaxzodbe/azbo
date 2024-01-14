@@ -184,7 +184,7 @@ Route::get('/cart', 'CartController@index')->name('cart');
 
 // ------------Bek new
 Route::get('/my-cart', 'CartController@my_card')->name('my_card');
-Route::get('/one-click/{id}', 'CartController@index');
+Route::get('/one-click/{id}', 'CartController@one_click')->name('one_click');
 Route::post('/one-click', 'CartController@one_click_payment')->name('one_click_payment');
 Route::get('/one-click-order-preconfirmed/{id}', 'CartController@oneClick_order_preconfirmed')->name('oneClick_order_preconfirmed');
 
