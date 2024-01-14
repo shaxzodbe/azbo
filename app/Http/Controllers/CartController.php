@@ -593,6 +593,7 @@ class CartController extends Controller
 
     public function one_click($id)
     {
+        dd($id);
         $product = Product::find($id);
         return view('frontend.oneClick', compact('product'));
     }
