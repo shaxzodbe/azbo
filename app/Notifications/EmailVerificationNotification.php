@@ -34,8 +34,13 @@ class EmailVerificationNotification extends Notification
         $array['content'] = 'Please click the button below to verify your email address.';
         $array['link'] = route('email.verification.confirmation', $notifiable->verification_code);
 
-        dd(new MailMessage);
-        return (new MailMessage);
+        dd((new MailMessage)
+            ->view('emails.verification', ['array' => $array])
+            ->subject(translate('Email Verification - ').env('APP_NAME')));
+
+        return (new MailMessage)
+            ->view('emails.verification', ['array' => $array])
+            ->subject(translate('Email Verification - ').env('APP_NAME'));
     }
 
     public function toArray($notifiable)
