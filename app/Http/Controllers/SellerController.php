@@ -73,6 +73,7 @@ class SellerController extends Controller
             if (get_setting('email_verification') != 1) {
                 $user->email_verified_at = date('Y-m-d H:m:s');
             } else {
+                dd(new EmailVerificationNotification());
                 $user->notify(new EmailVerificationNotification());
             }
             $user->save();
