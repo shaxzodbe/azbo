@@ -26,6 +26,7 @@ class EmailVerificationNotification extends Notification
 
     public function toMail($notifiable)
     {
+        dd(12);
         $notifiable->verification_code = encrypt($notifiable->id);
         $notifiable->save();
 
