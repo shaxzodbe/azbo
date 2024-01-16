@@ -9,6 +9,7 @@ use App\Shop;
 use App\Product;
 use App\Order;
 use App\OrderDetail;
+use Illuminate\Notifications\Notification;
 use Illuminate\Support\Facades\Hash;
 use App\Notifications\EmailVerificationNotification;
 
@@ -73,7 +74,8 @@ class SellerController extends Controller
             if (get_setting('email_verification') != 1) {
                 $user->email_verified_at = date('Y-m-d H:m:s');
             } else {
-                $user->sendEmailVerificationNotification(new EmailVerificationNotification());
+                Notification::send(new EmailVerificationNotification);
+//                $user->notify((new EmailVerificationNotification));
             }
             $user->save();
             $seller = new Seller;
