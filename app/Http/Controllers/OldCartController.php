@@ -10,7 +10,7 @@ use Session;
 use App\Color;
 use Cookie;
 
-class CartController extends Controller
+class OldCartController extends Controller
 {
     public function index(Request $request)
     {

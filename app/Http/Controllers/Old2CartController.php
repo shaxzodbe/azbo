@@ -9,7 +9,7 @@ use Cookie;
 use Illuminate\Http\Request;
 use Session;
 
-class CartController extends Controller
+class Old2CartController extends Controller
 {
     public function index(Request $request)
     {
