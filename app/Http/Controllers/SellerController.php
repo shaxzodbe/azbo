@@ -70,7 +70,6 @@ class SellerController extends Controller
         $user->user_type = "seller";
         $user->password = Hash::make($request->password);
         if ($user->save()) {
-            dd(get_setting('email_verification'));
             if (get_setting('email_verification') != 1) {
                 $user->email_verified_at = date('Y-m-d H:m:s');
             } else {
