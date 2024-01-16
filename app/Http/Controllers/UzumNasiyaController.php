@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\ProductUzumNasiya;
 use App\Services\UzumNasiyaService;
+use App\UzumNasiya;
 use Exception;
 use Illuminate\Http\Request;
 
@@ -25,7 +26,11 @@ class UzumNasiyaController extends Controller
             $response = $this->uzumNasiyaService->checkUserStatus($phone, $callbackUrl);
 
             if (isset($response['status']) && $response['data']['status'] === ProductUzumNasiya::STATUS_VERIFIED) {
-//                $response['data']['buyer_id'] = UzumNasiya::create('');
+                $uzumNasiya = new UzumNasiya;
+                $uzumNasiya->buyer_id = $response['data']['buyer_id'];
+                $uzumNasiya->status = $response['data']['status'];
+                $uzumNasiya->available_periods = $response['data']['available_periods'];
+                $uzumNasiya->save();
             } else {
                 //asdasd
             }
@@ -34,5 +39,10 @@ class UzumNasiyaController extends Controller
         } catch (Exception $exception) {
             return response()->json(['error' => $exception->getMessage()], 500);
         }
+    }
+
+    public function calculate()
+    {
+        //
     }
 }
