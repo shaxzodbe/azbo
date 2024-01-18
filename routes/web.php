@@ -165,11 +165,15 @@ Route::get('/intent-order-check', 'HomeController@intent_order_check')->name('in
 
 Route::get('intent-selected-products', 'HomeController@intent_selected_products')->name('intent_selected_products');
 
-
 /*Uzum Nasiya*/
 
-Route::post('/uzum-nasiya/check-status', 'UzumNasiyaController@checkStatus');
-
+Route::post('/check-user-status', 'UzumNasiyaController@checkStatus');
+Route::post('/calculate', 'UzumNasiyaController@calculate');
+Route::post('/order', 'UzumNasiyaController@order');
+Route::post('/confirm-contract', 'UzumNasiyaController@confirmContract');
+Route::post('/cancel-contract', 'UzumNasiyaController@cancelContract');
+Route::post('/upload-act', 'UzumNasiyaController@uploadAct');
+Route::post('/upload-client-photo', 'UzumNasiyaController@uploadClientPhoto');
 
 /*New*/
 
