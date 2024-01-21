@@ -469,7 +469,7 @@
                                         <div id="select-item-pay" style="display: inherit;">
                                             {{--<a href="{{ route('get.intent_auth',['id'=>$detailedProduct->id]) }}" style="font-size: 10px; font-weight: bold;"><img src="https://azbo.loc/public/assets/img/logo-intend.png"></a>--}}
                                             @php
-                                                dd(\App\BusinessSetting::where('type', 'monthly_payment')->first()->value);
+                                                dd(\App\BusinessSetting::where('type', 'monthly_payment'));
                                             @endphp
                                             @if(\App\BusinessSetting::where('type', 'monthly_payment')->first()->value == 1)
 
