@@ -7,7 +7,7 @@
 @section('meta_keywords'){{ $detailedProduct->tags }}@stop
 
 @php
-    var_dump($detailedProduct);exit;
+    dd($detailedProduct);exit;
 @endphp
 
 @section('meta')
