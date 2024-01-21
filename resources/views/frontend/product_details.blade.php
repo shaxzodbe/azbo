@@ -6,10 +6,6 @@
 
 @section('meta_keywords'){{ $detailedProduct->tags }}@stop
 
-@php
-    dd($detailedProduct);exit;
-@endphp
-
 @section('meta')
     <!-- Schema.org markup for Google+ -->
     <meta itemprop="name" content="{{ $detailedProduct->meta_title }}">
