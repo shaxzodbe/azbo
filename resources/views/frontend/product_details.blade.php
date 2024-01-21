@@ -468,11 +468,10 @@
                                     <div class="collapse" id="collapseExample">
                                         <div id="select-item-pay" style="display: inherit;">
                                             {{--<a href="{{ route('get.intent_auth',['id'=>$detailedProduct->id]) }}" style="font-size: 10px; font-weight: bold;"><img src="https://azbo.loc/public/assets/img/logo-intend.png"></a>--}}
-                                            @php
-                                                dd(\App\BusinessSetting::where('type', 'monthly_payment')->first());
-                                            @endphp
                                             @if(\App\BusinessSetting::where('type', 'monthly_payment')->first()->value == 1)
 
+                                                <button type="button" class="btn btn-soft-info fw-600 btn-block"
+                                                        onclick="payInInstallments()"><img src="https://azbo.uz/public/uploads/all/7Gv6oHzR6f617xdNiSJAjW1qNbwW2dgIaseDfcsM.png" class="h-50px" alt=""></button>
                                                 <button type="button" class="btn btn-soft-info fw-600 btn-block"
                                                         onclick="payInInstallments()"><img src="https://azbo.uz/public/uploads/all/7Gv6oHzR6f617xdNiSJAjW1qNbwW2dgIaseDfcsM.png" class="h-50px" alt=""></button>
                                             @endif
