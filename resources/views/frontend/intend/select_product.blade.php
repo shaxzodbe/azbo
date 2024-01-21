@@ -6,6 +6,10 @@
 
 @section('meta_keywords'){{ $detailedProduct->tags }}@stop
 
+@php
+    var_dump($detailedProduct);exit;
+@endphp
+
 @section('meta')
     <!-- Schema.org markup for Google+ -->
     <meta itemprop="name" content="{{ $detailedProduct->meta_title }}">
@@ -417,7 +421,6 @@
                             </form>
 
                             <div class="mt-3 d-flex">
-                                @dd($qty)
                                 @if ($qty > 0)
                                     <a href="{{route('home')}}" class="btn btn-soft-primary mr-2 add-to-cart fw-600"
                                        {{--onclick="addToCart()"--}}>
