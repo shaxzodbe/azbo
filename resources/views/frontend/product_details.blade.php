@@ -1302,7 +1302,16 @@
                     '</div>'
                 );
             } else if (period == 12) {
-                $('#select-item-pay').html('<div class="row"><div class="col-md-6 pb-2"><a href="{{ route('get.intent_auth',['id'=>$detailedProduct->id]) }}" class="btn btn-soft-info fw-600 btn-block"><img src="https://azbo.uz/public/assets/img/logo-intend.png" class="h-50px"></a></div><div class="col-md-6 pb-2"><button type="button" class="btn btn-soft-info fw-600 btn-block" onclick="payInInstallments()"><img src="https://azbo.uz/public/uploads/all/7Gv6oHzR6f617xdNiSJAjW1qNbwW2dgIaseDfcsM.png" class="h-50px" alt=""></button></div>');
+                $('#select-item-pay').html('' +
+                    '<div class="mt-3">' +
+                        '<a href="{{ route('get.intent_auth',['id'=>$detailedProduct->id]) }}" class="btn btn-soft-info fw-600 btn-block">' +
+                            '<img src="https://azbo.uz/public/assets/img/logo-intend.png" class="h-50px">' +
+                        '</a>' +
+                        '<button type="button" class="btn btn-soft-info fw-600 btn-block" onclick="payInInstallments()">' +
+                            '<img src="https://azbo.uz/public/uploads/all/7Gv6oHzR6f617xdNiSJAjW1qNbwW2dgIaseDfcsM.png" class="h-50px" alt="">' +
+                        '</button>' +
+                    '</div>'
+                );
             } else {
                 /* $('#select-item-pay').html('<a href="{{ route('get.intent_auth',['id'=>$detailedProduct->id]) }}" class="btn btn-info fw-600" style="height:71px;width:308px;"><img src="https://azbo.loc/public/assets/img/logo-intend.png" style="height:55px;"></a><button type="button" class="btn btn-info fw-600" onclick="payInInstallments()" style="width: 400px;float:right;"><img src="https://azbo.loc/public/uploads/all/7Gv6oHzR6f617xdNiSJAjW1qNbwW2dgIaseDfcsM.png" style="height: 50px;" alt=""></button>');*/
                 $('#select-item-pay').html('<button type="button" class="btn btn-soft-info fw-600 btn-block" onclick="payInInstallments()"><img src="https://azbo.uz/public/uploads/all/7Gv6oHzR6f617xdNiSJAjW1qNbwW2dgIaseDfcsM.png" class="h-50px" alt=""></button>');
