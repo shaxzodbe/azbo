@@ -1280,7 +1280,18 @@
             monthly_percent.innerText = ' (' + el.dataset.percent + '%)';
 
             if (period == 3) {
-                $('#select-item-pay').html('<button type="button" class="btn btn-soft-info fw-600 btn-block" onclick="payInInstallments()"><img src="https://azbo.uz/public/uploads/all/rxCNoyRODbRR4P7VfZV82CtaRUC76857ZMfbkgrl.png" class="h-50px" alt=""></button>');
+                $('#select-item-pay').html('' +
+                    '<div class="row">' +
+                        '<div class="col-md-6 pb-2">' +
+                            '<button type="button" class="btn btn-soft-info fw-600 btn-block" onclick="payInInstallments()">' +
+                                '<img src="https://azbo.uz/public/uploads/all/rxCNoyRODbRR4P7VfZV82CtaRUC76857ZMfbkgrl.png" class="h-50px" alt="">' +
+                        '<div/>' +
+                        '<div class="col-md-6 pb-2">' +
+                            '<button type="button" class="btn btn-soft-info fw-600 btn-block" onclick="payInInstallments()">' +
+                                '<img src="https://azbo.uz/public/uploads/all/7Gv6oHzR6f617xdNiSJAjW1qNbwW2dgIaseDfcsM.png" class="h-50px" alt="">' +
+                        '<div/>' +
+                    '</button>'
+                );
             } else if (period == 6) {
                 $('#select-item-pay').html('<button type="button" class="btn btn-soft-info fw-600 btn-block" onclick="payInInstallments()"><img src="https://azbo.uz/public/uploads/all/rxCNoyRODbRR4P7VfZV82CtaRUC76857ZMfbkgrl.png" class="h-50px" alt=""></button>');
             } else if (period == 12) {
