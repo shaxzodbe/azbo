@@ -475,7 +475,7 @@
                                                     <img src="https://azbo.uz/public/uploads/all/7Gv6oHzR6f617xdNiSJAjW1qNbwW2dgIaseDfcsM.png" class="h-50px" alt="">
                                                 </button>
                                                 <button type="button" class="btn btn-soft-info fw-600 btn-block">
-                                                    <img src="https://azbo.uz/public/uploads/all/uploads/all/SIPBhsjfG2NjixiyCeYEO1HexmfUL6X06G8SCcp3.png" class="h-50px" alt=""
+                                                    <img src="https://azbo.uz/public/uploads/all/SIPBhsjfG2NjixiyCeYEO1HexmfUL6X06G8SCcp3.png" class="h-50px" alt=""
                                                          onclick="payInInstallments()">
                                                 </button>
                                             @endif
