@@ -1281,26 +1281,7 @@
 
             if (period == 3) {
                 $('#select-item-pay').html('' +
-                    '<label for="input-installment-id-9-company-id-15">' +
-                        '<ul>' +
-                            '<li class="d-flex justify-content-between" style="position: relative;">' +
-                                '<small>Рассрочка от партнера UzumNasiya</small>' +
-                                '<img src="https://azbo.uz/public/uploads/all/7Gv6oHzR6f617xdNiSJAjW1qNbwW2dgIaseDfcsM.png" class="h-50px" alt="">' +
-                                '<div class="info_installment-partner">' +
-                                    '<b>Рассрочка от партнера UzumNasiya</b><br>' +
-                                    'Данный тип рассрочки доступен для зарегистрированных пользователей <b>UzumNasiya</b>' +
-                                    '</div>' +
-                            '</li>' +
-                            '<li class="d-flex justify-content-between align-items-center h6 i__month mt-1" style="color: #FE7405;">' +
-                                '<img src="https://azbo.uz/public/uploads/all/rxCNoyRODbRR4P7VfZV82CtaRUC76857ZMfbkgrl.png" class="h-50px" alt="">' +
-                                '<div class="">' +
-                                        '<span style="font-weight: bold" class="installment-monthly-graphics mr-1">162 400</span>' +
-                                        '<span style="font-weight: bold">сум</span>' +
-                                    '</div>' +
-                            '</li>' +
-                        '</ul>' +
-                        '<a href="/cart/checkout-installment?slug=smartfon-tecno-spark-go-2024-464gb-mystery-white&installment_id=9&company_id=15" class="btn default-btn btn-orange-custom w-100 text-white mt-2">Заказать в рассрочку</a>' +
-                    '</label>'
+                    '<button style="display: block; width: max-content; margin: 0 auto; padding: 10px 20px; background-color: #FFA500; color: white; text-align: center; text-decoration: none; font-weight: bold; border-radius: 5px;">Заказать в рассрочку</button><div style="margin-top: 10px; padding: 10px; border: 1px solid #ccc; border-radius: 5px; text-align: center;"><span style="color: #555;">Рассрочка от партнера</span><div style="display: flex; justify-content: center; align-items: center; gap: 10px; margin-top: 5px;"><img src="https://azbo.uz/public/uploads/all/7Gv6oHzR6f617xdNiSJAjW1qNbwW2dgIaseDfcsM.png" class="h-50px" alt=""><span style="font-size: 1.5em; color: #FE7405;">{{ $final_price }} сум</span></div></div>'
                 );
             } else if (period == 6) {
                 $('#select-item-pay').html('' +
