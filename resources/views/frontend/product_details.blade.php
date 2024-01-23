@@ -1282,10 +1282,8 @@
             if (period == 3) {
                 $('#select-item-pay').html('' +
                     '<div class="mt-3">' +
-                    '<input type="radio" name="installment_id_9" id="input-installment-id-9-company-id-15" checked="" value="9">' +
                     '<img src="https://azbo.uz/public/uploads/all/7Gv6oHzR6f617xdNiSJAjW1qNbwW2dgIaseDfcsM.png" class="h-50px" alt="">' +
                     '<a href="/cart/checkout-installment?slug=besprovodnye-naushniki-mis-airpods-pro-3-belyy&amp;installment_id=9&amp;company_id=15" class="btn default-btn btn-orange-custom w-100 text-white mt-2" style="background-color: #fe7300;">Заказать в рассрочку</a>' +
-                    '</label>' +
                     '</div>'
                 )
             } else if (period == 6) {
