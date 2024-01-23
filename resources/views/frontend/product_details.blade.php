@@ -476,7 +476,7 @@
                                                 </button>
                                                 <button type="button" class="btn btn-soft-info fw-600 btn-block"
                                                         onclick="payInInstallments()">
-                                                    <img src="https://azbo.uz/public/uploads/all/N4yMKDAFljMvRAAuAGJSOmpuVzV2Ki5jMRRE4H4E.png" class="h-50px" alt="">
+                                                    <img src="https://azbo.uz/public/uploads/all/rxCNoyRODbRR4P7VfZV82CtaRUC76857ZMfbkgrl.png" class="h-50px" alt="">
                                                 </button>
                                             @endif
                                         </div>
