@@ -1281,14 +1281,26 @@
 
             if (period == 3) {
                 $('#select-item-pay').html('' +
-                    '<div class="mt-3">' +
-                        '<button type="button" class="btn btn-soft-info fw-600 btn-block" onclick="payInInstallments()">' +
-                            '<img src="https://azbo.uz/public/uploads/all/7Gv6oHzR6f617xdNiSJAjW1qNbwW2dgIaseDfcsM.png" class="h-50px" alt="">' +
-                        '</button>' +
-                        '<button type="button" class="btn btn-soft-info fw-600 btn-block" onclick="payInInstallments()">' +
-                            '<img src="https://azbo.uz/public/uploads/all/rxCNoyRODbRR4P7VfZV82CtaRUC76857ZMfbkgrl.png" class="h-50px" alt="">' +
-                        '</button>' +
-                    '</div>'
+                    '<label for="input-installment-id-9-company-id-15">' +
+                        '<ul>' +
+                            '<li class="d-flex justify-content-between" style="position: relative;">' +
+                                '<small>Рассрочка от партнера UzumNasiya</small>' +
+                                '<img src="https://azbo.uz/public/uploads/all/7Gv6oHzR6f617xdNiSJAjW1qNbwW2dgIaseDfcsM.png" class="h-50px" alt="">' +
+                                '<div class="info_installment-partner">' +
+                                    '<b>Рассрочка от партнера UzumNasiya</b><br>' +
+                                    'Данный тип рассрочки доступен для зарегистрированных пользователей <b>UzumNasiya</b>' +
+                                    '</div>' +
+                            '</li>' +
+                            '<li class="d-flex justify-content-between align-items-center h6 i__month mt-1" style="color: #FE7405;">' +
+                                '<img src="https://azbo.uz/public/uploads/all/rxCNoyRODbRR4P7VfZV82CtaRUC76857ZMfbkgrl.png" class="h-50px" alt="">' +
+                                '<div class="">' +
+                                        '<span style="font-weight: bold" class="installment-monthly-graphics mr-1">162 400</span>' +
+                                        '<span style="font-weight: bold">сум</span>' +
+                                    '</div>' +
+                            '</li>' +
+                        '</ul>' +
+                        '<a href="/cart/checkout-installment?slug=smartfon-tecno-spark-go-2024-464gb-mystery-white&installment_id=9&company_id=15" class="btn default-btn btn-orange-custom w-100 text-white mt-2">Заказать в рассрочку</a>' +
+                    '</label>'
                 );
             } else if (period == 6) {
                 $('#select-item-pay').html('' +
