@@ -1281,7 +1281,7 @@
 
             if (period == 3) {
                 $('#select-item-pay').html('' +
-                    '<button style="display: block; width: max-content; margin: 0 auto; padding: 10px 20px; background-color: #FFA500; color: white; text-align: center; text-decoration: none; font-weight: bold; border-radius: 5px;">Заказать в рассрочку</button><div style="margin-top: 10px; padding: 10px; border: 1px solid #ccc; border-radius: 5px; text-align: center;"><span style="color: #555;">Рассрочка от партнера</span><div style="display: flex; justify-content: center; align-items: center; gap: 10px; margin-top: 5px;"><img src="https://azbo.uz/public/uploads/all/7Gv6oHzR6f617xdNiSJAjW1qNbwW2dgIaseDfcsM.png" class="h-50px" alt=""><span style="font-size: 1.5em; color: #FE7405;">{{ $final_price }} сум</span></div></div>'
+                    '<button style="display: block; width: max-content; margin: 0 auto; padding: 10px 20px; background-color: #FFA500; color: white; text-align: center; text-decoration: none; font-weight: bold; border-radius: 5px;">Заказать в рассрочку</button><div style="margin-top: 10px; padding: 10px; border: 1px solid #ccc; border-radius: 5px; text-align: center;"><span style="color: #555;">Рассрочка от партнера</span><div style="display: flex; justify-content: center; align-items: center; gap: 10px; margin-top: 5px;"><img src="https://azbo.uz/public/uploads/all/7Gv6oHzR6f617xdNiSJAjW1qNbwW2dgIaseDfcsM.png" class="h-50px" alt=""><span style="font-size: 1.5em; color: #FE7405;">12 сум</span></div></div>'
                 );
             } else if (period == 6) {
                 $('#select-item-pay').html('' +
