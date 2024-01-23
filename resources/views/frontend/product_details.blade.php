@@ -1281,27 +1281,11 @@
 
             if (period == 3) {
                 $('#select-item-pay').html('' +
-                    '<div class="i__month position-relative">' +
-                        '<input type="radio" name="installment_id_9" id="input-installment-id-9-company-id-15" checked="" value="9">' +
-                            '<label for="input-installment-id-9-company-id-15">' +
-                                '<ul>' +
-                                    '<li class="d-flex justify-content-between" style="position: relative ;">' +
-                                        '<small>Рассрочка от партнера UzumNasiya</small>' +
-                                        '<img src="https://azbo.uz/public/uploads/all/7Gv6oHzR6f617xdNiSJAjW1qNbwW2dgIaseDfcsM.png" width="20" height="20" class="img_info-open">' +
-                                        '<div class="info_installment-partner">' +
-                                            '<b>Рассрочка от партнера UzumNasiya</b><br>Данный тип рассрочки доступен для зарегистрированных пользователей <b>UzumNasiya</b>' +
-                                        '</div>' +
-                                    '</li>' +
-                                    '<li class="d-flex justify-content-between align-items-center h6 i__month mt-1" style="color: #FE7405;">' +
-                                        '<img src="https://asaxiy.uz/custom-assets/images/company/uzumnasiya.svg" height="30">' +
-                                            '<div class="">' +
-                                                '<span style="font-weight: bold" class="installment-monthly-graphics mr-1 ">17 400</span>' +
-                                                '<span style="font-weight: bold">сум</span>' +
-                                            '</div>' +
-                                    '</li>' +
-                                '</ul>' +
-                                '<a href="/cart/checkout-installment?slug=besprovodnye-naushniki-mis-airpods-pro-3-belyy&amp;installment_id=9&amp;company_id=15" class="btn default-btn btn-orange-custom w-100 text-white mt-2" style="background-color: #fe7300;">Заказать в рассрочку</a>' +
-                            '</label>' +
+                    '<div class="mt-3">' +
+                    '<input type="radio" name="installment_id_9" id="input-installment-id-9-company-id-15" checked="" value="9">' +
+                    '<img src="https://azbo.uz/public/uploads/all/7Gv6oHzR6f617xdNiSJAjW1qNbwW2dgIaseDfcsM.png" class="h-50px" alt="">' +
+                    '<a href="/cart/checkout-installment?slug=besprovodnye-naushniki-mis-airpods-pro-3-belyy&amp;installment_id=9&amp;company_id=15" class="btn default-btn btn-orange-custom w-100 text-white mt-2" style="background-color: #fe7300;">Заказать в рассрочку</a>' +
+                    '</label>' +
                     '</div>'
                 )
             } else if (period == 6) {
