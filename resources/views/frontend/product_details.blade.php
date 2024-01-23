@@ -1300,7 +1300,7 @@
                                             '</div>' +
                                     '</li>' +
                                 '</ul>' +
-                                '<a href="/cart/checkout-installment?slug=besprovodnye-naushniki-mis-airpods-pro-3-belyy&amp;installment_id=9&amp;company_id=15" class="btn default-btn btn-orange-custom w-100 text-white mt-2">Заказать в рассрочку</a>' +
+                                '<a href="/cart/checkout-installment?slug=besprovodnye-naushniki-mis-airpods-pro-3-belyy&amp;installment_id=9&amp;company_id=15" class="btn default-btn btn-orange-custom w-100 text-white mt-2" style="background-color: #fe7300;">Заказать в рассрочку</a>' +
                             '</label>' +
                     '</div>'
                 )
