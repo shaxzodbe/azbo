@@ -277,7 +277,7 @@ Route::get('/privacypolicy', 'HomeController@privacypolicy')->name('privacypolic
 
 /** Pay in installemnts  */
 Route::post('/installmentsapp', 'HomeController@select_installmentapp');
-Route::post('/checkout-installment', 'HomeController@select_installmentapp');
+Route::post('/checkout-installment', 'HomeController@select_checkout_installment');
 Route::post('/applicationapp', 'HomeController@applicationapp')->name('applicationapp');
 Route::post('/application/storeapp', 'ApplicationController@storeapp')->name('storeapp');
 
