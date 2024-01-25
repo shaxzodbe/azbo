@@ -444,15 +444,15 @@
 
 
 
-                  {{--                    <button type="button" class="btn btn-primary buy-now fw-600" onclick="buyNow()">
+                                      <button type="button" class="btn btn-primary buy-now fw-600" onclick="buyNow()">
                                           <i class="la la-shopping-cart"></i> {{ translate('Buy Now')}}
-                                      </button>--}}
-                  {{--  <a href="{{ route('my_card') }}" class="btn btn-primary buy-now fw-600" >
+                                      </button>
+                    <a href="{{ route('my_card') }}" class="btn btn-primary buy-now fw-600" >
                         <i class="la la-shopping-cart"></i>  {{ translate('Buy Now')}}
-                    </a>--}}
-                  {{--acardion--}}
-                  {{--acardion--}}
-                  {{--@if(Auth::check())
+                    </a>
+                  acardion
+                  acardion
+                  @if(Auth::check())
 
                       @if(\App\BusinessSetting::where('type', 'monthly_payment')->first()->value == 1)
 
@@ -468,7 +468,7 @@
                               <i class="la-lashopping-cart"></i> {{ translate('Pay in installments') }}
                           </button>
                       @endif
-                  @endif--}}
+                  @endif
                 @else
                   <button type="button" class="btn btn-secondary fw-600" disabled>
                     <i class="la la-cart-arrow-down"></i> {{ translate('Out of Stock')}}
