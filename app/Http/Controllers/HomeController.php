@@ -1011,6 +1011,7 @@ class HomeController extends Controller
     }
 
     public function select_installmentapp(Request $request) {
+        dd($request);
         $product = Product::findOrFail($request->id);
 
         $str = '';
@@ -1099,8 +1100,6 @@ class HomeController extends Controller
         $installments = json_decode(\App\BusinessSetting::where('type', 'alif_instalments')->first()->value);
         $installments = array_filter($installments, function($i) { return $i->active; });
 
-        dd($product);
-
         $data = [
             'price' => $price,
             'discount' => $discount,
@@ -1111,8 +1110,6 @@ class HomeController extends Controller
         ];
 
         return view('frontend.installments.select_installmentapp', compact('product','installments', 'data'));
-
-
     }
 
     public function application(Request $request)
