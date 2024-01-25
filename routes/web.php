@@ -209,16 +209,11 @@ Route::group(['middleware' => ['checkout']], function () {
     Route::any('/checkout/delivery_info', 'CheckoutController@store_shipping_info')->name('checkout.store_shipping_infostore');
     Route::post('/checkout/payment_select', 'CheckoutController@store_delivery_info')->name('checkout.store_delivery_info');
 
-
-    // ------------Bek new
     Route::get('/checkout/detail-payment', 'CheckoutController@detail_payment')->name('checkout.detail_payment');
     Route::post('/checkout/detail-send-confirm-sms', 'CheckoutController@detail_send_confirm_sms')->name('detail_send_confirm_sms');
     Route::post('/checkout/detail-send-verify-sms', 'CheckoutController@detail_send_verify_sms')->name('detail_send_verify_sms');
     Route::post('/checkout/detail-payment-action', 'CheckoutController@detail_action')->name('checkout.action');
     Route::get('/checkout/order-preconfirmed', 'CheckoutController@order_preconfirmed')->name('order_preconfirmed');
-    // --------------Bek new end
-
-
 });
 
 Route::get('/checkout/order-confirmed', 'CheckoutController@order_confirmed')->name('order_confirmed');
