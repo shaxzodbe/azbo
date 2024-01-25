@@ -1296,40 +1296,16 @@
           monthly_price.innerText = final_price.toLocaleString() + ' ' + document.getElementById('currency_symbol').value;
           monthly_percent.innerText = ' (' + el.dataset.percent + '%)';
 
-          if (period == 3) {
-              $('#select-item-pay').html('' +
-                  '<div class="mt-3">' +
-                  '<button type="button" class="btn btn-soft-info fw-600 btn-block" onclick="payInInstallments()">' +
-                  '<img src="https://azbo.uz/public/uploads/all/7Gv6oHzR6f617xdNiSJAjW1qNbwW2dgIaseDfcsM.png" class="h-50px" alt="">' +
-                  '</button>' +
-                  '<button type="button" class="btn btn-soft-info fw-600 btn-block" onclick="payInInstallments()">' +
-                  '<img src="https://azbo.uz/public/uploads/all/rxCNoyRODbRR4P7VfZV82CtaRUC76857ZMfbkgrl.png" class="h-50px" alt="">' +
-                  '</button>' +
-                  '</div>'
-              );
-          } else if (period == 6) {
-              $('#select-item-pay').html('' +
-                  '<div class="mt-3">' +
-                  '<button type="button" class="btn btn-soft-info fw-600 btn-block" onclick="payInInstallments()">' +
-                  '<img src="https://azbo.uz/public/uploads/all/7Gv6oHzR6f617xdNiSJAjW1qNbwW2dgIaseDfcsM.png" class="h-50px" alt="">' +
-                  '</button>' +
-                  '<button type="button" class="btn btn-soft-info fw-600 btn-block" onclick="payInInstallments()">' +
-                  '<img src="https://azbo.uz/public/uploads/all/rxCNoyRODbRR4P7VfZV82CtaRUC76857ZMfbkgrl.png" class="h-50px" alt="">' +
-                  '</button>' +
-                  '</div>'
-              );
-          } else if (period == 12) {
-              $('#select-item-pay').html('' +
-                  '<div class="mt-3">' +
-                  '<a href="{{ route('get.intent_auth',['id'=>$detailedProduct->id]) }}" class="btn btn-soft-info fw-600 btn-block">' +
-                  '<img src="https://azbo.uz/public/assets/img/logo-intend.png" class="h-50px">' +
-                  '</a>' +
-                  '<button type="button" class="btn btn-soft-info fw-600 btn-block" onclick="payInInstallments()">' +
-                  '<img src="https://azbo.uz/public/uploads/all/7Gv6oHzR6f617xdNiSJAjW1qNbwW2dgIaseDfcsM.png" class="h-50px" alt="">' +
-                  '</button>' +
-                  '</div>'
-              );
-          }
+          $('#select-item-pay').html('' +
+              '<div class="mt-3">' +
+              '<a href="{{ route('get.intent_auth',['id'=>$detailedProduct->id]) }}" class="btn btn-soft-info fw-600 btn-block">' +
+              '<img src="https://azbo.uz/public/assets/img/logo-intend.png" class="h-50px">' +
+              '</a>' +
+              '<button type="button" class="btn btn-soft-info fw-600 btn-block" onclick="payInInstallments()">' +
+              '<img src="https://azbo.uz/public/uploads/all/7Gv6oHzR6f617xdNiSJAjW1qNbwW2dgIaseDfcsM.png" class="h-50px" alt="">' +
+              '</button>' +
+              '</div>'
+          );
       }
 
       $(document).ready(function () {
