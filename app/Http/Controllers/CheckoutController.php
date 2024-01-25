@@ -2,49 +2,32 @@
 
 namespace App\Http\Controllers;
 
+use App\Address;
+use App\BusinessSetting;
+use App\Category;
+use App\Coupon;
+use App\CouponUsage;
 use App\Models\Custom\OrderDetail;
 use App\Models\Product;
+use App\Order;
 use App\OrderSmsCode;
 use App\Tg\TgContent;
 use App\Utility\PayfastUtility;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Http\Request;
-use App\Http\Controllers\OTPVerificationController;
-use Auth;
-use App\Category;
-use App\Http\Controllers\PaypalController;
-use App\Http\Controllers\InstamojoController;
-use App\Http\Controllers\ClubPointController;
-use App\Http\Controllers\StripePaymentController;
-use App\Http\Controllers\PublicSslCommerzPaymentController;
-use App\Http\Controllers\OrderController;
-use App\Http\Controllers\AffiliateController;
-use App\Http\Controllers\PaytmController;
-use App\Order;
-use App\BusinessSetting;
-use App\Coupon;
-use App\CouponUsage;
-use App\User;
-use App\Address;
-use Session;
 use App\Utility\PayhereUtility;
-
-use App\Http\Controllers\PaysysController;
-use App\Http\Controllers\PaycomController;
+use Auth;
+use Illuminate\Http\Request;
+use Session;
 
 
 class CheckoutController extends Controller
 {
-
     public function __construct()
     {
         //
     }
 
-    //check the selected payment gateway and redirect to that controller accordingly
     public function checkout(Request $request)
     {
-
         if ($request->payment_option != null) {
             $orderController = new OrderController;
             $orderController->store($request);
@@ -92,7 +75,16 @@ class CheckoutController extends Controller
                     $address = json_decode($order->shipping_address)->address;
                     $city = json_decode($order->shipping_address)->city;
 
-                    return PayhereUtility::create_checkout_form($order_id, $amount, $first_name, $last_name, $phone, $email, $address, $city);
+                    return PayhereUtility::create_checkout_form(
+                      $order_id,
+                      $amount,
+                      $first_name,
+                      $last_name,
+                      $phone,
+                      $email,
+                      $address,
+                      $city
+                    );
                 } elseif ($request->payment_option == 'payfast') {
                     $order = Order::findOrFail($request->session()->get('order_id'));
 
@@ -100,57 +92,79 @@ class CheckoutController extends Controller
                     $amount = $order->grand_total;
 
                     return PayfastUtility::create_checkout_form($order_id, $amount);
-                } else if ($request->payment_option == 'ngenius') {
-                    $ngenius = new NgeniusController();
-                    return $ngenius->pay();
-                } else if ($request->payment_option == 'iyzico') {
-                    $iyzico = new IyzicoController();
-                    return $iyzico->pay();
-                } else if ($request->payment_option == 'nagad') {
-                    $nagad = new NagadController;
-                    return $nagad->getSession();
-                } else if ($request->payment_option == 'bkash') {
-                    $bkash = new BkashController;
-                    return $bkash->pay();
-                } else if ($request->payment_option == 'flutterwave') {
-                    $flutterwave = new FlutterwaveController();
-                    return $flutterwave->pay();
-                } else if ($request->payment_option == 'mpesa') {
-                    $mpesa = new MpesaController();
-                    return $mpesa->pay();
-                } elseif ($request->payment_option == 'paytm') {
-                    $paytm = new PaytmController;
-                    return $paytm->index();
-                } elseif ($request->payment_option == 'cash_on_delivery') {
-                    $request->session()->put('cart', Session::get('cart')->where('owner_id', '!=', Session::get('owner_id')));
-                    $request->session()->forget('owner_id');
-                    $request->session()->forget('delivery_info');
-                    $request->session()->forget('coupon_id');
-                    $request->session()->forget('coupon_discount');
-
-                    flash(translate("Your order has been placed successfully"))->success();
-                    return redirect()->route('order_confirmed');
-                } elseif ($request->payment_option == 'wallet') {
-                    $user = Auth::user();
-                    $order = Order::findOrFail($request->session()->get('order_id'));
-                    if ($user->balance >= $order->grand_total) {
-                        $user->balance -= $order->grand_total;
-                        $user->save();
-                        return $this->checkout_done($request->session()->get('order_id'), null);
-                    }
                 } else {
-                    $order = Order::findOrFail($request->session()->get('order_id'));
-                    $order->manual_payment = 1;
-                    $order->save();
+                    if ($request->payment_option == 'ngenius') {
+                        $ngenius = new NgeniusController();
+                        return $ngenius->pay();
+                    } else {
+                        if ($request->payment_option == 'iyzico') {
+                            $iyzico = new IyzicoController();
+                            return $iyzico->pay();
+                        } else {
+                            if ($request->payment_option == 'nagad') {
+                                $nagad = new NagadController;
+                                return $nagad->getSession();
+                            } else {
+                                if ($request->payment_option == 'bkash') {
+                                    $bkash = new BkashController;
+                                    return $bkash->pay();
+                                } else {
+                                    if ($request->payment_option == 'flutterwave') {
+                                        $flutterwave = new FlutterwaveController();
+                                        return $flutterwave->pay();
+                                    } else {
+                                        if ($request->payment_option == 'mpesa') {
+                                            $mpesa = new MpesaController();
+                                            return $mpesa->pay();
+                                        } elseif ($request->payment_option == 'paytm') {
+                                            $paytm = new PaytmController;
+                                            return $paytm->index();
+                                        } elseif ($request->payment_option == 'cash_on_delivery') {
+                                            $request->session()->put(
+                                              'cart',
+                                              Session::get('cart')->where('owner_id', '!=', Session::get('owner_id'))
+                                            );
+                                            $request->session()->forget('owner_id');
+                                            $request->session()->forget('delivery_info');
+                                            $request->session()->forget('coupon_id');
+                                            $request->session()->forget('coupon_discount');
 
-                    $request->session()->put('cart', Session::get('cart')->where('owner_id', '!=', Session::get('owner_id')));
-                    $request->session()->forget('owner_id');
-                    $request->session()->forget('delivery_info');
-                    $request->session()->forget('coupon_id');
-                    $request->session()->forget('coupon_discount');
+                                            flash(translate("Your order has been placed successfully"))->success();
+                                            return redirect()->route('order_confirmed');
+                                        } elseif ($request->payment_option == 'wallet') {
+                                            $user = Auth::user();
+                                            $order = Order::findOrFail($request->session()->get('order_id'));
+                                            if ($user->balance >= $order->grand_total) {
+                                                $user->balance -= $order->grand_total;
+                                                $user->save();
+                                                return $this->checkout_done($request->session()->get('order_id'), null);
+                                            }
+                                        } else {
+                                            $order = Order::findOrFail($request->session()->get('order_id'));
+                                            $order->manual_payment = 1;
+                                            $order->save();
 
-                    flash(translate('Your order has been placed successfully. Please submit payment information from purchase history'))->success();
-                    return redirect()->route('order_confirmed');
+                                            $request->session()->put(
+                                              'cart',
+                                              Session::get('cart')->where('owner_id', '!=', Session::get('owner_id'))
+                                            );
+                                            $request->session()->forget('owner_id');
+                                            $request->session()->forget('delivery_info');
+                                            $request->session()->forget('coupon_id');
+                                            $request->session()->forget('coupon_discount');
+
+                                            flash(
+                                              translate(
+                                                'Your order has been placed successfully. Please submit payment information from purchase history'
+                                              )
+                                            )->success();
+                                            return redirect()->route('order_confirmed');
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
                 }
             }
         } else {
@@ -159,7 +173,6 @@ class CheckoutController extends Controller
         }
     }
 
-    //redirects to this method after a successfull checkout
     public function checkout_done($order_id, $payment)
     {
         $order = Order::findOrFail($order_id);
@@ -167,18 +180,27 @@ class CheckoutController extends Controller
         $order->payment_details = $payment;
         $order->save();
 
-        if (\App\Addon::where('unique_identifier', 'affiliate_system')->first() != null && \App\Addon::where('unique_identifier', 'affiliate_system')->first()->activated) {
+        if (\App\Addon::where('unique_identifier', 'affiliate_system')->first() != null && \App\Addon::where(
+            'unique_identifier',
+            'affiliate_system'
+          )->first()->activated) {
             $affiliateController = new AffiliateController;
             $affiliateController->processAffiliatePoints($order);
         }
 
-        if (\App\Addon::where('unique_identifier', 'club_point')->first() != null && \App\Addon::where('unique_identifier', 'club_point')->first()->activated) {
+        if (\App\Addon::where('unique_identifier', 'club_point')->first() != null && \App\Addon::where(
+            'unique_identifier',
+            'club_point'
+          )->first()->activated) {
             if (Auth::check()) {
                 $clubpointController = new ClubPointController;
                 $clubpointController->processClubPoints($order);
             }
         }
-        if (\App\Addon::where('unique_identifier', 'seller_subscription')->first() == null || !\App\Addon::where('unique_identifier', 'seller_subscription')->first()->activated) {
+        if (\App\Addon::where('unique_identifier', 'seller_subscription')->first() == null || !\App\Addon::where(
+            'unique_identifier',
+            'seller_subscription'
+          )->first()->activated) {
             if (BusinessSetting::where('type', 'category_wise_commission')->first()->value != 1) {
                 $commission_percentage = BusinessSetting::where('type', 'vendor_commission')->first()->value;
                 foreach ($order->orderDetails as $key => $orderDetail) {
@@ -233,7 +255,6 @@ class CheckoutController extends Controller
 
     public function get_shipping_info(Request $request)
     {
-
         if (Session::has('cart') && count(Session::get('cart')) > 0) {
             $categories = Category::all();
             return view('frontend.shipping_info', compact('categories'));
@@ -352,8 +373,6 @@ class CheckoutController extends Controller
 
     public function get_payment_info(Request $request)
     {
-
-
         $subtotal = 0;
         $tax = 0;
         $shipping = 0;
@@ -361,7 +380,6 @@ class CheckoutController extends Controller
             $subtotal += $cartItem['price'] * $cartItem['quantity'];
             $tax += $cartItem['tax'] * $cartItem['quantity'];
             $shipping += $cartItem['shipping'] * $cartItem['quantity'];
-
         }
 
         $total = $subtotal + $tax + $shipping;
@@ -461,51 +479,53 @@ class CheckoutController extends Controller
         return view('frontend.detail_payment');
     }
 
-    public function detail_send_confirm_sms(Request $request){
+    public function detail_send_confirm_sms(Request $request)
+    {
         $otpController = new OTPVerificationController;
         $verification_code = str_pad(mt_rand(0, 999999), 6, '0', STR_PAD_LEFT);
-        $orderSmsCode = OrderSmsCode::where('phone',$request->phone)->first();
-        if ($orderSmsCode){
+        $orderSmsCode = OrderSmsCode::where('phone', $request->phone)->first();
+        if ($orderSmsCode) {
             $orderSmsCode->verification_code = $verification_code;
             $orderSmsCode->update();
-        }else{
+        } else {
             $orderSmsCode = new OrderSmsCode();
             $orderSmsCode->phone = $request->phone;
             $orderSmsCode->verification_code = $verification_code;
             $orderSmsCode->save();
         }
-        $otpController->send_code_order($request->phone,$verification_code);
+        $otpController->send_code_order($request->phone, $verification_code);
         return response()->json(
-            ['success' => true]
+          ['success' => true]
         );
     }
 
-    public function detail_send_verify_sms(Request $request){
-        $user = OrderSmsCode::where('phone',$request->phone)->first();
-        if ($user){
-            if ($user->verification_code == $request->smsCode){
+    public function detail_send_verify_sms(Request $request)
+    {
+        $user = OrderSmsCode::where('phone', $request->phone)->first();
+        if ($user) {
+            if ($user->verification_code == $request->smsCode) {
                 return response()->json(
-                    ['success' => 'function successs']
+                  ['success' => 'function successs']
                 );
-            }else{
+            } else {
                 return response()->json(
-                    ['error' => 'function error'],
-                    404
+                  ['error' => 'function error'],
+                  404
                 );
             }
         }
 
         return response()->json(
-            ['error' => 'function error'],
-            404
+          ['error' => 'function error'],
+          404
         );
     }
 
     public function detail_action(Request $request)
     {
         $request->validate([
-            "sublayerName" => 'required',
-            "sublayerPhone" => 'required|numeric|min:12',
+          "sublayerName" => 'required',
+          "sublayerPhone" => 'required|numeric|min:12',
         ]);
 
         if (Auth::check()) {
@@ -647,7 +667,16 @@ class CheckoutController extends Controller
                         $address = json_decode($order->shipping_address)->address;
                         $city = json_decode($order->shipping_address)->city;
 
-                        return PayhereUtility::create_checkout_form($order_id, $amount, $first_name, $last_name, $phone, $email, $address, $city);
+                        return PayhereUtility::create_checkout_form(
+                          $order_id,
+                          $amount,
+                          $first_name,
+                          $last_name,
+                          $phone,
+                          $email,
+                          $address,
+                          $city
+                        );
                     } elseif ($request->payment_option == 'payfast') {
                         $order = Order::findOrFail($request->session()->get('order_id'));
 
@@ -655,83 +684,121 @@ class CheckoutController extends Controller
                         $amount = $order->grand_total;
 
                         return PayfastUtility::create_checkout_form($order_id, $amount);
-                    } else if ($request->payment_option == 'ngenius') {
-                        $ngenius = new NgeniusController();
-                        return $ngenius->pay();
-                    } else if ($request->payment_option == 'iyzico') {
-                        $iyzico = new IyzicoController();
-                        return $iyzico->pay();
-                    } else if ($request->payment_option == 'nagad') {
-                        $nagad = new NagadController;
-                        return $nagad->getSession();
-                    } else if ($request->payment_option == 'bkash') {
-                        $bkash = new BkashController;
-                        return $bkash->pay();
-                    } else if ($request->payment_option == 'flutterwave') {
-                        $flutterwave = new FlutterwaveController();
-                        return $flutterwave->pay();
-                    } else if ($request->payment_option == 'mpesa') {
-                        $mpesa = new MpesaController();
-                        return $mpesa->pay();
-                    } elseif ($request->payment_option == 'paytm') {
-                        $paytm = new PaytmController;
-                        return $paytm->index();
-                    } elseif ($request->payment_option == 'cash_on_delivery') {
-                        $request->session()->put('cart', Session::get('cart')->where('owner_id', '!=', Session::get('owner_id')));
-                        Session::forget('owner_id');
-                        $request->session()->forget('owner_id');
-                        Session::forget('delivery_info');
-                        $request->session()->forget('delivery_info');
-                        Session::forget('coupon_id');
-                        $request->session()->forget('coupon_id');
-                        Session::forget('coupon_discount');
-                        $request->session()->forget('coupon_discount');
-                        if (isset(Session::get('cart')[0])) {
-                            foreach (Session::get('cart') as $item) {
-                                $orderDetail = new OrderDetail();
-                                $orderDetail['order_id'] = Session::get('order_id');
-                                $orderDetail['product_id'] = $item['id'];
-                                $orderDetail['sublayerName'] = $request->sublayerName;
-                                $orderDetail['sublayerPhone'] = $request->sublayerPhone;
-                                $orderDetail['seller_id'] = $item['owner_id'];
-                                $orderDetail['variation'] = $item['variant'];
-                                $orderDetail['price'] = $item['price'] * $item['quantity'] + 20000;
-                                $orderDetail['tax'] = 0;
-                                $orderDetail['shipping_type'] = 'cash on delivery';
-                                $orderDetail['shipping_cost'] = 20000;
-                                $orderDetail['quantity'] = $item['quantity'];
-                                $orderDetail->save();
-                                $allOrderDetail[] = $orderDetail;
-                                $tg = new TgContent();
-                                $pr = Product::where('id',$item['id'])->first();
-                                $tg->suspendido_cart(TgContent::REPORT_TELEGRAM_ID, $pr,$orderDetail,$item);
+                    } else {
+                        if ($request->payment_option == 'ngenius') {
+                            $ngenius = new NgeniusController();
+                            return $ngenius->pay();
+                        } else {
+                            if ($request->payment_option == 'iyzico') {
+                                $iyzico = new IyzicoController();
+                                return $iyzico->pay();
+                            } else {
+                                if ($request->payment_option == 'nagad') {
+                                    $nagad = new NagadController;
+                                    return $nagad->getSession();
+                                } else {
+                                    if ($request->payment_option == 'bkash') {
+                                        $bkash = new BkashController;
+                                        return $bkash->pay();
+                                    } else {
+                                        if ($request->payment_option == 'flutterwave') {
+                                            $flutterwave = new FlutterwaveController();
+                                            return $flutterwave->pay();
+                                        } else {
+                                            if ($request->payment_option == 'mpesa') {
+                                                $mpesa = new MpesaController();
+                                                return $mpesa->pay();
+                                            } elseif ($request->payment_option == 'paytm') {
+                                                $paytm = new PaytmController;
+                                                return $paytm->index();
+                                            } elseif ($request->payment_option == 'cash_on_delivery') {
+                                                $request->session()->put(
+                                                  'cart',
+                                                  Session::get('cart')->where(
+                                                    'owner_id',
+                                                    '!=',
+                                                    Session::get('owner_id')
+                                                  )
+                                                );
+                                                Session::forget('owner_id');
+                                                $request->session()->forget('owner_id');
+                                                Session::forget('delivery_info');
+                                                $request->session()->forget('delivery_info');
+                                                Session::forget('coupon_id');
+                                                $request->session()->forget('coupon_id');
+                                                Session::forget('coupon_discount');
+                                                $request->session()->forget('coupon_discount');
+                                                if (isset(Session::get('cart')[0])) {
+                                                    foreach (Session::get('cart') as $item) {
+                                                        $orderDetail = new OrderDetail();
+                                                        $orderDetail['order_id'] = Session::get('order_id');
+                                                        $orderDetail['product_id'] = $item['id'];
+                                                        $orderDetail['sublayerName'] = $request->sublayerName;
+                                                        $orderDetail['sublayerPhone'] = $request->sublayerPhone;
+                                                        $orderDetail['seller_id'] = $item['owner_id'];
+                                                        $orderDetail['variation'] = $item['variant'];
+                                                        $orderDetail['price'] = $item['price'] * $item['quantity'] + 20000;
+                                                        $orderDetail['tax'] = 0;
+                                                        $orderDetail['shipping_type'] = 'cash on delivery';
+                                                        $orderDetail['shipping_cost'] = 20000;
+                                                        $orderDetail['quantity'] = $item['quantity'];
+                                                        $orderDetail->save();
+                                                        $allOrderDetail[] = $orderDetail;
+                                                        $tg = new TgContent();
+                                                        $pr = Product::where('id', $item['id'])->first();
+                                                        $tg->suspendido_cart(
+                                                          TgContent::REPORT_TELEGRAM_ID,
+                                                          $pr,
+                                                          $orderDetail,
+                                                          $item
+                                                        );
+                                                    }
+                                                }
+                                                Session::forget('cart');
+                                                Session::forget('phone');
+                                                flash(translate("Your order has been placed successfully"))->success();
+                                                return redirect()->route('order_preconfirmed');
+                                            } elseif ($request->payment_option == 'wallet') {
+                                                $user = Auth::user();
+                                                $order = Order::findOrFail($request->session()->get('order_id'));
+                                                if ($user->balance >= $order->grand_total) {
+                                                    $user->balance -= $order->grand_total;
+                                                    $user->save();
+                                                    return $this->checkout_done(
+                                                      $request->session()->get('order_id'),
+                                                      null
+                                                    );
+                                                }
+                                            } else {
+                                                $order = Order::findOrFail($request->session()->get('order_id'));
+                                                $order->manual_payment = 1;
+                                                $order->save();
+
+                                                $request->session()->put(
+                                                  'cart',
+                                                  Session::get('cart')->where(
+                                                    'owner_id',
+                                                    '!=',
+                                                    Session::get('owner_id')
+                                                  )
+                                                );
+                                                $request->session()->forget('owner_id');
+                                                $request->session()->forget('delivery_info');
+                                                $request->session()->forget('coupon_id');
+                                                $request->session()->forget('coupon_discount');
+
+                                                flash(
+                                                  translate(
+                                                    'Your order has been placed successfully. Please submit payment information from purchase history'
+                                                  )
+                                                )->success();
+                                                return redirect()->route('order_preconfirmed');
+                                            }
+                                        }
+                                    }
+                                }
                             }
                         }
-                        Session::forget('cart');
-                        Session::forget('phone');
-                        flash(translate("Your order has been placed successfully"))->success();
-                        return redirect()->route('order_preconfirmed');
-                    } elseif ($request->payment_option == 'wallet') {
-                        $user = Auth::user();
-                        $order = Order::findOrFail($request->session()->get('order_id'));
-                        if ($user->balance >= $order->grand_total) {
-                            $user->balance -= $order->grand_total;
-                            $user->save();
-                            return $this->checkout_done($request->session()->get('order_id'), null);
-                        }
-                    } else {
-                        $order = Order::findOrFail($request->session()->get('order_id'));
-                        $order->manual_payment = 1;
-                        $order->save();
-
-                        $request->session()->put('cart', Session::get('cart')->where('owner_id', '!=', Session::get('owner_id')));
-                        $request->session()->forget('owner_id');
-                        $request->session()->forget('delivery_info');
-                        $request->session()->forget('coupon_id');
-                        $request->session()->forget('coupon_discount');
-
-                        flash(translate('Your order has been placed successfully. Please submit payment information from purchase history'))->success();
-                        return redirect()->route('order_preconfirmed');
                     }
                 }
             } else {
@@ -745,7 +812,5 @@ class CheckoutController extends Controller
             flash(translate('Your Cart was empty'))->warning();
             return redirect()->route('home');
         }
-
     }
-
 }
