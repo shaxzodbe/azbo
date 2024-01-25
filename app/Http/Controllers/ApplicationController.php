@@ -134,7 +134,6 @@ class ApplicationController extends Controller
         /**
          * purge session('new_application');
          */
-        dd($data);
         session()->forget('new_application');
         return view('frontend.installments.application_confirmed', compact('data'));
     }
