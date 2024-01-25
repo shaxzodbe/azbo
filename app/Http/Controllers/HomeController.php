@@ -1098,7 +1098,6 @@ class HomeController extends Controller
 
         $installments = json_decode(\App\BusinessSetting::where('type', 'alif_instalments')->first()->value);
         $installments = array_filter($installments, function($i) { return $i->active; });
-        dd($installments, $request);
 
         $data = [
             'price' => $price,

@@ -9,7 +9,7 @@ use GuzzleHttp\Psr7\Request as Psr7Request;
 
 class UzumNasiyaService
 {
-    protected $baseUrl = 'https://cabinet.paymart.uz/api/v3/';
+    protected $baseUrl = 'https://tori.paymart.uz/api/v3/';
     protected $bearerToken;
 
     public function __construct()
