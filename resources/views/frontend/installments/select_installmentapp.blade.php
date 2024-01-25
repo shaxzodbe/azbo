@@ -15,6 +15,8 @@
   }
 </style>
 
+  @dd(121212, 121212)
+
 @endsection
 @section('content')
 <section class="pt-5 mb-4">

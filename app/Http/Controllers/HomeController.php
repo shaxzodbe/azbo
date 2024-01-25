@@ -1611,4 +1611,111 @@ class HomeController extends Controller
 
         return view('frontend.intend.intent_selected_products', compact('selected_intend'));
     }
+
+    public function checkout_installment(Request $request)
+    {
+        $product = Product::findOrFail($request->id);
+
+        $str = '';
+        $tax = 0;
+
+
+        //check the color enabled or disabled for the product
+        if ($request->has('color')) {
+            $data['color'] = $request['color'];
+            $str = Color::where('name', $request['color'])->first()->name; // correced by ouarka.dev@gmail.com
+        }
+
+        // if the product not a digital !
+        // mean digital product does not have a choice_options
+        // ['attribute_id' => 1, 'values': ['Grande', 'Mini']]
+
+
+        if ($product->digital != 1) {
+            //Gets all the choice values of customer choice option and generate a string like Black-S-Cotton
+            foreach (json_decode(Product::find($request->id)->choice_options) as $key => $choice) {
+                if ($str != null) {
+                    $str .= '-' . str_replace(' ', '', $request['attribute_id_' . $choice->attribute_id]);
+                } else {
+                    $str .= str_replace(' ', '', $request['attribute_id_' . $choice->attribute_id]);
+                }
+            }
+        }
+
+        // Black-S-Cotton
+        $data['variant'] = $str;
+
+        if ($str != null && $product->variant_product) {
+            $product_stock = $product->stocks->where('variant', $str)->first();
+            $price = $product_stock->price;
+        } else {
+            $price = $product->unit_price;
+        }
+
+        //discount calculation based on flash deal and regular discount
+        //calculation of taxes
+        $flash_deals = \App\FlashDeal::where('status', 1)->get();
+        $inFlashDeal = false;
+
+
+        foreach ($flash_deals as $flash_deal) {
+            if ($flash_deal != null && $flash_deal->status == 1 && strtotime(
+                date('d-m-Y')
+              ) >= $flash_deal->start_date && strtotime(
+                date('d-m-Y')
+              ) <= $flash_deal->end_date && \App\FlashDealProduct::where('flash_deal_id', $flash_deal->id)->where(
+                'product_id',
+                $product->id
+              )->first() != null) {
+                $flash_deal_product = \App\FlashDealProduct::where('flash_deal_id', $flash_deal->id)->where(
+                  'product_id',
+                  $product->id
+                )->first();
+                if ($flash_deal_product->discount_type == 'percent') {
+                    $margin = ($price * $flash_deal_product->discount) / 100;
+                    $discounted_price = $price - $margin;
+                } elseif ($flash_deal_product->discount_type == 'amount') {
+                    $margin = $flash_deal_product->discount;
+                    $discounted_price = $price - $margin;
+                }
+                $inFlashDeal = true;
+                break;
+            }
+        }
+
+
+        if (!$inFlashDeal) {
+            if ($product->discount_type == 'percent') {
+                $discount = ($price * $product->discount) / 100;
+            } elseif ($product->discount_type == 'amount') {
+                $discount = $product->discount;
+            } else {
+                $discount = 0;
+            }
+        }
+
+        if ($product->tax_type == 'percent') {
+            $tax = ($price * $product->tax) / 100;
+        } elseif ($product->tax_type == 'amount') {
+            $tax = $product->tax;
+        }
+
+        $installment_id = $request->installment_id;
+
+        $installments = json_decode(\App\BusinessSetting::where('type', 'alif_instalments')->first()->value);
+        $installments = array_filter($installments, function ($i) {
+            return $i->active;
+        });
+
+        $data = [
+          'price' => $price,
+          'discount' => $discount,
+          'discounted_price' => $price - $discount,
+          'quantity' => $request->quantity,
+          'selected_installment_id' => $request->installment_id,
+          'variant' => $str,
+        ];
+
+        return view('frontend.installments.select_installmentapp', compact('product', 'installments', 'data'));
+    }
 }
