@@ -8,6 +8,7 @@ use App\Color;
 use App\Models\Custom\OneClickBuy;
 use App\Product;
 use App\Tg\TgContent;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cookie;
 
@@ -23,7 +24,6 @@ class CartController extends Controller
     {
         return view('frontend.my_cart');
     }
-
 
     public function showCartModal(Request $request)
     {
@@ -47,9 +47,12 @@ class CartController extends Controller
         $tax = 0;
 
         if ($product->digital != 1 && $request->quantity < $product->min_qty) {
-            return array('status' => 0, 'view' => view('frontend.partials.minQtyNotSatisfied', [
+            return array(
+              'status' => 0,
+              'view' => view('frontend.partials.minQtyNotSatisfied', [
                 'min_qty' => $product->min_qty,
-            ])->render());
+              ])->render()
+            );
         }
 
         //check the color enabled or disabled for the product
@@ -90,8 +93,18 @@ class CartController extends Controller
         $flash_deals = \App\FlashDeal::where('status', 1)->get();
         $inFlashDeal = false;
         foreach ($flash_deals as $flash_deal) {
-            if ($flash_deal != null && $flash_deal->status == 1 && strtotime(date('d-m-Y')) >= $flash_deal->start_date && strtotime(date('d-m-Y')) <= $flash_deal->end_date && \App\FlashDealProduct::where('flash_deal_id', $flash_deal->id)->where('product_id', $product->id)->first() != null) {
-                $flash_deal_product = \App\FlashDealProduct::where('flash_deal_id', $flash_deal->id)->where('product_id', $product->id)->first();
+            if ($flash_deal != null && $flash_deal->status == 1 && strtotime(
+                date('d-m-Y')
+              ) >= $flash_deal->start_date && strtotime(
+                date('d-m-Y')
+              ) <= $flash_deal->end_date && \App\FlashDealProduct::where('flash_deal_id', $flash_deal->id)->where(
+                'product_id',
+                $product->id
+              )->first() != null) {
+                $flash_deal_product = \App\FlashDealProduct::where('flash_deal_id', $flash_deal->id)->where(
+                  'product_id',
+                  $product->id
+                )->first();
                 if ($flash_deal_product->discount_type == 'percent') {
                     $price -= ($price * $flash_deal_product->discount) / 100;
                 } elseif ($flash_deal_product->discount_type == 'amount') {
@@ -141,7 +154,6 @@ class CartController extends Controller
             $bonus_found = false;
 
             foreach ($request->session()->get('cart') as $key => $cartItem) {
-
                 if ($cartItem['bonus']) {
                     $bonus_found = true;
                 }
@@ -155,12 +167,10 @@ class CartController extends Controller
                         } else {
                             $foundInCart = true;
                             $cartItem['quantity'] += $request['quantity'];
-
                         }
                     }
                 }
                 $cart->push($cartItem);
-
             } // end foreach
 
             if (!$foundInCart) {
@@ -261,33 +271,33 @@ class CartController extends Controller
         }
 
         $d = [
-            [ // normal product has a bonus product
-                'id' => 1467,
-                'name' => 'demo',
-                'bonus_id' => 1479,
-                'parent_id' => null,
+          [ // normal product has a bonus product
+            'id' => 1467,
+            'name' => 'demo',
+            'bonus_id' => 1479,
+            'parent_id' => null,
 
-            ],
-            [ // bonus product
-                'id' => 1479,
-                'name' => 'toto',
-                'bonus_id' => null,
-                'parent_id' => 1467,
+          ],
+          [ // bonus product
+            'id' => 1479,
+            'name' => 'toto',
+            'bonus_id' => null,
+            'parent_id' => 1467,
 
-            ],
-            [ // bonus product
-                'id' => 1481,
-                'name' => 'toto',
-                'bonus_id' => 1479,
-                'parend_id' => null,
+          ],
+          [ // bonus product
+            'id' => 1481,
+            'name' => 'toto',
+            'bonus_id' => 1479,
+            'parend_id' => null,
 
-            ],
-            [ // bonus product
-                'id' => 1479,
-                'name' => 'toto',
-                'bonus_id' => null,
-                'parent_id' => 1481,
-            ],
+          ],
+          [ // bonus product
+            'id' => 1479,
+            'name' => 'toto',
+            'bonus_id' => null,
+            'parent_id' => 1481,
+          ],
         ];
 
         $d = collect($d);
@@ -304,13 +314,12 @@ class CartController extends Controller
          */
 
         if (BusinessSetting::where('type', 'bonus_product_activation')->first()->value) {
-
             $tmp_cart = $cart;
             foreach ($cart as $c) {
                 if ($c['bonus_id']) {
                     $bonus = $cart->where('id', $c['bonus_id'])
-                        ->where('parent_id', $c['id'])
-                        ->count();
+                      ->where('parent_id', $c['id'])
+                      ->count();
 
                     if ($bonus == 1) {
                         continue;
@@ -319,33 +328,33 @@ class CartController extends Controller
                         $bonus_product = $product->bonus()->first();
                         if ($product->bonus_any_quantity) {
                             $tmp_cart->push([
-                                'id' => $bonus_product->id,
-                                'owner_id' => $product->user_id,
-                                'variant' => '',
-                                'quantity' => 1,
-                                'price' => 0,
-                                'tax' => 0,
-                                'shipping' => 0,
-                                'product_referral_code' => null,
-                                'digital' => 0,
-                                'bonus' => true,
-                                'bonus_id' => null,
-                                'parent_id' => $product->id,
+                              'id' => $bonus_product->id,
+                              'owner_id' => $product->user_id,
+                              'variant' => '',
+                              'quantity' => 1,
+                              'price' => 0,
+                              'tax' => 0,
+                              'shipping' => 0,
+                              'product_referral_code' => null,
+                              'digital' => 0,
+                              'bonus' => true,
+                              'bonus_id' => null,
+                              'parent_id' => $product->id,
                             ]);
                         } elseif ($request->quantity >= $product->bonus_condition) {
                             $tmp_cart->push([
-                                'id' => $bonus_product->id,
-                                'owner_id' => $product->user_id,
-                                'variant' => '',
-                                'quantity' => intval($data['quantity'] / $product->bonus_condition),
-                                'price' => 0,
-                                'tax' => 0,
-                                'shipping' => 0,
-                                'product_referral_code' => null,
-                                'digital' => 0,
-                                'bonus' => true,
-                                'bonus_id' => 0,
-                                'parent_id' => $product->id,
+                              'id' => $bonus_product->id,
+                              'owner_id' => $product->user_id,
+                              'variant' => '',
+                              'quantity' => intval($data['quantity'] / $product->bonus_condition),
+                              'price' => 0,
+                              'tax' => 0,
+                              'shipping' => 0,
+                              'product_referral_code' => null,
+                              'digital' => 0,
+                              'bonus' => true,
+                              'bonus_id' => 0,
+                              'parent_id' => $product->id,
                             ]);
                         }
                     }
@@ -355,10 +364,12 @@ class CartController extends Controller
         }
 
         $request->session()->put('cart', $cart);
-        return array('status' => 1, 'view' => view('frontend.partials.addedToCart', compact('product', 'data'))->render());
+        return array(
+          'status' => 1,
+          'view' => view('frontend.partials.addedToCart', compact('product', 'data'))->render()
+        );
     }
 
-    //removes from Cart
     public function removeFromCart(Request $request)
     {
         if ($request->session()->has('cart')) {
@@ -396,7 +407,6 @@ class CartController extends Controller
         return view('frontend.partials.my_cart_details');
     }
 
-    //updated the quantity for a cart item
     public function updateQuantity(Request $request)
     {
         $cart = $request->session()->get('cart', collect([]));;
@@ -425,17 +435,15 @@ class CartController extends Controller
             $tmp_cart = $cart;
             foreach ($cart as $key => $c) {
                 if ($key == $request->key) {
-
                     if ($c['bonus_id']) { // product has a bonus
                         $bonus = $cart->where('id', $c['bonus_id'])
-                            ->where('parent_id', $c['id'])
-                            ->count();
+                          ->where('parent_id', $c['id'])
+                          ->count();
 
                         if ($bonus == 1) { // bonus already in cart
                             $product = Product::find($c['id']);
                             $bonus_product = $product->bonus()->first();
                             if ($product->bonus_any_quantity) {
-
                                 if ($request->quantity < $product->bonus_condition) {
                                     // $tmp_cart = $tmp_cart->filter( function ($item, $key) use ($bonus_product, $product) {
                                     //     return  !($item['id'] == $bonus_product->id && $item['parent_id'] == $product->id);
@@ -444,10 +452,11 @@ class CartController extends Controller
                                 }
                             } else {
                                 if ($request->quantity < $product->bonus_condition) {
-                                    $tmp_cart = $tmp_cart->filter(function ($item, $key) use ($bonus_product, $product) {
-                                        return !($item['id'] == $bonus_product->id && $item['parent_id'] == $product->id);
-                                    });
-
+                                    $tmp_cart = $tmp_cart->filter(
+                                      function ($item, $key) use ($bonus_product, $product) {
+                                          return !($item['id'] == $bonus_product->id && $item['parent_id'] == $product->id);
+                                      }
+                                    );
                                 } elseif ($request->quantity >= $product->bonus_condition) {
                                     $tmp_cart = $tmp_cart->map(function ($item, $key) use ($c, $request, $product) {
                                         if ($item['id'] == $c['bonus_id'] && $item['parent_id'] == $c['id']) {
@@ -456,49 +465,45 @@ class CartController extends Controller
 
                                         return $item;
                                     });
-
                                 }
                             }
-
                         } else { // check condition and add bonus to cart !
 
                             $product = Product::find($c['id']);
                             $bonus_product = $product->bonus()->first();
                             if ($product->bonus_any_quantity) {
                                 $tmp_cart->push([
-                                    'id' => $bonus_product->id,
-                                    'owner_id' => $product->user_id,
-                                    'variant' => '',
-                                    'quantity' => 1,
-                                    'price' => 0,
-                                    'tax' => 0,
-                                    'shipping' => 0,
-                                    'product_referral_code' => null,
-                                    'digital' => 0,
-                                    'bonus' => true,
-                                    'bonus_id' => 0,
-                                    'parent_id' => $product->id,
+                                  'id' => $bonus_product->id,
+                                  'owner_id' => $product->user_id,
+                                  'variant' => '',
+                                  'quantity' => 1,
+                                  'price' => 0,
+                                  'tax' => 0,
+                                  'shipping' => 0,
+                                  'product_referral_code' => null,
+                                  'digital' => 0,
+                                  'bonus' => true,
+                                  'bonus_id' => 0,
+                                  'parent_id' => $product->id,
                                 ]);
                             } elseif ($request->quantity >= $product->bonus_condition) {
                                 $tmp_cart->push([
-                                    'id' => $bonus_product->id,
-                                    'owner_id' => $product->user_id,
-                                    'variant' => '',
-                                    'quantity' => intval($request->quantity / $product->bonus_condition),
-                                    'price' => 0,
-                                    'tax' => 0,
-                                    'shipping' => 0,
-                                    'product_referral_code' => null,
-                                    'digital' => 0,
-                                    'bonus' => true,
-                                    'bonus_id' => 0,
-                                    'parent_id' => $product->id,
+                                  'id' => $bonus_product->id,
+                                  'owner_id' => $product->user_id,
+                                  'variant' => '',
+                                  'quantity' => intval($request->quantity / $product->bonus_condition),
+                                  'price' => 0,
+                                  'tax' => 0,
+                                  'shipping' => 0,
+                                  'product_referral_code' => null,
+                                  'digital' => 0,
+                                  'bonus' => true,
+                                  'bonus_id' => 0,
+                                  'parent_id' => $product->id,
                                 ]);
                             }
-
                         }
                     } else {
-
                     }
                 }
             }
@@ -597,14 +602,13 @@ class CartController extends Controller
         return view('frontend.oneClick', compact('product'));
     }
 
-    public function one_click_payment(Request $request)
+    public function one_click_payment(Request $request): RedirectResponse
     {
-
         $request->validate([
-            "phone" => 'required|numeric|min:12',
-            "name" => 'required',
-            "address" => 'required',
-            "agree_to_buy" => 'required',
+          "phone" => 'required|numeric|min:12',
+          "name" => 'required',
+          "address" => 'required',
+          "agree_to_buy" => 'required',
         ]);
         $data = OneClickBuy::create($request->toArray());
         /*event(new OrderStore($data));*/
@@ -619,5 +623,14 @@ class CartController extends Controller
         return view('frontend.oneClick_order_preconfirmed', compact('data'));
     }
 
+    public function success($id)
+    {
+        $order = $this->getOrderDetails($id);
 
+        if ($order) {
+            return $this->renderSuccessPage($order);
+        } else {
+            return $this->renderErrorPage("Invalid order ID or order not found.");
+        }
+    }
 }
