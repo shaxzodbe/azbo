@@ -444,15 +444,15 @@
 
 
 
-                                      <button type="button" class="btn btn-primary buy-now fw-600" onclick="buyNow()">
+                  {{--                    <button type="button" class="btn btn-primary buy-now fw-600" onclick="buyNow()">
                                           <i class="la la-shopping-cart"></i> {{ translate('Buy Now')}}
-                                      </button>
-                    <a href="{{ route('my_card') }}" class="btn btn-primary buy-now fw-600" >
+                                      </button>--}}
+                  {{--  <a href="{{ route('my_card') }}" class="btn btn-primary buy-now fw-600" >
                         <i class="la la-shopping-cart"></i>  {{ translate('Buy Now')}}
-                    </a>
-                  acardion
-                  acardion
-                  @if(Auth::check())
+                    </a>--}}
+                  {{--acardion--}}
+                  {{--acardion--}}
+                  {{--@if(Auth::check())
 
                       @if(\App\BusinessSetting::where('type', 'monthly_payment')->first()->value == 1)
 
@@ -468,7 +468,7 @@
                               <i class="la-lashopping-cart"></i> {{ translate('Pay in installments') }}
                           </button>
                       @endif
-                  @endif
+                  @endif--}}
                 @else
                   <button type="button" class="btn btn-secondary fw-600" disabled>
                     <i class="la la-cart-arrow-down"></i> {{ translate('Out of Stock')}}
@@ -486,13 +486,13 @@
                     @if(\App\BusinessSetting::where('type', 'monthly_payment')->first()->value == 1)
 
                       <button type="button" class="btn btn-soft-info fw-600 btn-block"
-                              onclick="payInInstallments()">
-                        <img src="https://azbo.uz/public/uploads/all/7Gv6oHzR6f617xdNiSJAjW1qNbwW2dgIaseDfcsM.png"
+                              onclick="checkoutInstallments()">
+                        <img src="https://azbo.uz/public/uploads/all/rxCNoyRODbRR4P7VfZV82CtaRUC76857ZMfbkgrl.png"
                              class="h-50px" alt="">
                       </button>
                       <button type="button" class="btn btn-soft-info fw-600 btn-block"
-                              onclick="checkoutInstallments()">
-                        <img src="https://azbo.uz/public/uploads/all/rxCNoyRODbRR4P7VfZV82CtaRUC76857ZMfbkgrl.png"
+                              onclick="payInInstallments()">
+                        <img src="https://azbo.uz/public/uploads/all/7Gv6oHzR6f617xdNiSJAjW1qNbwW2dgIaseDfcsM.png"
                              class="h-50px" alt="">
                       </button>
                       <button type="button" class="btn btn-soft-info fw-600 btn-block"
@@ -1311,7 +1311,7 @@
           if (period == 3) {
               $('#select-item-pay').html('' +
                   '<div class="mt-3">' +
-                  '<button type="button" class="btn btn-soft-info fw-600 btn-block" onclick="payInInstallments()">' +
+                  '<button type="button" class="btn btn-soft-info fw-600 btn-block" onclick="checkoutInstallments()">' +
                   '<img src="https://azbo.uz/public/uploads/all/rxCNoyRODbRR4P7VfZV82CtaRUC76857ZMfbkgrl.png" class="h-50px" alt="">' +
                   '</button>' +
                   '<button type="button" class="btn btn-soft-info fw-600 btn-block" onclick="payInInstallments()">' +
@@ -1322,7 +1322,7 @@
           } else if (period == 6) {
               $('#select-item-pay').html('' +
                   '<div class="mt-3">' +
-                  '<button type="button" class="btn btn-soft-info fw-600 btn-block" onclick="payInInstallments()">' +
+                  '<button type="button" class="btn btn-soft-info fw-600 btn-block" onclick="checkoutInstallments()">' +
                   '<img src="https://azbo.uz/public/uploads/all/rxCNoyRODbRR4P7VfZV82CtaRUC76857ZMfbkgrl.png" class="h-50px" alt="">' +
                   '</button>' +
                   '<button type="button" class="btn btn-soft-info fw-600 btn-block" onclick="payInInstallments()">' +
@@ -1333,7 +1333,7 @@
           } else if (period == 12) {
               $('#select-item-pay').html('' +
                   '<div class="mt-3">' +
-                  '<button type="button" class="btn btn-soft-info fw-600 btn-block" onclick="payInInstallments()">' +
+                  '<button type="button" class="btn btn-soft-info fw-600 btn-block" onclick="checkoutInstallments()">' +
                   '<img src="https://azbo.uz/public/uploads/all/rxCNoyRODbRR4P7VfZV82CtaRUC76857ZMfbkgrl.png" class="h-50px" alt="">' +
                   '</button>' +
                   '<button type="button" class="btn btn-soft-info fw-600 btn-block" onclick="payInInstallments()">' +
