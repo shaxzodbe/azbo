@@ -1,12 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
-use App\ProductUzumNasiya;
+use App\Http\Controllers\Controller;
 use App\Services\UzumNasiyaService;
-use App\UzumNasiya;
-use Exception;
-use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
