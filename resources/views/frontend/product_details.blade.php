@@ -497,7 +497,7 @@
                       </button>
                       <button type="button" class="btn btn-soft-info fw-600 btn-block"
                               onclick="checkoutInstallments()">
-                        <img src="https://azbo.uz/public/uploads/all/rxCNoyRODbRR4P7VfZV82CtaRUC76857ZMfbkgrl.png"
+                        <img src="https://azbo.uz/public/assets/img/logo-intend.png"
                              class="h-50px" alt="">
                       </button>
                     @endif
