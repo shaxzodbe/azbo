@@ -109,7 +109,13 @@
               <ul class="list-group list-group-flush border-0 mb-3">
                 <li class="list-group-item bg-transparent">
                   <div class="row align-items-center">
-                    <input type="tel" id="phone" class="form-control" name="BillingForm[phone]" aria-required="true">
+                    <form action="/check-status" method="POST">
+                      @csrf
+                      <input type="tel" name="phone" required>
+                      <div class="text-center">
+                        <button type="submit" class="btn btn-primary">Check Status</button>
+                      </div>
+                    </form>
                   </div>
                 </li>
               </ul>
