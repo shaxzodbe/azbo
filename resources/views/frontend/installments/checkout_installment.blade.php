@@ -15,7 +15,6 @@
   </style>
 @endsection
 @section('content')
-  121212
   <section class="pt-5 mb-4">
     <div class="container  pb-4 pt-md-4 min-vh-80">
       <div class="row">
@@ -66,33 +65,13 @@
         <div class="col-md-6">
           <div class="card">
             <div class="card-header">
-              <h4>{{ translate('Selected Product') }}</h4>
+              <h4>{{ translate('Check status in UzumNasiya') }}</h4>
             </div>
             <div class="card-body">
               <ul class="list-group list-group-flush border-0 mb-3">
                 <li class="list-group-item bg-transparent">
                   <div class="row align-items-center">
-                    <div class="col-12 col-md-auto">
-                      <div class="d-flex justify-content-center"><img
-                          src="{{ uploaded_asset($product->thumbnail_img) }}"
-                          alt="" class="img-fluid" style="max-height: 100px;"></div>
-                    </div>
-                    <div class="col">
-                      <span
-                        class="h6">{{ $product->getTranslation('name')}} - {{ get_variant_string($data['variant']) }} </span>
-                      <div class="text-secondary"><span class="d-block">
-                        {{ single_price($data['discounted_price'])}} · x{{ $data['quantity'] }}
-                      </span>
-                        @if($data['discount'] != 0)
-                          <del>
-                            {{ single_price($data['price']) }}
-                          </del>
-                          <small class="text-danger">
-                            - {{ translate('discount') }} {{ single_price($data['discount'])}}
-                          </small></div>
-
-                      @endif
-                    </div>
+                    <input type="tel" id="phone" class="form-control" name="BillingForm[phone]" aria-required="true">
                   </div>
                 </li>
               </ul>
