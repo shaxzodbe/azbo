@@ -101,16 +101,6 @@ Route::prefix('v1')->group(function () {
 
     Route::get('wallet/balance/{id}', 'Api\WalletController@balance')->middleware('auth:api');
     Route::get('wallet/history/{id}', 'Api\WalletController@walletRechargeHistory')->middleware('auth:api');
-
-    /*Uzum Nasiya*/
-
-    Route::post('/check-status', 'UzumNasiyaController@checkStatus');
-    Route::post('/calculate', 'UzumNasiyaController@calculate');
-    Route::post('/order', 'UzumNasiyaController@order');
-    Route::post('/confirm-contract', 'UzumNasiyaController@confirmContract');
-    Route::post('/cancel-contract', 'UzumNasiyaController@cancelContract');
-    Route::post('/upload-act', 'UzumNasiyaController@uploadAct');
-    Route::post('/upload-client-photo', 'UzumNasiyaController@uploadClientPhoto');
 });
 
 
