@@ -109,7 +109,7 @@
               <ul class="list-group list-group-flush border-0 mb-3">
                 <li class="list-group-item bg-transparent">
                   <div class="row align-items-center">
-                    <form action="/check-status" method="POST">
+                    <form action="/api/check-status" method="POST">
                       @csrf
                       <input type="tel" name="phone" required>
                       <div class="text-center">
