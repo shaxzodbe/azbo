@@ -65,24 +65,6 @@
         <div class="col-md-6">
           <div class="card">
             <div class="card-header">
-              <h4>{{ translate('Check status in UzumNasiya') }}</h4>
-            </div>
-            <div class="card-body">
-              <ul class="list-group list-group-flush border-0 mb-3">
-                <li class="list-group-item bg-transparent">
-                  <div class="row align-items-center">
-                    <input type="tel" id="phone" class="form-control" name="BillingForm[phone]" aria-required="true">
-                  </div>
-                </li>
-              </ul>
-
-              <span class="h4 mb-0">
-              {{ translate('Total') }} {{ single_price($data['discounted_price'] * $data['quantity']) }}
-            </span>
-            </div>
-          </div>
-          <div class="card">
-            <div class="card-header">
               <h4>{{ translate('Selected Product') }}</h4>
             </div>
             <div class="card-body">
@@ -110,6 +92,24 @@
 
                       @endif
                     </div>
+                  </div>
+                </li>
+              </ul>
+
+              <span class="h4 mb-0">
+              {{ translate('Total') }} {{ single_price($data['discounted_price'] * $data['quantity']) }}
+            </span>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header">
+              <h4>{{ translate('Check status in UzumNasiya') }}</h4>
+            </div>
+            <div class="card-body">
+              <ul class="list-group list-group-flush border-0 mb-3">
+                <li class="list-group-item bg-transparent">
+                  <div class="row align-items-center">
+                    <input type="tel" id="phone" class="form-control" name="BillingForm[phone]" aria-required="true">
                   </div>
                 </li>
               </ul>
