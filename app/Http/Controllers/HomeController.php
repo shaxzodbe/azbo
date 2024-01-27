@@ -1716,6 +1716,6 @@ class HomeController extends Controller
           'variant' => $str,
         ];
 
-        return view('frontend.installments.select_installmentapp', compact('product', 'installments', 'data'));
+        return view('frontend.installments.checkout_installment', compact('product', 'installments', 'data'));
     }
 }
