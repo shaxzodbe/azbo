@@ -15,6 +15,7 @@
   </style>
 @endsection
 @section('content')
+  121212
   <section class="pt-5 mb-4">
     <div class="container  pb-4 pt-md-4 min-vh-80">
       <div class="row">
