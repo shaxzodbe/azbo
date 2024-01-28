@@ -816,7 +816,7 @@ class CheckoutController extends Controller
 
     public function installment(Request $request, $slug)
     {
-        dd($request, $slug);
+        dd($request['parameters'], $slug);
         $installmentId = $request->input('installment_id');
 
         // Your logic here, for example:
