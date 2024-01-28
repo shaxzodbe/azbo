@@ -167,7 +167,7 @@ Route::get('intent-selected-products', 'HomeController@intent_selected_products'
 
 /*Uzum Nasiya*/
 
-Route::post('/check-status', 'UzumNasiyaController@checkStatus');
+Route::post('/check-status', 'UzumNasiyaController@checkStatus')->name('check-status');
 Route::post('/calculate', 'UzumNasiyaController@calculate');
 Route::post('/order', 'UzumNasiyaController@order');
 Route::post('/confirm-contract', 'UzumNasiyaController@confirmContract');
