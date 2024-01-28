@@ -486,7 +486,7 @@
                     @if(\App\BusinessSetting::where('type', 'monthly_payment')->first()->value == 1)
 
                       <a href="{{ route('checkout.installment') }}" class="btn btn-soft-info fw-600 btn-block">
-                        <img src="https://azbo.uz/public/assets/img/logo-intend.png" class="h-50px" alt="">
+                        <img src="https://azbo.uz/public/uploads/all/rxCNoyRODbRR4P7VfZV82CtaRUC76857ZMfbkgrl.png" class="h-50px" alt="">
                       </a>
                       <button type="button" class="btn btn-soft-info fw-600 btn-block"
                               onclick="payInInstallments()">
