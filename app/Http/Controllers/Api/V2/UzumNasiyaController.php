@@ -18,7 +18,6 @@ class UzumNasiyaController extends Controller
 
     public function checkStatus(Request $request): JsonResponse
     {
-        dd(1212);
         $phone = $request->input('phone');
         $callbackUrl = $request->input('callbackUrl');
 
