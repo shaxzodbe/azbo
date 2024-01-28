@@ -219,7 +219,6 @@ class HomeController extends Controller
     public function product(Request $request, $slug)
     {
         $detailedProduct = Product::where('slug', $slug)->first();
-        dd($detailedProduct);
 
         if ($detailedProduct != null && $detailedProduct->published) {
             //updateCartSetup();
