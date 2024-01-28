@@ -1266,7 +1266,7 @@
       }
 
       function changeInstalemnt(el) {
-
+          console.log(el);
           if (el.classList.contains('active')) {
               return;
           }
