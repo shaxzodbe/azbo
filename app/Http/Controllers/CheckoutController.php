@@ -816,8 +816,8 @@ class CheckoutController extends Controller
 
     public function installment(Request $request, $slug)
     {
-        dd($request['parameters'], $slug);
         $installmentId = $request->input('installment_id');
+        dd($installmentId);
 
         // Your logic here, for example:
         // 1. Validate the installmentId and companyId
