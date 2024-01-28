@@ -488,9 +488,6 @@
                       <a href="{{ route('checkout.installment', ['slug' => $detailedProduct->slug, 'installment_id' => $instalment->id]) }}" class="btn btn-soft-info fw-600 btn-block">
                         <img src="https://azbo.uz/public/uploads/all/rxCNoyRODbRR4P7VfZV82CtaRUC76857ZMfbkgrl.png" class="h-50px" alt="">
                       </a>
-                      <a href="{{ route('checkout.installment', $detailedProduct->slug) }}" class="btn btn-soft-info fw-600 btn-block">
-                        <img src="https://azbo.uz/public/uploads/all/rxCNoyRODbRR4P7VfZV82CtaRUC76857ZMfbkgrl.png" class="h-50px" alt="">
-                      </a>
                       <button type="button" class="btn btn-soft-info fw-600 btn-block"
                               onclick="payInInstallments()">
                         <img src="https://azbo.uz/public/uploads/all/7Gv6oHzR6f617xdNiSJAjW1qNbwW2dgIaseDfcsM.png"
