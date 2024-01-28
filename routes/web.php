@@ -214,6 +214,7 @@ Route::group(['middleware' => ['checkout']], function () {
     Route::post('/checkout/detail-send-verify-sms', 'CheckoutController@detail_send_verify_sms')->name('detail_send_verify_sms');
     Route::post('/checkout/detail-payment-action', 'CheckoutController@detail_action')->name('checkout.action');
     Route::get('/checkout/order-preconfirmed', 'CheckoutController@order_preconfirmed')->name('order_preconfirmed');
+    Route::get('/checkout/installment', 'CheckoutController@installment')->name('checkout.installment');
 });
 
 Route::get('/checkout/order-confirmed', 'CheckoutController@order_confirmed')->name('order_confirmed');
@@ -272,7 +273,7 @@ Route::get('/privacypolicy', 'HomeController@privacypolicy')->name('privacypolic
 
 /** Pay in installemnts  */
 Route::post('/installmentsapp', 'HomeController@select_installmentapp');
-Route::post('/checkout-installment', 'HomeController@checkout_installment');
+Route::post('/checkout-installment/', 'CheckoutController@checkout-installment');
 Route::post('/applicationapp', 'HomeController@applicationapp')->name('applicationapp');
 Route::post('/application/storeapp', 'ApplicationController@storeapp')->name('storeapp');
 

@@ -485,11 +485,9 @@
                     {{--<a href="{{ route('get.intent_auth',['id'=>$detailedProduct->id]) }}" style="font-size: 10px; font-weight: bold;"><img src="https://azbo.loc/public/assets/img/logo-intend.png"></a>--}}
                     @if(\App\BusinessSetting::where('type', 'monthly_payment')->first()->value == 1)
 
-                      <button type="button" class="btn btn-soft-info fw-600 btn-block"
-                              onclick="checkoutInstallments()">
-                        <img src="https://azbo.uz/public/uploads/all/rxCNoyRODbRR4P7VfZV82CtaRUC76857ZMfbkgrl.png"
-                             class="h-50px" alt="">
-                      </button>
+                      <a href="{{ route('checkout.installments') }}" class="btn btn-soft-info fw-600 btn-block">
+                        <img src="https://azbo.uz/public/assets/img/logo-intend.png" class="h-50px" alt="">
+                      </a>
                       <button type="button" class="btn btn-soft-info fw-600 btn-block"
                               onclick="payInInstallments()">
                         <img src="https://azbo.uz/public/uploads/all/7Gv6oHzR6f617xdNiSJAjW1qNbwW2dgIaseDfcsM.png"

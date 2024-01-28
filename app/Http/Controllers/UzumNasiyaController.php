@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Services\UzumNasiyaService;
 use GuzzleHttp\Exception\GuzzleException;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
 class UzumNasiyaController extends Controller
@@ -16,7 +17,7 @@ class UzumNasiyaController extends Controller
         $this->uzumNasiyaService = $uzumNasiyaService;
     }
 
-    public function checkStatus(Request $request): \Illuminate\Http\RedirectResponse
+    public function checkStatus(Request $request): RedirectResponse
     {
         $phone = $request->input('phone');
         $callbackUrl = $request->input('callbackUrl');

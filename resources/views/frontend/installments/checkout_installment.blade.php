@@ -101,28 +101,6 @@
             </span>
             </div>
           </div>
-          <div class="card">
-            <div class="card-header">
-              <h4>{{ translate('Check status in UzumNasiya') }}</h4>
-            </div>
-            <div class="card-body">
-              <ul class="list-group list-group-flush border-0 mb-3">
-                <li class="list-group-item bg-transparent">
-                  <div class="row align-items-center">
-                    <form action="{{ route('check-status') }}" method="POST">
-                      @csrf
-                      <input type="text" name="phone" placeholder="Phone Number" required>
-                      <button type="submit" class="btn btn-primary">Check Status</button>
-                    </form>
-                  </div>
-                </li>
-              </ul>
-
-              <span class="h4 mb-0">
-              {{ translate('Total') }} {{ single_price($data['discounted_price'] * $data['quantity']) }}
-            </span>
-            </div>
-          </div>
         </div>
       </div>
       <form action="/applicationapp" method="POST" style="display: none;" id="form_next">

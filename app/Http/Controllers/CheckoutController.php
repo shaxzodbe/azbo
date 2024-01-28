@@ -813,4 +813,27 @@ class CheckoutController extends Controller
             return redirect()->route('home');
         }
     }
+
+    /**
+     * Handle installment checkout process.
+     *
+     * @param  Request  $request
+     * @return Response
+     */
+    public function installment(Request $request)
+    {
+        dd(121212);
+        // Access query parameters from the request
+        $slug = $request->query('slug');
+        $installmentId = $request->query('installment_id');
+        $companyId = $request->query('company_id');
+
+        // Implement your logic here. For example:
+        // 1. Validate the request parameters
+        // 2. Fetch necessary data based on parameters
+        // 3. Process the installment checkout
+
+        // Return a response, e.g., a view or a redirect
+        return view('checkout.installment', compact('slug', 'installmentId', 'companyId'));
+    }
 }
