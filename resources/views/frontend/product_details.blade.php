@@ -405,7 +405,7 @@
                         @endphp
 
                         @foreach ($instalments as $k => $instalment)
-                          <a href="#installment_id={{ $instalment->id }}" data-profit="{{ $detailedProduct->profit }}"
+                          <a href="#installment_id={{ $instalment->id }}" onclick="changeInstalemnt(this)" data-profit="{{ $detailedProduct->profit }}"
                                   data-percent="{{ $instalment->value}}"
                                   data-installment_id="{{ $instalment->id }}" data-period="{{$instalment->period}}"
                                   style="font-weight: 600" type="button"
