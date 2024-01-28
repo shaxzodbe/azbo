@@ -814,26 +814,18 @@ class CheckoutController extends Controller
         }
     }
 
-    /**
-     * Handle installment checkout process.
-     *
-     * @param  Request  $request
-     * @return Response
-     */
-    public function installment(Request $request)
+    public function installment(Request $request, $slug)
     {
-        dd(121212);
-        // Access query parameters from the request
-        $slug = $request->query('slug');
-        $installmentId = $request->query('installment_id');
-        $companyId = $request->query('company_id');
+        dd($request, $slug);
+        $installmentId = $request->input('installment_id');
+        $companyId = $request->input('company_id');
 
-        // Implement your logic here. For example:
-        // 1. Validate the request parameters
-        // 2. Fetch necessary data based on parameters
-        // 3. Process the installment checkout
+        // Your logic here, for example:
+        // 1. Validate the installmentId and companyId
+        // 2. Retrieve the product details using the slug
+        // 3. Process or initiate the installment process with the given company
 
-        // Return a response, e.g., a view or a redirect
         return view('checkout.installment', compact('slug', 'installmentId', 'companyId'));
+        // The view 'checkout.installment' should be created under resources/views/checkout/installment.blade.php
     }
 }
