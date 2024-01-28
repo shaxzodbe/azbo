@@ -1279,7 +1279,6 @@
           var percent = parseInt(el.dataset.percent);
           var period = parseInt(el.dataset.period);
           var profit = parseInt(el.dataset.profit);
-
           var installment_id = el.dataset.installment_id;
 
           $('#installment_id').val(installment_id);
@@ -1302,7 +1301,7 @@
           if (period == 3) {
               $('#select-item-pay').html('' +
                   '<div class="mt-3">' +
-                  '<a href="{{ route('checkout.installment', ['slug' => $detailedProduct->slug, 'installment_id' => $instalment->id]) }}" class="btn btn-soft-info fw-600 btn-block">' +
+                  '<a href="{{ route('checkout.installment', ['slug' => $detailedProduct->slug, 'installment_id' => installment_id]) }}" class="btn btn-soft-info fw-600 btn-block">' +
                   '<img src="https://azbo.uz/public/uploads/all/rxCNoyRODbRR4P7VfZV82CtaRUC76857ZMfbkgrl.png" class="h-50px" alt="">' +
                   '</a>' +
                   '<button type="button" class="btn btn-soft-info fw-600 btn-block" onclick="payInInstallments()">' +
@@ -1313,7 +1312,7 @@
           } else if (period == 6) {
               $('#select-item-pay').html('' +
                   '<div class="mt-3">' +
-                  '<a href="{{ route('checkout.installment', ['slug' => $detailedProduct->slug, 'installment_id' => $instalment->id]) }}" class="btn btn-soft-info fw-600 btn-block">' +
+                  '<a href="{{ route('checkout.installment', ['slug' => $detailedProduct->slug, 'installment_id' => installment_id]) }}" class="btn btn-soft-info fw-600 btn-block">' +
                   '<img src="https://azbo.uz/public/uploads/all/rxCNoyRODbRR4P7VfZV82CtaRUC76857ZMfbkgrl.png" class="h-50px" alt="">' +
                   '</a>' +
                   '<button type="button" class="btn btn-soft-info fw-600 btn-block" onclick="payInInstallments()">' +
@@ -1324,7 +1323,7 @@
           } else if (period == 12) {
               $('#select-item-pay').html('' +
                   '<div class="mt-3">' +
-                  '<a href="{{ route('checkout.installment', ['slug' => $detailedProduct->slug, 'installment_id' => $instalment->id]) }}" class="btn btn-soft-info fw-600 btn-block">' +
+                  '<a href="{{ route('checkout.installment', ['slug' => $detailedProduct->slug, 'installment_id' => installment_id]) }}" class="btn btn-soft-info fw-600 btn-block">' +
                   '<img src="https://azbo.uz/public/uploads/all/rxCNoyRODbRR4P7VfZV82CtaRUC76857ZMfbkgrl.png" class="h-50px" alt="">' +
                   '</a>' +
                   '<button type="button" class="btn btn-soft-info fw-600 btn-block" onclick="payInInstallments()">' +
