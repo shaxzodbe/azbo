@@ -206,16 +206,6 @@ Route::prefix('v2')->group(function () {
 
     Route::get('flash-deals', 'Api\V2\FlashDealController@index');
     Route::get('flash-deal-products/{id}', 'Api\V2\FlashDealController@products');
-
-    /*Uzum Nasiya*/
-
-    Route::post('/check-status', 'Api\V2\UzumNasiyaController@checkStatus');
-    Route::post('/calculate', 'Api\V2\UzumNasiyaController@calculate');
-    Route::post('/order', 'Api\V2\UzumNasiyaController@order');
-    Route::post('/confirm-contract', 'Api\V2\UzumNasiyaController@confirmContract');
-    Route::post('/cancel-contract', 'Api\V2\UzumNasiyaController@cancelContract');
-    Route::post('/upload-act', 'Api\V2\UzumNasiyaController@uploadAct');
-    Route::post('/upload-client-photo', 'Api\V2\UzumNasiyaController@uploadClientPhoto');
 });
 
 Route::fallback(function() {
