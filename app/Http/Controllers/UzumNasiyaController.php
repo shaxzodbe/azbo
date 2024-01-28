@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Api\V2;
+namespace App\Http\Controllers;
 
 use App\Services\UzumNasiyaService;
 use GuzzleHttp\Exception\GuzzleException;
@@ -16,14 +16,18 @@ class UzumNasiyaController extends Controller
         $this->uzumNasiyaService = $uzumNasiyaService;
     }
 
-    public function checkStatus(Request $request): JsonResponse
+    public function checkStatus(Request $request): \Illuminate\Http\RedirectResponse
     {
         $phone = $request->input('phone');
         $callbackUrl = $request->input('callbackUrl');
 
         $response = $this->uzumNasiyaService->checkUserStatus($phone, $callbackUrl);
 
-        return response()->json($response);
+        if ($response['status'] == 'success' && !empty($response['data']['webview'])) {
+            return redirect()->to($response['data']['webview']);
+        } else {
+            return back()->withErrors(['msg' => 'Error processing your request']);
+        }
     }
 
     public function calculate(Request $request): JsonResponse

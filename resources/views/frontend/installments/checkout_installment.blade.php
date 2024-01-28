@@ -109,12 +109,10 @@
               <ul class="list-group list-group-flush border-0 mb-3">
                 <li class="list-group-item bg-transparent">
                   <div class="row align-items-center">
-                    <form action="/api/v2/check-status" method="POST">
+                    <form action="{{ route('check-status') }}" method="POST">
                       @csrf
-                      <input type="tel" name="phone" required>
-                      <div class="text-center">
-                        <button type="submit" class="btn btn-primary">Check Status</button>
-                      </div>
+                      <input type="text" name="phone" placeholder="Phone Number" required>
+                      <button type="submit" class="btn btn-primary">Check Status</button>
                     </form>
                   </div>
                 </li>
