@@ -622,15 +622,4 @@ class CartController extends Controller
         $data = OneClickBuy::where('id', '=', $id)->get();
         return view('frontend.oneClick_order_preconfirmed', compact('data'));
     }
-
-    public function success($id)
-    {
-        $order = $this->getOrderDetails($id);
-
-        if ($order) {
-            return $this->renderSuccessPage($order);
-        } else {
-            return $this->renderErrorPage("Invalid order ID or order not found.");
-        }
-    }
 }

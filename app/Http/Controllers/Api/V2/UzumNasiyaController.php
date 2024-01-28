@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api\V2;
 
 use App\Services\UzumNasiyaService;
 use GuzzleHttp\Exception\GuzzleException;
