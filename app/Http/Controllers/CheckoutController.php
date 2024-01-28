@@ -818,7 +818,6 @@ class CheckoutController extends Controller
     {
         dd($request, $slug);
         $installmentId = $request->input('installment_id');
-        $companyId = $request->input('company_id');
 
         // Your logic here, for example:
         // 1. Validate the installmentId and companyId
