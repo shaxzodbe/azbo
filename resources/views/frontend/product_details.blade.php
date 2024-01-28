@@ -405,12 +405,12 @@
                         @endphp
 
                         @foreach ($instalments as $k => $instalment)
-                          <button onclick="changeInstalemnt(this)" data-profit="{{ $detailedProduct->profit }}"
+                          <a href="#installment_month={{ $instalment->value}}" data-profit="{{ $detailedProduct->profit }}"
                                   data-percent="{{ $instalment->value}}"
                                   data-installment_id="{{ $instalment->id }}" data-period="{{$instalment->period}}"
                                   style="font-weight: 600" type="button"
                                   class="btn btn-sm btn-outline-warning text-dark px-3 instalment-btn {{ $k == array_key_last($instalments) ? 'active' : ''}}">{{ translate($instalment->label) }}
-                          </button>
+                          </a>
                         @endforeach
                       </div>
                     </div>
