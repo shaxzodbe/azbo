@@ -1266,7 +1266,6 @@
       }
 
       function changeInstalemnt(el) {
-          console.log(el);
           if (el.classList.contains('active')) {
               return;
           }
@@ -1280,6 +1279,7 @@
           var period = parseInt(el.dataset.period);
           var profit = parseInt(el.dataset.profit);
           var installment_id = el.dataset.installment_id;
+          console.log(installment_id)
 
           $('#installment_id').val(installment_id);
 
