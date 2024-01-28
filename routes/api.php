@@ -209,13 +209,13 @@ Route::prefix('v2')->group(function () {
 
     /*Uzum Nasiya*/
 
-    Route::post('/check-status', 'UzumNasiyaController@checkStatus');
-    Route::post('/calculate', 'UzumNasiyaController@calculate');
-    Route::post('/order', 'UzumNasiyaController@order');
-    Route::post('/confirm-contract', 'UzumNasiyaController@confirmContract');
-    Route::post('/cancel-contract', 'UzumNasiyaController@cancelContract');
-    Route::post('/upload-act', 'UzumNasiyaController@uploadAct');
-    Route::post('/upload-client-photo', 'UzumNasiyaController@uploadClientPhoto');
+    Route::post('/check-status', 'Api\V2\UzumNasiyaController@checkStatus');
+    Route::post('/calculate', 'Api\V2\UzumNasiyaController@calculate');
+    Route::post('/order', 'Api\V2\UzumNasiyaController@order');
+    Route::post('/confirm-contract', 'Api\V2\UzumNasiyaController@confirmContract');
+    Route::post('/cancel-contract', 'Api\V2\UzumNasiyaController@cancelContract');
+    Route::post('/upload-act', 'Api\V2\UzumNasiyaController@uploadAct');
+    Route::post('/upload-client-photo', 'Api\V2\UzumNasiyaController@uploadClientPhoto');
 });
 
 Route::fallback(function() {
