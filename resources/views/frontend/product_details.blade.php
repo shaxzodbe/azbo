@@ -1298,10 +1298,12 @@
           monthly_price.innerText = final_price.toLocaleString() + ' ' + document.getElementById('currency_symbol').value;
           monthly_percent.innerText = ' (' + el.dataset.percent + '%)';
 
+          var installmentUrl = baseUrl.replace('__INSTALLMENT_ID__', installment_id);
+
           if (period == 3) {
               $('#select-item-pay').html('' +
                   '<div class="mt-3">' +
-                  '<a href="{{ route('checkout.installment', ['slug' => $detailedProduct->slug, 'installment_id' => installment_id]) }}" class="btn btn-soft-info fw-600 btn-block">' +
+                  '<a href="' + installmentUrl + '" class="btn btn-soft-info fw-600 btn-block">' +
                   '<img src="https://azbo.uz/public/uploads/all/rxCNoyRODbRR4P7VfZV82CtaRUC76857ZMfbkgrl.png" class="h-50px" alt="">' +
                   '</a>' +
                   '<button type="button" class="btn btn-soft-info fw-600 btn-block" onclick="payInInstallments()">' +
