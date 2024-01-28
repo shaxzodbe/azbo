@@ -214,7 +214,7 @@ Route::group(['middleware' => ['checkout']], function () {
     Route::post('/checkout/detail-send-verify-sms', 'CheckoutController@detail_send_verify_sms')->name('detail_send_verify_sms');
     Route::post('/checkout/detail-payment-action', 'CheckoutController@detail_action')->name('checkout.action');
     Route::get('/checkout/order-preconfirmed', 'CheckoutController@order_preconfirmed')->name('order_preconfirmed');
-    Route::get('/checkout/installment', 'CheckoutController@installment')->name('checkout.installment');
+    Route::get('/checkout/installment/{slug}', 'CheckoutController@installment')->name('checkout.installment');
 });
 
 Route::get('/checkout/order-confirmed', 'CheckoutController@order_confirmed')->name('order_confirmed');
