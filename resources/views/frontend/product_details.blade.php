@@ -42,7 +42,6 @@
 @endsection
 
 @section('content')
-  @dd($detailedProduct)
   <section class="mb-4 pt-3">
     <div class="container">
       <div class="bg-white shadow-sm rounded p-3">
