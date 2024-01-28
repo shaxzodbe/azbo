@@ -816,15 +816,8 @@ class CheckoutController extends Controller
 
     public function installment(Request $request, $slug)
     {
-        $installmentId = $request->input('installment_id');
+        $installmentId = $request->query('installment_id');
         dd($installmentId);
-
-        // Your logic here, for example:
-        // 1. Validate the installmentId and companyId
-        // 2. Retrieve the product details using the slug
-        // 3. Process or initiate the installment process with the given company
-
-        return view('checkout.installment', compact('slug', 'installmentId', 'companyId'));
-        // The view 'checkout.installment' should be created under resources/views/checkout/installment.blade.php
+        return view('checkout.installment', compact('slug', 'installmentId'));
     }
 }
